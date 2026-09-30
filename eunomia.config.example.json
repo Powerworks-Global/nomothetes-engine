@@ -1,0 +1,17 @@
+{
+  "org": {
+    "vcs.provider": "github"
+  },
+  "project": {
+    "integration.targetStack": "cratis-net",
+    "customer.billingModel": "fixed-per-slice",
+    "customer.currency": "EUR",
+    "customer.sliceRate": 100,
+    "communication.digestMode": "always-current",
+    "agent.autonomyLevel": "write-with-review"
+  },
+  "user": {
+    "design.theme": "light",
+    "design.density": "comfortable"
+  }
+}

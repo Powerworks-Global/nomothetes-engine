@@ -1,0 +1,45 @@
+{
+  "nodes": [
+    {
+      "id": "rule-1",
+      "type": "exampleMap",
+      "position": { "x": 40, "y": 40 },
+      "data": {
+        "nodeType": "rule",
+        "label": "Only an application under review can be rejected by its shelter owner"
+      }
+    },
+    {
+      "id": "example-1",
+      "type": "exampleMap",
+      "position": { "x": 40, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Rejecting an application that does not exist",
+        "scenario": {
+          "given": "no application exists with the given id",
+          "when": "the shelter owner attempts to reject it",
+          "then": "a Not Found result is returned and no integration event is produced"
+        }
+      }
+    },
+    {
+      "id": "example-2",
+      "type": "exampleMap",
+      "position": { "x": 280, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Rejecting an application under review",
+        "scenario": {
+          "given": "an application submitted for a dog listing is under review",
+          "when": "the shelter owner rejects it with a reason",
+          "then": "the application status becomes Rejected and an ApplicationRejected event is produced carrying the dog's name and the rejection reason"
+        }
+      }
+    }
+  ],
+  "edges": [
+    { "id": "rule-1-example-1", "source": "rule-1", "target": "example-1" },
+    { "id": "rule-1-example-2", "source": "rule-1", "target": "example-2" }
+  ]
+}

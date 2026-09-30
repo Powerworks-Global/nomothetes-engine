@@ -1,0 +1,129 @@
+{
+  "nodes": [
+    {
+      "id": "rule-1",
+      "type": "exampleMap",
+      "position": { "x": 40, "y": 40 },
+      "data": {
+        "nodeType": "rule",
+        "label": "Deleting a slice requires confirmation, removes all of that slice's nodes and edges (including edges crossing into other slices), never touches other slices' own nodes/edges, and does not cascade-delete the slice's Layer 2 Example Map data in localStorage"
+      }
+    },
+    {
+      "id": "example-1",
+      "type": "exampleMap",
+      "position": { "x": 40, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Deleting a slice with only internal edges",
+        "scenario": {
+          "given": "a slice with 2 nodes and 1 edge connecting them, both entirely within that slice",
+          "when": "the user confirms deleting the slice",
+          "then": "both nodes and the edge are removed, and no other slice's nodes or edges anywhere on the board are affected"
+        }
+      }
+    },
+    {
+      "id": "example-2",
+      "type": "exampleMap",
+      "position": { "x": 280, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Deleting a slice with a cross-slice edge",
+        "scenario": {
+          "given": "a slice whose Outcome node has an edge to a different slice's Actor node (a cross-slice trigger edge)",
+          "when": "the first slice is deleted",
+          "then": "the cross-slice edge is removed since one of its endpoints no longer exists, but the second slice's own nodes and any edges entirely within it remain untouched"
+        }
+      }
+    },
+    {
+      "id": "example-3",
+      "type": "exampleMap",
+      "position": { "x": 520, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Cancelling the confirmation leaves everything untouched",
+        "scenario": {
+          "given": "the user clicks Delete Slice on a slice",
+          "when": "they cancel the confirmation dialog",
+          "then": "no nodes, edges, or other state changes at all"
+        }
+      }
+    },
+    {
+      "id": "example-4",
+      "type": "exampleMap",
+      "position": { "x": 760, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Deleting the selected node's slice clears selection",
+        "scenario": {
+          "given": "a node in the slice being deleted is currently selected and shown in the Scenario panel",
+          "when": "the slice is deleted",
+          "then": "the selection is cleared so the panel does not keep showing a now-deleted node's stale data"
+        }
+      }
+    },
+    {
+      "id": "example-5",
+      "type": "exampleMap",
+      "position": { "x": 1000, "y": 200 },
+      "data": {
+        "nodeType": "example",
+        "label": "Example Map data is not cascade-deleted",
+        "scenario": {
+          "given": "a slice has existing Rule/Example/Question cards saved in localStorage",
+          "when": "the slice is deleted from the canvas",
+          "then": "the localStorage Example Map data for that slice id is left untouched — orphaned, and recoverable if a slice with the same id is ever recreated"
+        }
+      }
+    },
+    {
+      "id": "rule-2",
+      "type": "exampleMap",
+      "position": { "x": 40, "y": 400 },
+      "data": {
+        "nodeType": "rule",
+        "label": "If any Cross-Cutting Concern's appliesTo list references the slice being deleted, the user is warned before the deletion proceeds, not blocked"
+      }
+    },
+    {
+      "id": "example-6",
+      "type": "exampleMap",
+      "position": { "x": 40, "y": 560 },
+      "data": {
+        "nodeType": "example",
+        "label": "Deleting a slice referenced by a Concern shows a warning",
+        "scenario": {
+          "given": "a Cross-Cutting Concern's appliesTo list includes the slice being deleted",
+          "when": "the user clicks Delete Slice",
+          "then": "the confirmation dialog names the referencing concern(s) and still allows the user to proceed or cancel"
+        }
+      }
+    },
+    {
+      "id": "example-7",
+      "type": "exampleMap",
+      "position": { "x": 280, "y": 560 },
+      "data": {
+        "nodeType": "example",
+        "label": "Deleting a slice with no Concern references shows the plain confirmation",
+        "scenario": {
+          "given": "no Cross-Cutting Concern references the slice being deleted",
+          "when": "the user clicks Delete Slice",
+          "then": "the plain confirmation dialog appears with no warning text"
+        }
+      }
+    }
+  ],
+  "edges": [
+    { "id": "rule-1-example-1", "source": "rule-1", "target": "example-1" },
+    { "id": "rule-1-example-2", "source": "rule-1", "target": "example-2" },
+    { "id": "rule-1-example-3", "source": "rule-1", "target": "example-3" },
+    { "id": "rule-1-example-4", "source": "rule-1", "target": "example-4" },
+    { "id": "rule-1-example-5", "source": "rule-1", "target": "example-5" },
+    { "id": "rule-2-example-6", "source": "rule-2", "target": "example-6" },
+    { "id": "rule-2-example-7", "source": "rule-2", "target": "example-7" }
+  ]
+}

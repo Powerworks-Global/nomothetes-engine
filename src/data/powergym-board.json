@@ -1,0 +1,4304 @@
+{
+  "nodes": [
+    {
+      "id": "002a-member-registration:528d2998-c62f-4b7e-9f21-b40d3635a846",
+      "label": "Register Member",
+      "laneId": "action",
+      "sliceId": "842a7c33-e04a-448b-b31c-f8d69268084a",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:ab4f9537-81c9-421f-ae4c-82ec67e5d16d",
+      "label": "Member Registered",
+      "laneId": "outcome",
+      "sliceId": "842a7c33-e04a-448b-b31c-f8d69268084a",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:4f31c2ca-a35b-47fb-962a-a799c56a4fbe",
+      "label": "Record Membership Payment",
+      "laneId": "action",
+      "sliceId": "9280f310-2e62-4ac2-a385-723438013dae",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:e39593eb-a90b-4c27-882a-ab5691c0d3e8",
+      "label": "Membership Payment Received",
+      "laneId": "outcome",
+      "sliceId": "9280f310-2e62-4ac2-a385-723438013dae",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:8c564c38-fb8a-47e6-8be3-cbfc22801b67",
+      "label": "Membership Activator",
+      "laneId": "action",
+      "sliceId": "588caceb-73dc-4625-b1a9-5e1068e6ef58",
+      "sliceType": "AUTOMATION",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:843ebe58-7c3d-45df-8860-0738227ab8a8",
+      "label": "Membership Activated",
+      "laneId": "outcome",
+      "sliceId": "588caceb-73dc-4625-b1a9-5e1068e6ef58",
+      "sliceType": "AUTOMATION",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:270cd746-74a7-4a19-85ce-99d4e03a0402",
+      "label": "Registration Guard",
+      "laneId": "action",
+      "sliceId": "6c0a316e-b22f-4c15-b663-4b685666750e",
+      "sliceType": "AUTOMATION",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:0dfa1507-c370-48c6-aa5e-ad9f1c3408b8",
+      "label": "Member Registration Rejected",
+      "laneId": "outcome",
+      "sliceId": "6c0a316e-b22f-4c15-b663-4b685666750e",
+      "sliceType": "AUTOMATION",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:96fa0061-067e-436c-aaea-128206e1945d",
+      "label": "Activation Guard",
+      "laneId": "action",
+      "sliceId": "7f382e2c-2494-4011-b1d2-c6a9dfffd873",
+      "sliceType": "AUTOMATION",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:f0b64af2-eed1-4a59-b998-70e091ceb090",
+      "label": "Membership Activation Failed",
+      "laneId": "outcome",
+      "sliceId": "7f382e2c-2494-4011-b1d2-c6a9dfffd873",
+      "sliceType": "AUTOMATION",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:6a3ff23a-ca98-4c13-995e-c7d5f0b020b3",
+      "label": "New Member Registration",
+      "laneId": "screen",
+      "sliceId": "842a7c33-e04a-448b-b31c-f8d69268084a",
+      "sliceType": "SCREEN",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002a-member-registration:edacc279-c7d9-40f5-a16c-5c9abbaa383b",
+      "label": "Take Payment",
+      "laneId": "screen",
+      "sliceId": "9280f310-2e62-4ac2-a385-723438013dae",
+      "sliceType": "SCREEN",
+      "specId": "002a-member-registration"
+    },
+    {
+      "id": "002b-membership-renewal:9e893426-9919-4f6b-bf53-2747ea444c63",
+      "label": "Process Payment",
+      "laneId": "action",
+      "sliceId": "817945a2-b1e8-4028-abd1-b0f618df1425",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002b-membership-renewal:5bdf02ac-a4b1-412a-9373-633d13b737ba",
+      "label": "Renewal Payment Received",
+      "laneId": "outcome",
+      "sliceId": "817945a2-b1e8-4028-abd1-b0f618df1425",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002b-membership-renewal:dcb06578-bfcf-4323-87f2-a553bf474826",
+      "label": "Membership Renewer",
+      "laneId": "action",
+      "sliceId": "c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150",
+      "sliceType": "AUTOMATION",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002b-membership-renewal:a6abe3b8-2f81-4ba8-8d4e-65a67e4783db",
+      "label": "Membership Renewed",
+      "laneId": "outcome",
+      "sliceId": "c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150",
+      "sliceType": "AUTOMATION",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002b-membership-renewal:ca4f02f8-8c2f-4ecb-a4c4-679996f93361",
+      "label": "Payment Guard",
+      "laneId": "action",
+      "sliceId": "40e7ab28-c515-4cdc-85f5-0f483c24e25e",
+      "sliceType": "AUTOMATION",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002b-membership-renewal:8ee9b29e-3108-4395-89e0-3267c1b4fd70",
+      "label": "Payment Declined",
+      "laneId": "outcome",
+      "sliceId": "40e7ab28-c515-4cdc-85f5-0f483c24e25e",
+      "sliceType": "AUTOMATION",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002b-membership-renewal:a32ab09f-3c50-47aa-abb8-4228305e6a6b",
+      "label": "Renew Membership",
+      "laneId": "screen",
+      "sliceId": "817945a2-b1e8-4028-abd1-b0f618df1425",
+      "sliceType": "SCREEN",
+      "specId": "002b-membership-renewal"
+    },
+    {
+      "id": "002c-membership-cancellation:baed9f09-19ea-4f3f-889e-edddd0883b7b",
+      "label": "Cancel Membership",
+      "laneId": "action",
+      "sliceId": "bc28d23b-a5bf-451a-b43b-8a2b28f74d09",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:b34cdbbe-9e14-42fe-93ec-10e2125c0768",
+      "label": "Membership Cancellation Requested",
+      "laneId": "outcome",
+      "sliceId": "bc28d23b-a5bf-451a-b43b-8a2b28f74d09",
+      "sliceType": "STATE_CHANGE",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:d3e8438f-9a61-499b-b0d6-7a333fd4e339",
+      "label": "Cancellation Processor",
+      "laneId": "action",
+      "sliceId": "6a49769c-249b-41ba-b3d3-8d402d8833da",
+      "sliceType": "AUTOMATION",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:e8d1cf42-6057-4380-a421-39c8b3b3d288",
+      "label": "Membership Cancelled",
+      "laneId": "outcome",
+      "sliceId": "6a49769c-249b-41ba-b3d3-8d402d8833da",
+      "sliceType": "AUTOMATION",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:3fb12c64-7f3e-4e2e-9b89-6e3fbad3b8c8",
+      "label": "Cancellation Guard",
+      "laneId": "action",
+      "sliceId": "7679d9ae-70d5-407a-bd98-afadfde78132",
+      "sliceType": "AUTOMATION",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:5a032432-0305-49fa-be1c-81c5de97c426",
+      "label": "Membership Cancellation Blocked",
+      "laneId": "outcome",
+      "sliceId": "7679d9ae-70d5-407a-bd98-afadfde78132",
+      "sliceType": "AUTOMATION",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:6b55c9c1-5bcb-43f1-b13a-4fbeaa36645c",
+      "label": "Booking Canceller",
+      "laneId": "action",
+      "sliceId": "a687a7b8-d95b-4d5c-a667-6a9e61aecc99",
+      "sliceType": "AUTOMATION",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:ce13da7a-1c9b-48ab-b81d-5ddc3f2a2368",
+      "label": "Future Bookings Cancelled",
+      "laneId": "outcome",
+      "sliceId": "a687a7b8-d95b-4d5c-a667-6a9e61aecc99",
+      "sliceType": "AUTOMATION",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "002c-membership-cancellation:6dd8ff1c-e048-4ff3-a59a-28cd69759864",
+      "label": "Cancel Membership",
+      "laneId": "screen",
+      "sliceId": "bc28d23b-a5bf-451a-b43b-8a2b28f74d09",
+      "sliceType": "SCREEN",
+      "specId": "002c-membership-cancellation"
+    },
+    {
+      "id": "003a-reserve-class-seat:2b342672-9c50-459f-a525-ddbce2828133",
+      "label": "Reserve Class Seat",
+      "laneId": "action",
+      "sliceId": "390802f0-47d0-4362-b870-2345c2124fad",
+      "sliceType": "STATE_CHANGE",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:4c6c899f-c85f-40a9-a8b3-fec31e9cc716",
+      "label": "Class Seat Reserved",
+      "laneId": "outcome",
+      "sliceId": "390802f0-47d0-4362-b870-2345c2124fad",
+      "sliceType": "STATE_CHANGE",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:849d2ec3-f205-4828-8e73-cb6735091613",
+      "label": "Booking Processor",
+      "laneId": "action",
+      "sliceId": "06e78563-ea15-4533-9304-5c45158311a1",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:e8dcf2fa-577e-4c92-b9e4-38128ad5b117",
+      "label": "Class Booking Created",
+      "laneId": "outcome",
+      "sliceId": "06e78563-ea15-4533-9304-5c45158311a1",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:ac78e52f-fc54-452e-9b92-f07b834de2a8",
+      "label": "Capacity Tracker",
+      "laneId": "action",
+      "sliceId": "accc3a08-31e8-4f66-8485-4d4a0ea36683",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:453dec67-e2da-474c-a384-397bf98ecab7",
+      "label": "Class Capacity Updated",
+      "laneId": "outcome",
+      "sliceId": "accc3a08-31e8-4f66-8485-4d4a0ea36683",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:d45d6598-a6c8-46dd-9014-02b27a7e2e8a",
+      "label": "Capacity Guard",
+      "laneId": "action",
+      "sliceId": "cf7807a7-bf77-41c7-a701-6074792cfd98",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:7b23aa75-4e5d-42fa-b671-36307fdb5dab",
+      "label": "Class Booking Rejected",
+      "laneId": "outcome",
+      "sliceId": "cf7807a7-bf77-41c7-a701-6074792cfd98",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:3a1fa3ab-c199-484e-881e-32a246f8afe8",
+      "label": "Membership Guard",
+      "laneId": "action",
+      "sliceId": "1b9211d8-bc61-4725-ae4e-37a92c56cf33",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:9925e42c-706b-44fb-9a41-5ed53a2734ad",
+      "label": "Booking Rejected",
+      "laneId": "outcome",
+      "sliceId": "1b9211d8-bc61-4725-ae4e-37a92c56cf33",
+      "sliceType": "AUTOMATION",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003a-reserve-class-seat:2826c033-7f57-456e-bdc8-d9ba5ea9cf7e",
+      "label": "Class Timetable",
+      "laneId": "screen",
+      "sliceId": "390802f0-47d0-4362-b870-2345c2124fad",
+      "sliceType": "SCREEN",
+      "specId": "003a-reserve-class-seat"
+    },
+    {
+      "id": "003b-cancel-class-booking:4ce8343c-2ebb-4bcf-8b9d-f815d132bae5",
+      "label": "Cancel Class Booking",
+      "laneId": "action",
+      "sliceId": "fa6d4510-b98f-4264-ae67-613c67b34584",
+      "sliceType": "STATE_CHANGE",
+      "specId": "003b-cancel-class-booking"
+    },
+    {
+      "id": "003b-cancel-class-booking:b621261c-deec-4434-b290-eac31fd055e7",
+      "label": "Class Booking Cancelled",
+      "laneId": "outcome",
+      "sliceId": "fa6d4510-b98f-4264-ae67-613c67b34584",
+      "sliceType": "STATE_CHANGE",
+      "specId": "003b-cancel-class-booking"
+    },
+    {
+      "id": "003b-cancel-class-booking:7015c342-9607-49a2-99e0-dc8552c58099",
+      "label": "Waitlist Manager",
+      "laneId": "action",
+      "sliceId": "855e5fdf-9c80-4541-b0bb-c74e4847383e",
+      "sliceType": "AUTOMATION",
+      "specId": "003b-cancel-class-booking"
+    },
+    {
+      "id": "003b-cancel-class-booking:c9a7d135-b54f-4de5-8400-a3a160a553af",
+      "label": "Waiting List Promoted",
+      "laneId": "outcome",
+      "sliceId": "855e5fdf-9c80-4541-b0bb-c74e4847383e",
+      "sliceType": "AUTOMATION",
+      "specId": "003b-cancel-class-booking"
+    },
+    {
+      "id": "003b-cancel-class-booking:058f220a-1fb7-48ab-8d38-7c532d283e93",
+      "label": "My Bookings",
+      "laneId": "screen",
+      "sliceId": "fa6d4510-b98f-4264-ae67-613c67b34584",
+      "sliceType": "SCREEN",
+      "specId": "003b-cancel-class-booking"
+    },
+    {
+      "id": "004-scheduling:ebf129d4-ca66-453b-bbf2-080782cdb09e",
+      "label": "Complete Class",
+      "laneId": "action",
+      "sliceId": "fb194626-5685-488e-82a2-641875d2fe64",
+      "sliceType": "STATE_CHANGE",
+      "specId": "004-scheduling"
+    },
+    {
+      "id": "004-scheduling:f59c7dc6-39db-40e9-9d44-63bb36c3957b",
+      "label": "Class Completed",
+      "laneId": "outcome",
+      "sliceId": "fb194626-5685-488e-82a2-641875d2fe64",
+      "sliceType": "STATE_CHANGE",
+      "specId": "004-scheduling"
+    },
+    {
+      "id": "004-scheduling:9c43fb9a-cba3-452a-81c4-128051068d85",
+      "label": "Attendance Tracker",
+      "laneId": "action",
+      "sliceId": "6d17ee80-6237-4c45-9c60-944817761272",
+      "sliceType": "AUTOMATION",
+      "specId": "004-scheduling"
+    },
+    {
+      "id": "004-scheduling:2f9f263b-e171-4930-bc7e-20e3d5a70d75",
+      "label": "Attendance Recorded",
+      "laneId": "outcome",
+      "sliceId": "6d17ee80-6237-4c45-9c60-944817761272",
+      "sliceType": "AUTOMATION",
+      "specId": "004-scheduling"
+    },
+    {
+      "id": "004-scheduling:d6fc4e96-b906-4933-9cd0-be73fd53d92d",
+      "label": "Class Roster",
+      "laneId": "screen",
+      "sliceId": "fb194626-5685-488e-82a2-641875d2fe64",
+      "sliceType": "SCREEN",
+      "specId": "004-scheduling"
+    },
+    {
+      "id": "005a-sale-driven-reorder:5a26f5da-86bb-46bc-ba57-2bd5223e2f3b",
+      "label": "Record Sale",
+      "laneId": "action",
+      "sliceId": "2e18547f-90db-49fc-b2a6-a5bea4aa62b3",
+      "sliceType": "STATE_CHANGE",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:9f7f72f3-a156-4f4f-81cc-1050ab5f5768",
+      "label": "Product Sold",
+      "laneId": "outcome",
+      "sliceId": "2e18547f-90db-49fc-b2a6-a5bea4aa62b3",
+      "sliceType": "STATE_CHANGE",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:f1264bef-3554-4a50-8597-9133ca5d51a4",
+      "label": "Inventory Tracker",
+      "laneId": "action",
+      "sliceId": "b2ff42df-3ff7-4652-9ce5-bced0d92475e",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:5fe11588-8b25-40b0-b20f-6f43672c4fb3",
+      "label": "Inventory Reduced",
+      "laneId": "outcome",
+      "sliceId": "b2ff42df-3ff7-4652-9ce5-bced0d92475e",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:e6433115-b189-49f4-9f57-5b132a275e31",
+      "label": "Stock Monitor",
+      "laneId": "action",
+      "sliceId": "5482bf7a-46a8-4454-8c2e-575f56f00269",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:19355ccc-f30c-424c-a1c5-3868ed8bc99f",
+      "label": "Low Stock Detected",
+      "laneId": "outcome",
+      "sliceId": "5482bf7a-46a8-4454-8c2e-575f56f00269",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:4cb1d502-14ed-4a4c-afce-c64c10fb3a54",
+      "label": "Reorder Assistant",
+      "laneId": "action",
+      "sliceId": "59539bee-993a-4b88-a76f-3ba9576af4d1",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:ee0ddc4e-4835-4368-b705-9b3175d48ccc",
+      "label": "Purchase Order Suggested",
+      "laneId": "outcome",
+      "sliceId": "59539bee-993a-4b88-a76f-3ba9576af4d1",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:c3110b85-7b6a-4999-b543-adfcadf95d77",
+      "label": "Reorder Guard",
+      "laneId": "action",
+      "sliceId": "8966a953-01c7-437d-95ca-7c9039136bdf",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:afc3bdd9-b4fd-45e7-8ff3-916d28bfa7df",
+      "label": "Reorder Suppressed",
+      "laneId": "outcome",
+      "sliceId": "8966a953-01c7-437d-95ca-7c9039136bdf",
+      "sliceType": "AUTOMATION",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005a-sale-driven-reorder:b5232aee-3f06-4b2e-8b7c-35a54cfeb6b4",
+      "label": "Point of Sale",
+      "laneId": "screen",
+      "sliceId": "2e18547f-90db-49fc-b2a6-a5bea4aa62b3",
+      "sliceType": "SCREEN",
+      "specId": "005a-sale-driven-reorder"
+    },
+    {
+      "id": "005b-stock-receiving:d0107c03-beac-49c8-85c7-9b5ef713646e",
+      "label": "Receive Stock",
+      "laneId": "action",
+      "sliceId": "39875d23-19d2-4e26-ad7b-cdeb22d61cbb",
+      "sliceType": "STATE_CHANGE",
+      "specId": "005b-stock-receiving"
+    },
+    {
+      "id": "005b-stock-receiving:c83f9d31-9b41-49ef-8bbb-ba20b22d22ee",
+      "label": "Stock Received",
+      "laneId": "outcome",
+      "sliceId": "39875d23-19d2-4e26-ad7b-cdeb22d61cbb",
+      "sliceType": "STATE_CHANGE",
+      "specId": "005b-stock-receiving"
+    },
+    {
+      "id": "005b-stock-receiving:7c92752e-7f36-4148-906f-6fcb8514f1b1",
+      "label": "Inventory Tracker",
+      "laneId": "action",
+      "sliceId": "cae60f7d-2287-4816-b9ca-f4cbbcafed57",
+      "sliceType": "AUTOMATION",
+      "specId": "005b-stock-receiving"
+    },
+    {
+      "id": "005b-stock-receiving:dc352e41-e43c-427e-a12b-500e9964d074",
+      "label": "Inventory Updated",
+      "laneId": "outcome",
+      "sliceId": "cae60f7d-2287-4816-b9ca-f4cbbcafed57",
+      "sliceType": "AUTOMATION",
+      "specId": "005b-stock-receiving"
+    },
+    {
+      "id": "005b-stock-receiving:52cceb88-6f48-4af8-8fe0-a3af4458cb73",
+      "label": "Receive Delivery",
+      "laneId": "screen",
+      "sliceId": "39875d23-19d2-4e26-ad7b-cdeb22d61cbb",
+      "sliceType": "SCREEN",
+      "specId": "005b-stock-receiving"
+    },
+    {
+      "id": "006-staffing:fae3deb2-0e3d-4456-af7b-d5eee7e3cbc5",
+      "label": "Hours Calculator",
+      "laneId": "action",
+      "sliceId": "c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:5523e160-1b9f-41d9-a29f-23680d3fff82",
+      "label": "Worked Hours Calculated",
+      "laneId": "outcome",
+      "sliceId": "c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:035e548f-89cd-43c6-bdff-bb698466576f",
+      "label": "Start Staff Shift",
+      "laneId": "action",
+      "sliceId": "39fceb30-2313-451e-82ff-5f3186b1c5b7",
+      "sliceType": "STATE_CHANGE",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:bd9e45f7-d1a1-44b5-9f9c-80422e3bf4bd",
+      "label": "Staff Shift Started",
+      "laneId": "outcome",
+      "sliceId": "39fceb30-2313-451e-82ff-5f3186b1c5b7",
+      "sliceType": "STATE_CHANGE",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:f9b38278-89e5-4762-b873-21c9fa9b2977",
+      "label": "End Shift",
+      "laneId": "action",
+      "sliceId": "e4ceb51d-9554-4c9a-ae78-cfcd2594dc81",
+      "sliceType": "STATE_CHANGE",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:426d39e3-3181-4d46-a256-b7203dc8b091",
+      "label": "Staff Shift Ended",
+      "laneId": "outcome",
+      "sliceId": "e4ceb51d-9554-4c9a-ae78-cfcd2594dc81",
+      "sliceType": "STATE_CHANGE",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:0c50eef1-754e-4014-833b-0824e4a1e3c4",
+      "label": "Shift Guard",
+      "laneId": "action",
+      "sliceId": "6fce0bf9-e265-4f36-a323-58440a2f86aa",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:5d328646-582e-49b0-af51-3504c3695448",
+      "label": "Shift End Rejected",
+      "laneId": "outcome",
+      "sliceId": "6fce0bf9-e265-4f36-a323-58440a2f86aa",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:fab2a4d4-e16d-41de-a174-c7a1fab9deee",
+      "label": "Schedule Guard",
+      "laneId": "action",
+      "sliceId": "7d0d6111-a187-4c18-8fa6-3cb89e1f6307",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:9eb273f0-4bc9-47d9-aa22-7b210421b3b8",
+      "label": "Shift Start Rejected",
+      "laneId": "outcome",
+      "sliceId": "7d0d6111-a187-4c18-8fa6-3cb89e1f6307",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:1dd7bb00-f252-41c3-8f0c-44a9d2c4728b",
+      "label": "Shift Guard",
+      "laneId": "action",
+      "sliceId": "144d46f3-647a-4dca-8e77-3be356039b72",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:af2fdbf1-a0e9-49f6-8774-94a62f79d5df",
+      "label": "Duplicate Shift Start Detected",
+      "laneId": "outcome",
+      "sliceId": "144d46f3-647a-4dca-8e77-3be356039b72",
+      "sliceType": "AUTOMATION",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:6aebccdd-a536-4501-af6d-81fe804c25af",
+      "label": "Clock In",
+      "laneId": "screen",
+      "sliceId": "39fceb30-2313-451e-82ff-5f3186b1c5b7",
+      "sliceType": "SCREEN",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "006-staffing:91df3104-654e-4527-9f0f-ab821e22986e",
+      "label": "Clock Out",
+      "laneId": "screen",
+      "sliceId": "e4ceb51d-9554-4c9a-ae78-cfcd2594dc81",
+      "sliceType": "SCREEN",
+      "specId": "006-staffing"
+    },
+    {
+      "id": "007-accounting:05a16ef8-75df-4461-b938-4d6494a3a6b9",
+      "label": "Payslip Generator",
+      "laneId": "action",
+      "sliceId": "bbbf8d34-9461-4ad5-95e3-50404583b2fe",
+      "sliceType": "AUTOMATION",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "007-accounting:f170e61e-2806-412d-a5ac-6a192e6a4e46",
+      "label": "Payslip Created",
+      "laneId": "outcome",
+      "sliceId": "bbbf8d34-9461-4ad5-95e3-50404583b2fe",
+      "sliceType": "AUTOMATION",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "007-accounting:7ff9b686-fb08-4920-9a64-696e1c369813",
+      "label": "Generate Payroll",
+      "laneId": "action",
+      "sliceId": "4c6d4ccc-2740-4481-97a9-4ee6d47d6904",
+      "sliceType": "STATE_CHANGE",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "007-accounting:ff43b87b-184a-4300-9841-aa2f79eba432",
+      "label": "Payroll Generated",
+      "laneId": "outcome",
+      "sliceId": "4c6d4ccc-2740-4481-97a9-4ee6d47d6904",
+      "sliceType": "STATE_CHANGE",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "007-accounting:9fd9fc76-926e-4b83-90e4-0c0be0974527",
+      "label": "Timesheet Guard",
+      "laneId": "action",
+      "sliceId": "85673a99-2859-4ba2-9298-de5b51507670",
+      "sliceType": "AUTOMATION",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "007-accounting:b83b9163-ac58-499e-8f88-412050e972f5",
+      "label": "Payroll Calculation Failed",
+      "laneId": "outcome",
+      "sliceId": "85673a99-2859-4ba2-9298-de5b51507670",
+      "sliceType": "AUTOMATION",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "007-accounting:d8eef58f-6859-4282-8063-88ad6b10e968",
+      "label": "Run Payroll",
+      "laneId": "screen",
+      "sliceId": "4c6d4ccc-2740-4481-97a9-4ee6d47d6904",
+      "sliceType": "SCREEN",
+      "specId": "007-accounting"
+    },
+    {
+      "id": "008-reporting:6e3208f1-1c0e-4401-a44b-323df1c25e47",
+      "label": "Generate Monthly Report",
+      "laneId": "action",
+      "sliceId": "6ed75590-6d1d-42d0-adf5-9272c6dba87e",
+      "sliceType": "STATE_CHANGE",
+      "specId": "008-reporting"
+    },
+    {
+      "id": "008-reporting:e048845e-dff2-4729-acdc-52f9d3b8e42d",
+      "label": "Monthly Report Generated",
+      "laneId": "outcome",
+      "sliceId": "6ed75590-6d1d-42d0-adf5-9272c6dba87e",
+      "sliceType": "STATE_CHANGE",
+      "specId": "008-reporting"
+    },
+    {
+      "id": "008-reporting:27e52f5e-266f-4372-8d45-a404fe7598f3",
+      "label": "Data Guard",
+      "laneId": "action",
+      "sliceId": "44806edd-adba-4911-aec4-487d6e28855b",
+      "sliceType": "AUTOMATION",
+      "specId": "008-reporting"
+    },
+    {
+      "id": "008-reporting:ff382399-6f9c-4727-95cd-37ae2f4be401",
+      "label": "Report Generation Failed",
+      "laneId": "outcome",
+      "sliceId": "44806edd-adba-4911-aec4-487d6e28855b",
+      "sliceType": "AUTOMATION",
+      "specId": "008-reporting"
+    },
+    {
+      "id": "008-reporting:747e60c8-7c68-47ce-bf36-816296ab241c",
+      "label": "Reports Dashboard",
+      "laneId": "screen",
+      "sliceId": "6ed75590-6d1d-42d0-adf5-9272c6dba87e",
+      "sliceType": "SCREEN",
+      "specId": "008-reporting"
+    },
+    {
+      "id": "009a-complaint-resolution:8dcef444-a500-4e52-8baa-9fcc4a8ec902",
+      "label": "Log Complaint",
+      "laneId": "action",
+      "sliceId": "a3668550-0c8e-41db-8580-e05c11dbad1d",
+      "sliceType": "STATE_CHANGE",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:07d9a508-0ad8-4667-a689-2d86eadf0ecb",
+      "label": "Complaint Logged",
+      "laneId": "outcome",
+      "sliceId": "a3668550-0c8e-41db-8580-e05c11dbad1d",
+      "sliceType": "STATE_CHANGE",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:0741b52d-4c99-4e46-ac57-34fb83b88477",
+      "label": "Complaint Router",
+      "laneId": "action",
+      "sliceId": "34871f78-6303-4b08-873f-15154e61c005",
+      "sliceType": "AUTOMATION",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:4a3ed850-6ebf-4bd9-ad69-2d7364a5d2b0",
+      "label": "Complaint Assigned",
+      "laneId": "outcome",
+      "sliceId": "34871f78-6303-4b08-873f-15154e61c005",
+      "sliceType": "AUTOMATION",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:35e29e92-e6a4-4f30-9ccc-722d2a9b1b3b",
+      "label": "Resolve Complaint",
+      "laneId": "action",
+      "sliceId": "19020553-84a6-48e1-8624-d0b3f5f4dfbd",
+      "sliceType": "STATE_CHANGE",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:ed37e3bd-4e52-4c3e-995e-8f037e687b44",
+      "label": "Complaint Resolved",
+      "laneId": "outcome",
+      "sliceId": "19020553-84a6-48e1-8624-d0b3f5f4dfbd",
+      "sliceType": "STATE_CHANGE",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:8efc80cd-5ca2-4fd0-9520-35fe1c106a93",
+      "label": "Notifier",
+      "laneId": "action",
+      "sliceId": "93146fb3-fceb-45f9-9e81-0214548cfcaa",
+      "sliceType": "AUTOMATION",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:398d9923-140d-46b1-8397-2dc6198aa716",
+      "label": "Member Notified",
+      "laneId": "outcome",
+      "sliceId": "93146fb3-fceb-45f9-9e81-0214548cfcaa",
+      "sliceType": "AUTOMATION",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:0a3f41f9-479b-4c3a-abd5-8289e27aded2",
+      "label": "Duplicate Guard",
+      "laneId": "action",
+      "sliceId": "4da02196-63f6-4586-926f-2de43a2baf72",
+      "sliceType": "AUTOMATION",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:718189c1-0c70-4878-904a-be41403fee04",
+      "label": "Duplicate Complaint Detected",
+      "laneId": "outcome",
+      "sliceId": "4da02196-63f6-4586-926f-2de43a2baf72",
+      "sliceType": "AUTOMATION",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:9fba9809-4ede-42c9-baab-919892f4816e",
+      "label": "Log Complaint",
+      "laneId": "screen",
+      "sliceId": "a3668550-0c8e-41db-8580-e05c11dbad1d",
+      "sliceType": "SCREEN",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009a-complaint-resolution:6ba54ee8-c33f-4e6a-b068-2d830842d543",
+      "label": "Resolve Complaint",
+      "laneId": "screen",
+      "sliceId": "19020553-84a6-48e1-8624-d0b3f5f4dfbd",
+      "sliceType": "SCREEN",
+      "specId": "009a-complaint-resolution"
+    },
+    {
+      "id": "009b-maintenance-escalation:5e68c564-882d-449d-a458-8ae16e1579ee",
+      "label": "Maintenance Requester",
+      "laneId": "action",
+      "sliceId": "25459aac-227e-4cf5-a6f4-076aedfe20ad",
+      "sliceType": "AUTOMATION",
+      "specId": "009b-maintenance-escalation"
+    },
+    {
+      "id": "009b-maintenance-escalation:a06fec10-f3d6-49fe-ab1e-458909be926b",
+      "label": "Maintenance Request Created",
+      "laneId": "outcome",
+      "sliceId": "25459aac-227e-4cf5-a6f4-076aedfe20ad",
+      "sliceType": "AUTOMATION",
+      "specId": "009b-maintenance-escalation"
+    },
+    {
+      "id": "010a-maintenance-scheduling:c54f15e5-ed25-433e-aed2-7f41339a931b",
+      "label": "Maintenance Scheduler",
+      "laneId": "action",
+      "sliceId": "7f1fde35-02d4-488b-8dd5-ba1252d78029",
+      "sliceType": "AUTOMATION",
+      "specId": "010a-maintenance-scheduling"
+    },
+    {
+      "id": "010a-maintenance-scheduling:8ba4ff8d-7fd7-44e6-9a95-57c8a6315737",
+      "label": "Maintenance Due Detected",
+      "laneId": "outcome",
+      "sliceId": "7f1fde35-02d4-488b-8dd5-ba1252d78029",
+      "sliceType": "AUTOMATION",
+      "specId": "010a-maintenance-scheduling"
+    },
+    {
+      "id": "010a-maintenance-scheduling:faeb58bb-8523-4343-b813-60915870d9b0",
+      "label": "Work Order Creator",
+      "laneId": "action",
+      "sliceId": "37fb5054-1d0d-472c-9da2-944645951e33",
+      "sliceType": "AUTOMATION",
+      "specId": "010a-maintenance-scheduling"
+    },
+    {
+      "id": "010a-maintenance-scheduling:cefdbcd5-0f75-44c5-8ea3-1737b31598dc",
+      "label": "Maintenance Work Order Created",
+      "laneId": "outcome",
+      "sliceId": "37fb5054-1d0d-472c-9da2-944645951e33",
+      "sliceType": "AUTOMATION",
+      "specId": "010a-maintenance-scheduling"
+    },
+    {
+      "id": "010a-maintenance-scheduling:64f42bea-87df-4ed5-bc93-0c1e1cb0b648",
+      "label": "Duplicate Guard",
+      "laneId": "action",
+      "sliceId": "5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4",
+      "sliceType": "AUTOMATION",
+      "specId": "010a-maintenance-scheduling"
+    },
+    {
+      "id": "010a-maintenance-scheduling:e993ee01-26f3-421e-a340-5273aacb57ed",
+      "label": "Maintenance Request Ignored",
+      "laneId": "outcome",
+      "sliceId": "5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4",
+      "sliceType": "AUTOMATION",
+      "specId": "010a-maintenance-scheduling"
+    },
+    {
+      "id": "010b-equipment-servicing:84601f6d-4191-4d39-8252-8e612e247451",
+      "label": "Equipment Tracker",
+      "laneId": "action",
+      "sliceId": "f608be1f-9567-404c-83fb-666350735265",
+      "sliceType": "AUTOMATION",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:230c6a8f-fb15-4a9c-a95b-a7c5adb14783",
+      "label": "Equipment Marked Out Of Service",
+      "laneId": "outcome",
+      "sliceId": "f608be1f-9567-404c-83fb-666350735265",
+      "sliceType": "AUTOMATION",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:ed48ce58-cb98-45ca-ba67-fa0ac3b9aec2",
+      "label": "Complete Maintenance",
+      "laneId": "action",
+      "sliceId": "70e83c7f-3236-495d-906f-9c497e80186d",
+      "sliceType": "STATE_CHANGE",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:431df1b0-63d4-48dd-8dd9-3cd1b84960a6",
+      "label": "Maintenance Completed",
+      "laneId": "outcome",
+      "sliceId": "70e83c7f-3236-495d-906f-9c497e80186d",
+      "sliceType": "STATE_CHANGE",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:f6e74052-8493-484f-8727-bd7f5beaadda",
+      "label": "Service Tracker",
+      "laneId": "action",
+      "sliceId": "e1ff5457-20ba-4350-94e4-ff0f0e8efdbe",
+      "sliceType": "AUTOMATION",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:ac661c9b-6f09-4051-8a5b-0bfbb46b4303",
+      "label": "Equipment Returned To Service",
+      "laneId": "outcome",
+      "sliceId": "e1ff5457-20ba-4350-94e4-ff0f0e8efdbe",
+      "sliceType": "AUTOMATION",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:e83e521b-6f40-4e4f-a5cf-58a19921d52f",
+      "label": "Repair Guard",
+      "laneId": "action",
+      "sliceId": "0efc9948-9982-40f2-90d8-e7b56d377a7d",
+      "sliceType": "AUTOMATION",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:712a3d77-c325-4e7f-9e75-04d3c1ec7b17",
+      "label": "Maintenance Failed",
+      "laneId": "outcome",
+      "sliceId": "0efc9948-9982-40f2-90d8-e7b56d377a7d",
+      "sliceType": "AUTOMATION",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "010b-equipment-servicing:e4058229-e272-444b-9933-6c546cfad263",
+      "label": "Close Work Order",
+      "laneId": "screen",
+      "sliceId": "70e83c7f-3236-495d-906f-9c497e80186d",
+      "sliceType": "SCREEN",
+      "specId": "010b-equipment-servicing"
+    },
+    {
+      "id": "011a-book-training-session:8d5fe5be-06c8-458d-b939-02d9e5d30c14",
+      "label": "Book Personal Training Session",
+      "laneId": "action",
+      "sliceId": "b01ac7f7-d321-4735-8edc-be45e3c10a19",
+      "sliceType": "STATE_CHANGE",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:b8f40593-529b-44c2-aa79-8a55953870d1",
+      "label": "Personal Training Booked",
+      "laneId": "outcome",
+      "sliceId": "b01ac7f7-d321-4735-8edc-be45e3c10a19",
+      "sliceType": "STATE_CHANGE",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:4a3e9e64-d477-4d37-b6ae-fda656644969",
+      "label": "Availability Manager",
+      "laneId": "action",
+      "sliceId": "c3cb8fa7-2243-40fd-8318-496823ea29cb",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:ccedb8f9-3d00-40b6-af62-834cef55e575",
+      "label": "Trainer Availability Reserved",
+      "laneId": "outcome",
+      "sliceId": "c3cb8fa7-2243-40fd-8318-496823ea29cb",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:6d17bc3f-d3c7-42da-a952-cb3f94e9d9cb",
+      "label": "Notification Service",
+      "laneId": "action",
+      "sliceId": "8818eed0-2788-458e-8000-35a2cc8a3ed3",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:9ab257d5-fac2-4669-8190-4cf8c71b1def",
+      "label": "Booking Confirmation Sent",
+      "laneId": "outcome",
+      "sliceId": "8818eed0-2788-458e-8000-35a2cc8a3ed3",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:ca9fd8ff-b6d4-4a87-8b1c-c655960d8aeb",
+      "label": "Calendar Service",
+      "laneId": "action",
+      "sliceId": "25e20ef7-8465-40bc-a0bc-ee618d1a0bd7",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:739ecad1-98c9-418f-ba79-23e7465f16b1",
+      "label": "Calendar Entry Created",
+      "laneId": "outcome",
+      "sliceId": "25e20ef7-8465-40bc-a0bc-ee618d1a0bd7",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:8b7d1763-2341-40e8-946d-d813cd296291",
+      "label": "Utilization Reporter",
+      "laneId": "action",
+      "sliceId": "ec1326c9-a088-4a12-a9d0-9ee92b54fbc7",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:c7ba7faf-c921-4ea9-8e15-b65c5dd52dec",
+      "label": "Trainer Utilization Report Updated",
+      "laneId": "outcome",
+      "sliceId": "ec1326c9-a088-4a12-a9d0-9ee92b54fbc7",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:67acd423-4669-4a30-adf8-202ecfbdcc1b",
+      "label": "Schedule Tracker",
+      "laneId": "action",
+      "sliceId": "7dffeaee-6d2b-445a-a1dc-de2088a7cdbc",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:37514793-21c5-442c-b7cf-afb8584ad137",
+      "label": "Trainer Schedule Updated",
+      "laneId": "outcome",
+      "sliceId": "7dffeaee-6d2b-445a-a1dc-de2088a7cdbc",
+      "sliceType": "AUTOMATION",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011a-book-training-session:d85e5d90-a7d0-4b10-8b5b-cbe6106d00e8",
+      "label": "Book PT Session",
+      "laneId": "screen",
+      "sliceId": "b01ac7f7-d321-4735-8edc-be45e3c10a19",
+      "sliceType": "SCREEN",
+      "specId": "011a-book-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:ea587364-2198-4b3f-b9e3-45d9b145badf",
+      "label": "Complete Training Session",
+      "laneId": "action",
+      "sliceId": "1535cc12-fdfe-4ae9-8046-ec2a0791b90a",
+      "sliceType": "STATE_CHANGE",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:8aa7b780-7f15-42c3-865a-cba670a1ee20",
+      "label": "Personal Training Session Completed",
+      "laneId": "outcome",
+      "sliceId": "1535cc12-fdfe-4ae9-8046-ec2a0791b90a",
+      "sliceType": "STATE_CHANGE",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:4b508c3d-7c20-4f8a-ab48-90f4a79bb313",
+      "label": "Utilization Tracker",
+      "laneId": "action",
+      "sliceId": "c73ccf58-4b39-469c-839d-abfeedbf1ce7",
+      "sliceType": "AUTOMATION",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:28377c3d-4809-41a0-8e7e-456e9e45892a",
+      "label": "Trainer Utilization Updated",
+      "laneId": "outcome",
+      "sliceId": "c73ccf58-4b39-469c-839d-abfeedbf1ce7",
+      "sliceType": "AUTOMATION",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:7860069c-37b8-4446-afb1-a4725ef0a36b",
+      "label": "Attendance Guard",
+      "laneId": "action",
+      "sliceId": "1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4",
+      "sliceType": "AUTOMATION",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:bd8b5019-2b33-4a2f-956a-3b884e9c769b",
+      "label": "Personal Training No-Show Recorded",
+      "laneId": "outcome",
+      "sliceId": "1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4",
+      "sliceType": "AUTOMATION",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "011b-complete-training-session:586da29b-2cae-42e8-99c3-2bc32747de2b",
+      "label": "Complete Session",
+      "laneId": "screen",
+      "sliceId": "1535cc12-fdfe-4ae9-8046-ec2a0791b90a",
+      "sliceType": "SCREEN",
+      "specId": "011b-complete-training-session"
+    },
+    {
+      "id": "012-retail-sales:64a4b0fc-e7b4-4bb4-a94e-ec1d58d411fb",
+      "label": "Revenue Tracker",
+      "laneId": "action",
+      "sliceId": "73acbcc0-fc27-4c84-8a5e-991783daf5c3",
+      "sliceType": "AUTOMATION",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:4373a225-b535-47e7-9255-2a23c4fb384b",
+      "label": "Revenue Recorded",
+      "laneId": "outcome",
+      "sliceId": "73acbcc0-fc27-4c84-8a5e-991783daf5c3",
+      "sliceType": "AUTOMATION",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:825228b9-d8dc-4f5a-a31c-668edf9dd097",
+      "label": "Record Retail Sale",
+      "laneId": "action",
+      "sliceId": "8580ba30-2d4f-49da-b555-d9acdf68dadc",
+      "sliceType": "STATE_CHANGE",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:3e5ca1fe-e431-4c3c-912c-b12c62755bf9",
+      "label": "Retail Sale Completed",
+      "laneId": "outcome",
+      "sliceId": "8580ba30-2d4f-49da-b555-d9acdf68dadc",
+      "sliceType": "STATE_CHANGE",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:1484e1f0-5840-4cfd-92e8-f233a5c699c7",
+      "label": "Inventory Tracker",
+      "laneId": "action",
+      "sliceId": "7dea13a1-37f5-44d3-be24-d76ffc5a323b",
+      "sliceType": "AUTOMATION",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:a5f1c1fd-c255-4df0-9134-7c9d5bc1a035",
+      "label": "Inventory Reduced",
+      "laneId": "outcome",
+      "sliceId": "7dea13a1-37f5-44d3-be24-d76ffc5a323b",
+      "sliceType": "AUTOMATION",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:00d115ff-1b86-4009-b086-4cc3c6f383b5",
+      "label": "Stock Guard",
+      "laneId": "action",
+      "sliceId": "b815fe5e-15ba-482f-9694-38f10e436275",
+      "sliceType": "AUTOMATION",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:762e0156-bcb1-479a-af7a-3d1d75ba755d",
+      "label": "Sale Rejected",
+      "laneId": "outcome",
+      "sliceId": "b815fe5e-15ba-482f-9694-38f10e436275",
+      "sliceType": "AUTOMATION",
+      "specId": "012-retail-sales"
+    },
+    {
+      "id": "012-retail-sales:8a967531-07af-4002-9769-4a48390750cc",
+      "label": "Point of Sale",
+      "laneId": "screen",
+      "sliceId": "8580ba30-2d4f-49da-b555-d9acdf68dadc",
+      "sliceType": "SCREEN",
+      "specId": "012-retail-sales"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-002a-member-registration:6a3ff23a-ca98-4c13-995e-c7d5f0b020b3-002a-member-registration:528d2998-c62f-4b7e-9f21-b40d3635a846",
+      "source": "002a-member-registration:6a3ff23a-ca98-4c13-995e-c7d5f0b020b3",
+      "target": "002a-member-registration:528d2998-c62f-4b7e-9f21-b40d3635a846",
+      "label": "triggers"
+    },
+    {
+      "id": "e-002a-member-registration:edacc279-c7d9-40f5-a16c-5c9abbaa383b-002a-member-registration:4f31c2ca-a35b-47fb-962a-a799c56a4fbe",
+      "source": "002a-member-registration:edacc279-c7d9-40f5-a16c-5c9abbaa383b",
+      "target": "002a-member-registration:4f31c2ca-a35b-47fb-962a-a799c56a4fbe",
+      "label": "triggers"
+    },
+    {
+      "id": "e-002a-member-registration:528d2998-c62f-4b7e-9f21-b40d3635a846-002a-member-registration:ab4f9537-81c9-421f-ae4c-82ec67e5d16d",
+      "source": "002a-member-registration:528d2998-c62f-4b7e-9f21-b40d3635a846",
+      "target": "002a-member-registration:ab4f9537-81c9-421f-ae4c-82ec67e5d16d",
+      "label": "produces"
+    },
+    {
+      "id": "e-002a-member-registration:4f31c2ca-a35b-47fb-962a-a799c56a4fbe-002a-member-registration:e39593eb-a90b-4c27-882a-ab5691c0d3e8",
+      "source": "002a-member-registration:4f31c2ca-a35b-47fb-962a-a799c56a4fbe",
+      "target": "002a-member-registration:e39593eb-a90b-4c27-882a-ab5691c0d3e8",
+      "label": "produces"
+    },
+    {
+      "id": "e-002a-member-registration:8c564c38-fb8a-47e6-8be3-cbfc22801b67-002a-member-registration:843ebe58-7c3d-45df-8860-0738227ab8a8",
+      "source": "002a-member-registration:8c564c38-fb8a-47e6-8be3-cbfc22801b67",
+      "target": "002a-member-registration:843ebe58-7c3d-45df-8860-0738227ab8a8",
+      "label": "produces"
+    },
+    {
+      "id": "e-002a-member-registration:270cd746-74a7-4a19-85ce-99d4e03a0402-002a-member-registration:0dfa1507-c370-48c6-aa5e-ad9f1c3408b8",
+      "source": "002a-member-registration:270cd746-74a7-4a19-85ce-99d4e03a0402",
+      "target": "002a-member-registration:0dfa1507-c370-48c6-aa5e-ad9f1c3408b8",
+      "label": "produces"
+    },
+    {
+      "id": "e-002a-member-registration:96fa0061-067e-436c-aaea-128206e1945d-002a-member-registration:f0b64af2-eed1-4a59-b998-70e091ceb090",
+      "source": "002a-member-registration:96fa0061-067e-436c-aaea-128206e1945d",
+      "target": "002a-member-registration:f0b64af2-eed1-4a59-b998-70e091ceb090",
+      "label": "produces"
+    },
+    {
+      "id": "e-002b-membership-renewal:a32ab09f-3c50-47aa-abb8-4228305e6a6b-002b-membership-renewal:9e893426-9919-4f6b-bf53-2747ea444c63",
+      "source": "002b-membership-renewal:a32ab09f-3c50-47aa-abb8-4228305e6a6b",
+      "target": "002b-membership-renewal:9e893426-9919-4f6b-bf53-2747ea444c63",
+      "label": "triggers"
+    },
+    {
+      "id": "e-002b-membership-renewal:9e893426-9919-4f6b-bf53-2747ea444c63-002b-membership-renewal:5bdf02ac-a4b1-412a-9373-633d13b737ba",
+      "source": "002b-membership-renewal:9e893426-9919-4f6b-bf53-2747ea444c63",
+      "target": "002b-membership-renewal:5bdf02ac-a4b1-412a-9373-633d13b737ba",
+      "label": "produces"
+    },
+    {
+      "id": "e-002b-membership-renewal:dcb06578-bfcf-4323-87f2-a553bf474826-002b-membership-renewal:a6abe3b8-2f81-4ba8-8d4e-65a67e4783db",
+      "source": "002b-membership-renewal:dcb06578-bfcf-4323-87f2-a553bf474826",
+      "target": "002b-membership-renewal:a6abe3b8-2f81-4ba8-8d4e-65a67e4783db",
+      "label": "produces"
+    },
+    {
+      "id": "e-002b-membership-renewal:ca4f02f8-8c2f-4ecb-a4c4-679996f93361-002b-membership-renewal:8ee9b29e-3108-4395-89e0-3267c1b4fd70",
+      "source": "002b-membership-renewal:ca4f02f8-8c2f-4ecb-a4c4-679996f93361",
+      "target": "002b-membership-renewal:8ee9b29e-3108-4395-89e0-3267c1b4fd70",
+      "label": "produces"
+    },
+    {
+      "id": "e-002c-membership-cancellation:6dd8ff1c-e048-4ff3-a59a-28cd69759864-002c-membership-cancellation:baed9f09-19ea-4f3f-889e-edddd0883b7b",
+      "source": "002c-membership-cancellation:6dd8ff1c-e048-4ff3-a59a-28cd69759864",
+      "target": "002c-membership-cancellation:baed9f09-19ea-4f3f-889e-edddd0883b7b",
+      "label": "triggers"
+    },
+    {
+      "id": "e-002c-membership-cancellation:baed9f09-19ea-4f3f-889e-edddd0883b7b-002c-membership-cancellation:b34cdbbe-9e14-42fe-93ec-10e2125c0768",
+      "source": "002c-membership-cancellation:baed9f09-19ea-4f3f-889e-edddd0883b7b",
+      "target": "002c-membership-cancellation:b34cdbbe-9e14-42fe-93ec-10e2125c0768",
+      "label": "produces"
+    },
+    {
+      "id": "e-002c-membership-cancellation:d3e8438f-9a61-499b-b0d6-7a333fd4e339-002c-membership-cancellation:e8d1cf42-6057-4380-a421-39c8b3b3d288",
+      "source": "002c-membership-cancellation:d3e8438f-9a61-499b-b0d6-7a333fd4e339",
+      "target": "002c-membership-cancellation:e8d1cf42-6057-4380-a421-39c8b3b3d288",
+      "label": "produces"
+    },
+    {
+      "id": "e-002c-membership-cancellation:3fb12c64-7f3e-4e2e-9b89-6e3fbad3b8c8-002c-membership-cancellation:5a032432-0305-49fa-be1c-81c5de97c426",
+      "source": "002c-membership-cancellation:3fb12c64-7f3e-4e2e-9b89-6e3fbad3b8c8",
+      "target": "002c-membership-cancellation:5a032432-0305-49fa-be1c-81c5de97c426",
+      "label": "produces"
+    },
+    {
+      "id": "e-002c-membership-cancellation:6b55c9c1-5bcb-43f1-b13a-4fbeaa36645c-002c-membership-cancellation:ce13da7a-1c9b-48ab-b81d-5ddc3f2a2368",
+      "source": "002c-membership-cancellation:6b55c9c1-5bcb-43f1-b13a-4fbeaa36645c",
+      "target": "002c-membership-cancellation:ce13da7a-1c9b-48ab-b81d-5ddc3f2a2368",
+      "label": "produces"
+    },
+    {
+      "id": "e-003a-reserve-class-seat:2826c033-7f57-456e-bdc8-d9ba5ea9cf7e-003a-reserve-class-seat:2b342672-9c50-459f-a525-ddbce2828133",
+      "source": "003a-reserve-class-seat:2826c033-7f57-456e-bdc8-d9ba5ea9cf7e",
+      "target": "003a-reserve-class-seat:2b342672-9c50-459f-a525-ddbce2828133",
+      "label": "triggers"
+    },
+    {
+      "id": "e-003a-reserve-class-seat:2b342672-9c50-459f-a525-ddbce2828133-003a-reserve-class-seat:4c6c899f-c85f-40a9-a8b3-fec31e9cc716",
+      "source": "003a-reserve-class-seat:2b342672-9c50-459f-a525-ddbce2828133",
+      "target": "003a-reserve-class-seat:4c6c899f-c85f-40a9-a8b3-fec31e9cc716",
+      "label": "produces"
+    },
+    {
+      "id": "e-003a-reserve-class-seat:849d2ec3-f205-4828-8e73-cb6735091613-003a-reserve-class-seat:e8dcf2fa-577e-4c92-b9e4-38128ad5b117",
+      "source": "003a-reserve-class-seat:849d2ec3-f205-4828-8e73-cb6735091613",
+      "target": "003a-reserve-class-seat:e8dcf2fa-577e-4c92-b9e4-38128ad5b117",
+      "label": "produces"
+    },
+    {
+      "id": "e-003a-reserve-class-seat:ac78e52f-fc54-452e-9b92-f07b834de2a8-003a-reserve-class-seat:453dec67-e2da-474c-a384-397bf98ecab7",
+      "source": "003a-reserve-class-seat:ac78e52f-fc54-452e-9b92-f07b834de2a8",
+      "target": "003a-reserve-class-seat:453dec67-e2da-474c-a384-397bf98ecab7",
+      "label": "produces"
+    },
+    {
+      "id": "e-003a-reserve-class-seat:d45d6598-a6c8-46dd-9014-02b27a7e2e8a-003a-reserve-class-seat:7b23aa75-4e5d-42fa-b671-36307fdb5dab",
+      "source": "003a-reserve-class-seat:d45d6598-a6c8-46dd-9014-02b27a7e2e8a",
+      "target": "003a-reserve-class-seat:7b23aa75-4e5d-42fa-b671-36307fdb5dab",
+      "label": "produces"
+    },
+    {
+      "id": "e-003a-reserve-class-seat:3a1fa3ab-c199-484e-881e-32a246f8afe8-003a-reserve-class-seat:9925e42c-706b-44fb-9a41-5ed53a2734ad",
+      "source": "003a-reserve-class-seat:3a1fa3ab-c199-484e-881e-32a246f8afe8",
+      "target": "003a-reserve-class-seat:9925e42c-706b-44fb-9a41-5ed53a2734ad",
+      "label": "produces"
+    },
+    {
+      "id": "e-003b-cancel-class-booking:058f220a-1fb7-48ab-8d38-7c532d283e93-003b-cancel-class-booking:4ce8343c-2ebb-4bcf-8b9d-f815d132bae5",
+      "source": "003b-cancel-class-booking:058f220a-1fb7-48ab-8d38-7c532d283e93",
+      "target": "003b-cancel-class-booking:4ce8343c-2ebb-4bcf-8b9d-f815d132bae5",
+      "label": "triggers"
+    },
+    {
+      "id": "e-003b-cancel-class-booking:4ce8343c-2ebb-4bcf-8b9d-f815d132bae5-003b-cancel-class-booking:b621261c-deec-4434-b290-eac31fd055e7",
+      "source": "003b-cancel-class-booking:4ce8343c-2ebb-4bcf-8b9d-f815d132bae5",
+      "target": "003b-cancel-class-booking:b621261c-deec-4434-b290-eac31fd055e7",
+      "label": "produces"
+    },
+    {
+      "id": "e-003b-cancel-class-booking:7015c342-9607-49a2-99e0-dc8552c58099-003b-cancel-class-booking:c9a7d135-b54f-4de5-8400-a3a160a553af",
+      "source": "003b-cancel-class-booking:7015c342-9607-49a2-99e0-dc8552c58099",
+      "target": "003b-cancel-class-booking:c9a7d135-b54f-4de5-8400-a3a160a553af",
+      "label": "produces"
+    },
+    {
+      "id": "e-004-scheduling:d6fc4e96-b906-4933-9cd0-be73fd53d92d-004-scheduling:ebf129d4-ca66-453b-bbf2-080782cdb09e",
+      "source": "004-scheduling:d6fc4e96-b906-4933-9cd0-be73fd53d92d",
+      "target": "004-scheduling:ebf129d4-ca66-453b-bbf2-080782cdb09e",
+      "label": "triggers"
+    },
+    {
+      "id": "e-004-scheduling:ebf129d4-ca66-453b-bbf2-080782cdb09e-004-scheduling:f59c7dc6-39db-40e9-9d44-63bb36c3957b",
+      "source": "004-scheduling:ebf129d4-ca66-453b-bbf2-080782cdb09e",
+      "target": "004-scheduling:f59c7dc6-39db-40e9-9d44-63bb36c3957b",
+      "label": "produces"
+    },
+    {
+      "id": "e-004-scheduling:9c43fb9a-cba3-452a-81c4-128051068d85-004-scheduling:2f9f263b-e171-4930-bc7e-20e3d5a70d75",
+      "source": "004-scheduling:9c43fb9a-cba3-452a-81c4-128051068d85",
+      "target": "004-scheduling:2f9f263b-e171-4930-bc7e-20e3d5a70d75",
+      "label": "produces"
+    },
+    {
+      "id": "e-005a-sale-driven-reorder:b5232aee-3f06-4b2e-8b7c-35a54cfeb6b4-005a-sale-driven-reorder:5a26f5da-86bb-46bc-ba57-2bd5223e2f3b",
+      "source": "005a-sale-driven-reorder:b5232aee-3f06-4b2e-8b7c-35a54cfeb6b4",
+      "target": "005a-sale-driven-reorder:5a26f5da-86bb-46bc-ba57-2bd5223e2f3b",
+      "label": "triggers"
+    },
+    {
+      "id": "e-005a-sale-driven-reorder:5a26f5da-86bb-46bc-ba57-2bd5223e2f3b-005a-sale-driven-reorder:9f7f72f3-a156-4f4f-81cc-1050ab5f5768",
+      "source": "005a-sale-driven-reorder:5a26f5da-86bb-46bc-ba57-2bd5223e2f3b",
+      "target": "005a-sale-driven-reorder:9f7f72f3-a156-4f4f-81cc-1050ab5f5768",
+      "label": "produces"
+    },
+    {
+      "id": "e-005a-sale-driven-reorder:f1264bef-3554-4a50-8597-9133ca5d51a4-005a-sale-driven-reorder:5fe11588-8b25-40b0-b20f-6f43672c4fb3",
+      "source": "005a-sale-driven-reorder:f1264bef-3554-4a50-8597-9133ca5d51a4",
+      "target": "005a-sale-driven-reorder:5fe11588-8b25-40b0-b20f-6f43672c4fb3",
+      "label": "produces"
+    },
+    {
+      "id": "e-005a-sale-driven-reorder:e6433115-b189-49f4-9f57-5b132a275e31-005a-sale-driven-reorder:19355ccc-f30c-424c-a1c5-3868ed8bc99f",
+      "source": "005a-sale-driven-reorder:e6433115-b189-49f4-9f57-5b132a275e31",
+      "target": "005a-sale-driven-reorder:19355ccc-f30c-424c-a1c5-3868ed8bc99f",
+      "label": "produces"
+    },
+    {
+      "id": "e-005a-sale-driven-reorder:4cb1d502-14ed-4a4c-afce-c64c10fb3a54-005a-sale-driven-reorder:ee0ddc4e-4835-4368-b705-9b3175d48ccc",
+      "source": "005a-sale-driven-reorder:4cb1d502-14ed-4a4c-afce-c64c10fb3a54",
+      "target": "005a-sale-driven-reorder:ee0ddc4e-4835-4368-b705-9b3175d48ccc",
+      "label": "produces"
+    },
+    {
+      "id": "e-005a-sale-driven-reorder:c3110b85-7b6a-4999-b543-adfcadf95d77-005a-sale-driven-reorder:afc3bdd9-b4fd-45e7-8ff3-916d28bfa7df",
+      "source": "005a-sale-driven-reorder:c3110b85-7b6a-4999-b543-adfcadf95d77",
+      "target": "005a-sale-driven-reorder:afc3bdd9-b4fd-45e7-8ff3-916d28bfa7df",
+      "label": "produces"
+    },
+    {
+      "id": "e-005b-stock-receiving:52cceb88-6f48-4af8-8fe0-a3af4458cb73-005b-stock-receiving:d0107c03-beac-49c8-85c7-9b5ef713646e",
+      "source": "005b-stock-receiving:52cceb88-6f48-4af8-8fe0-a3af4458cb73",
+      "target": "005b-stock-receiving:d0107c03-beac-49c8-85c7-9b5ef713646e",
+      "label": "triggers"
+    },
+    {
+      "id": "e-005b-stock-receiving:d0107c03-beac-49c8-85c7-9b5ef713646e-005b-stock-receiving:c83f9d31-9b41-49ef-8bbb-ba20b22d22ee",
+      "source": "005b-stock-receiving:d0107c03-beac-49c8-85c7-9b5ef713646e",
+      "target": "005b-stock-receiving:c83f9d31-9b41-49ef-8bbb-ba20b22d22ee",
+      "label": "produces"
+    },
+    {
+      "id": "e-005b-stock-receiving:7c92752e-7f36-4148-906f-6fcb8514f1b1-005b-stock-receiving:dc352e41-e43c-427e-a12b-500e9964d074",
+      "source": "005b-stock-receiving:7c92752e-7f36-4148-906f-6fcb8514f1b1",
+      "target": "005b-stock-receiving:dc352e41-e43c-427e-a12b-500e9964d074",
+      "label": "produces"
+    },
+    {
+      "id": "e-006-staffing:6aebccdd-a536-4501-af6d-81fe804c25af-006-staffing:035e548f-89cd-43c6-bdff-bb698466576f",
+      "source": "006-staffing:6aebccdd-a536-4501-af6d-81fe804c25af",
+      "target": "006-staffing:035e548f-89cd-43c6-bdff-bb698466576f",
+      "label": "triggers"
+    },
+    {
+      "id": "e-006-staffing:91df3104-654e-4527-9f0f-ab821e22986e-006-staffing:f9b38278-89e5-4762-b873-21c9fa9b2977",
+      "source": "006-staffing:91df3104-654e-4527-9f0f-ab821e22986e",
+      "target": "006-staffing:f9b38278-89e5-4762-b873-21c9fa9b2977",
+      "label": "triggers"
+    },
+    {
+      "id": "e-006-staffing:fae3deb2-0e3d-4456-af7b-d5eee7e3cbc5-006-staffing:5523e160-1b9f-41d9-a29f-23680d3fff82",
+      "source": "006-staffing:fae3deb2-0e3d-4456-af7b-d5eee7e3cbc5",
+      "target": "006-staffing:5523e160-1b9f-41d9-a29f-23680d3fff82",
+      "label": "produces"
+    },
+    {
+      "id": "e-006-staffing:035e548f-89cd-43c6-bdff-bb698466576f-006-staffing:bd9e45f7-d1a1-44b5-9f9c-80422e3bf4bd",
+      "source": "006-staffing:035e548f-89cd-43c6-bdff-bb698466576f",
+      "target": "006-staffing:bd9e45f7-d1a1-44b5-9f9c-80422e3bf4bd",
+      "label": "produces"
+    },
+    {
+      "id": "e-006-staffing:f9b38278-89e5-4762-b873-21c9fa9b2977-006-staffing:426d39e3-3181-4d46-a256-b7203dc8b091",
+      "source": "006-staffing:f9b38278-89e5-4762-b873-21c9fa9b2977",
+      "target": "006-staffing:426d39e3-3181-4d46-a256-b7203dc8b091",
+      "label": "produces"
+    },
+    {
+      "id": "e-006-staffing:0c50eef1-754e-4014-833b-0824e4a1e3c4-006-staffing:5d328646-582e-49b0-af51-3504c3695448",
+      "source": "006-staffing:0c50eef1-754e-4014-833b-0824e4a1e3c4",
+      "target": "006-staffing:5d328646-582e-49b0-af51-3504c3695448",
+      "label": "produces"
+    },
+    {
+      "id": "e-006-staffing:fab2a4d4-e16d-41de-a174-c7a1fab9deee-006-staffing:9eb273f0-4bc9-47d9-aa22-7b210421b3b8",
+      "source": "006-staffing:fab2a4d4-e16d-41de-a174-c7a1fab9deee",
+      "target": "006-staffing:9eb273f0-4bc9-47d9-aa22-7b210421b3b8",
+      "label": "produces"
+    },
+    {
+      "id": "e-006-staffing:1dd7bb00-f252-41c3-8f0c-44a9d2c4728b-006-staffing:af2fdbf1-a0e9-49f6-8774-94a62f79d5df",
+      "source": "006-staffing:1dd7bb00-f252-41c3-8f0c-44a9d2c4728b",
+      "target": "006-staffing:af2fdbf1-a0e9-49f6-8774-94a62f79d5df",
+      "label": "produces"
+    },
+    {
+      "id": "e-007-accounting:d8eef58f-6859-4282-8063-88ad6b10e968-007-accounting:7ff9b686-fb08-4920-9a64-696e1c369813",
+      "source": "007-accounting:d8eef58f-6859-4282-8063-88ad6b10e968",
+      "target": "007-accounting:7ff9b686-fb08-4920-9a64-696e1c369813",
+      "label": "triggers"
+    },
+    {
+      "id": "e-007-accounting:05a16ef8-75df-4461-b938-4d6494a3a6b9-007-accounting:f170e61e-2806-412d-a5ac-6a192e6a4e46",
+      "source": "007-accounting:05a16ef8-75df-4461-b938-4d6494a3a6b9",
+      "target": "007-accounting:f170e61e-2806-412d-a5ac-6a192e6a4e46",
+      "label": "produces"
+    },
+    {
+      "id": "e-007-accounting:7ff9b686-fb08-4920-9a64-696e1c369813-007-accounting:ff43b87b-184a-4300-9841-aa2f79eba432",
+      "source": "007-accounting:7ff9b686-fb08-4920-9a64-696e1c369813",
+      "target": "007-accounting:ff43b87b-184a-4300-9841-aa2f79eba432",
+      "label": "produces"
+    },
+    {
+      "id": "e-007-accounting:9fd9fc76-926e-4b83-90e4-0c0be0974527-007-accounting:b83b9163-ac58-499e-8f88-412050e972f5",
+      "source": "007-accounting:9fd9fc76-926e-4b83-90e4-0c0be0974527",
+      "target": "007-accounting:b83b9163-ac58-499e-8f88-412050e972f5",
+      "label": "produces"
+    },
+    {
+      "id": "e-008-reporting:747e60c8-7c68-47ce-bf36-816296ab241c-008-reporting:6e3208f1-1c0e-4401-a44b-323df1c25e47",
+      "source": "008-reporting:747e60c8-7c68-47ce-bf36-816296ab241c",
+      "target": "008-reporting:6e3208f1-1c0e-4401-a44b-323df1c25e47",
+      "label": "triggers"
+    },
+    {
+      "id": "e-008-reporting:6e3208f1-1c0e-4401-a44b-323df1c25e47-008-reporting:e048845e-dff2-4729-acdc-52f9d3b8e42d",
+      "source": "008-reporting:6e3208f1-1c0e-4401-a44b-323df1c25e47",
+      "target": "008-reporting:e048845e-dff2-4729-acdc-52f9d3b8e42d",
+      "label": "produces"
+    },
+    {
+      "id": "e-008-reporting:27e52f5e-266f-4372-8d45-a404fe7598f3-008-reporting:ff382399-6f9c-4727-95cd-37ae2f4be401",
+      "source": "008-reporting:27e52f5e-266f-4372-8d45-a404fe7598f3",
+      "target": "008-reporting:ff382399-6f9c-4727-95cd-37ae2f4be401",
+      "label": "produces"
+    },
+    {
+      "id": "e-009a-complaint-resolution:9fba9809-4ede-42c9-baab-919892f4816e-009a-complaint-resolution:8dcef444-a500-4e52-8baa-9fcc4a8ec902",
+      "source": "009a-complaint-resolution:9fba9809-4ede-42c9-baab-919892f4816e",
+      "target": "009a-complaint-resolution:8dcef444-a500-4e52-8baa-9fcc4a8ec902",
+      "label": "triggers"
+    },
+    {
+      "id": "e-009a-complaint-resolution:6ba54ee8-c33f-4e6a-b068-2d830842d543-009a-complaint-resolution:35e29e92-e6a4-4f30-9ccc-722d2a9b1b3b",
+      "source": "009a-complaint-resolution:6ba54ee8-c33f-4e6a-b068-2d830842d543",
+      "target": "009a-complaint-resolution:35e29e92-e6a4-4f30-9ccc-722d2a9b1b3b",
+      "label": "triggers"
+    },
+    {
+      "id": "e-009a-complaint-resolution:8dcef444-a500-4e52-8baa-9fcc4a8ec902-009a-complaint-resolution:07d9a508-0ad8-4667-a689-2d86eadf0ecb",
+      "source": "009a-complaint-resolution:8dcef444-a500-4e52-8baa-9fcc4a8ec902",
+      "target": "009a-complaint-resolution:07d9a508-0ad8-4667-a689-2d86eadf0ecb",
+      "label": "produces"
+    },
+    {
+      "id": "e-009a-complaint-resolution:0741b52d-4c99-4e46-ac57-34fb83b88477-009a-complaint-resolution:4a3ed850-6ebf-4bd9-ad69-2d7364a5d2b0",
+      "source": "009a-complaint-resolution:0741b52d-4c99-4e46-ac57-34fb83b88477",
+      "target": "009a-complaint-resolution:4a3ed850-6ebf-4bd9-ad69-2d7364a5d2b0",
+      "label": "produces"
+    },
+    {
+      "id": "e-009a-complaint-resolution:35e29e92-e6a4-4f30-9ccc-722d2a9b1b3b-009a-complaint-resolution:ed37e3bd-4e52-4c3e-995e-8f037e687b44",
+      "source": "009a-complaint-resolution:35e29e92-e6a4-4f30-9ccc-722d2a9b1b3b",
+      "target": "009a-complaint-resolution:ed37e3bd-4e52-4c3e-995e-8f037e687b44",
+      "label": "produces"
+    },
+    {
+      "id": "e-009a-complaint-resolution:8efc80cd-5ca2-4fd0-9520-35fe1c106a93-009a-complaint-resolution:398d9923-140d-46b1-8397-2dc6198aa716",
+      "source": "009a-complaint-resolution:8efc80cd-5ca2-4fd0-9520-35fe1c106a93",
+      "target": "009a-complaint-resolution:398d9923-140d-46b1-8397-2dc6198aa716",
+      "label": "produces"
+    },
+    {
+      "id": "e-009a-complaint-resolution:0a3f41f9-479b-4c3a-abd5-8289e27aded2-009a-complaint-resolution:718189c1-0c70-4878-904a-be41403fee04",
+      "source": "009a-complaint-resolution:0a3f41f9-479b-4c3a-abd5-8289e27aded2",
+      "target": "009a-complaint-resolution:718189c1-0c70-4878-904a-be41403fee04",
+      "label": "produces"
+    },
+    {
+      "id": "e-009b-maintenance-escalation:5e68c564-882d-449d-a458-8ae16e1579ee-009b-maintenance-escalation:a06fec10-f3d6-49fe-ab1e-458909be926b",
+      "source": "009b-maintenance-escalation:5e68c564-882d-449d-a458-8ae16e1579ee",
+      "target": "009b-maintenance-escalation:a06fec10-f3d6-49fe-ab1e-458909be926b",
+      "label": "produces"
+    },
+    {
+      "id": "e-010a-maintenance-scheduling:c54f15e5-ed25-433e-aed2-7f41339a931b-010a-maintenance-scheduling:8ba4ff8d-7fd7-44e6-9a95-57c8a6315737",
+      "source": "010a-maintenance-scheduling:c54f15e5-ed25-433e-aed2-7f41339a931b",
+      "target": "010a-maintenance-scheduling:8ba4ff8d-7fd7-44e6-9a95-57c8a6315737",
+      "label": "produces"
+    },
+    {
+      "id": "e-010a-maintenance-scheduling:faeb58bb-8523-4343-b813-60915870d9b0-010a-maintenance-scheduling:cefdbcd5-0f75-44c5-8ea3-1737b31598dc",
+      "source": "010a-maintenance-scheduling:faeb58bb-8523-4343-b813-60915870d9b0",
+      "target": "010a-maintenance-scheduling:cefdbcd5-0f75-44c5-8ea3-1737b31598dc",
+      "label": "produces"
+    },
+    {
+      "id": "e-010a-maintenance-scheduling:64f42bea-87df-4ed5-bc93-0c1e1cb0b648-010a-maintenance-scheduling:e993ee01-26f3-421e-a340-5273aacb57ed",
+      "source": "010a-maintenance-scheduling:64f42bea-87df-4ed5-bc93-0c1e1cb0b648",
+      "target": "010a-maintenance-scheduling:e993ee01-26f3-421e-a340-5273aacb57ed",
+      "label": "produces"
+    },
+    {
+      "id": "e-010b-equipment-servicing:e4058229-e272-444b-9933-6c546cfad263-010b-equipment-servicing:ed48ce58-cb98-45ca-ba67-fa0ac3b9aec2",
+      "source": "010b-equipment-servicing:e4058229-e272-444b-9933-6c546cfad263",
+      "target": "010b-equipment-servicing:ed48ce58-cb98-45ca-ba67-fa0ac3b9aec2",
+      "label": "triggers"
+    },
+    {
+      "id": "e-010b-equipment-servicing:84601f6d-4191-4d39-8252-8e612e247451-010b-equipment-servicing:230c6a8f-fb15-4a9c-a95b-a7c5adb14783",
+      "source": "010b-equipment-servicing:84601f6d-4191-4d39-8252-8e612e247451",
+      "target": "010b-equipment-servicing:230c6a8f-fb15-4a9c-a95b-a7c5adb14783",
+      "label": "produces"
+    },
+    {
+      "id": "e-010b-equipment-servicing:ed48ce58-cb98-45ca-ba67-fa0ac3b9aec2-010b-equipment-servicing:431df1b0-63d4-48dd-8dd9-3cd1b84960a6",
+      "source": "010b-equipment-servicing:ed48ce58-cb98-45ca-ba67-fa0ac3b9aec2",
+      "target": "010b-equipment-servicing:431df1b0-63d4-48dd-8dd9-3cd1b84960a6",
+      "label": "produces"
+    },
+    {
+      "id": "e-010b-equipment-servicing:f6e74052-8493-484f-8727-bd7f5beaadda-010b-equipment-servicing:ac661c9b-6f09-4051-8a5b-0bfbb46b4303",
+      "source": "010b-equipment-servicing:f6e74052-8493-484f-8727-bd7f5beaadda",
+      "target": "010b-equipment-servicing:ac661c9b-6f09-4051-8a5b-0bfbb46b4303",
+      "label": "produces"
+    },
+    {
+      "id": "e-010b-equipment-servicing:e83e521b-6f40-4e4f-a5cf-58a19921d52f-010b-equipment-servicing:712a3d77-c325-4e7f-9e75-04d3c1ec7b17",
+      "source": "010b-equipment-servicing:e83e521b-6f40-4e4f-a5cf-58a19921d52f",
+      "target": "010b-equipment-servicing:712a3d77-c325-4e7f-9e75-04d3c1ec7b17",
+      "label": "produces"
+    },
+    {
+      "id": "e-011a-book-training-session:d85e5d90-a7d0-4b10-8b5b-cbe6106d00e8-011a-book-training-session:8d5fe5be-06c8-458d-b939-02d9e5d30c14",
+      "source": "011a-book-training-session:d85e5d90-a7d0-4b10-8b5b-cbe6106d00e8",
+      "target": "011a-book-training-session:8d5fe5be-06c8-458d-b939-02d9e5d30c14",
+      "label": "triggers"
+    },
+    {
+      "id": "e-011a-book-training-session:8d5fe5be-06c8-458d-b939-02d9e5d30c14-011a-book-training-session:b8f40593-529b-44c2-aa79-8a55953870d1",
+      "source": "011a-book-training-session:8d5fe5be-06c8-458d-b939-02d9e5d30c14",
+      "target": "011a-book-training-session:b8f40593-529b-44c2-aa79-8a55953870d1",
+      "label": "produces"
+    },
+    {
+      "id": "e-011a-book-training-session:4a3e9e64-d477-4d37-b6ae-fda656644969-011a-book-training-session:ccedb8f9-3d00-40b6-af62-834cef55e575",
+      "source": "011a-book-training-session:4a3e9e64-d477-4d37-b6ae-fda656644969",
+      "target": "011a-book-training-session:ccedb8f9-3d00-40b6-af62-834cef55e575",
+      "label": "produces"
+    },
+    {
+      "id": "e-011a-book-training-session:6d17bc3f-d3c7-42da-a952-cb3f94e9d9cb-011a-book-training-session:9ab257d5-fac2-4669-8190-4cf8c71b1def",
+      "source": "011a-book-training-session:6d17bc3f-d3c7-42da-a952-cb3f94e9d9cb",
+      "target": "011a-book-training-session:9ab257d5-fac2-4669-8190-4cf8c71b1def",
+      "label": "produces"
+    },
+    {
+      "id": "e-011a-book-training-session:ca9fd8ff-b6d4-4a87-8b1c-c655960d8aeb-011a-book-training-session:739ecad1-98c9-418f-ba79-23e7465f16b1",
+      "source": "011a-book-training-session:ca9fd8ff-b6d4-4a87-8b1c-c655960d8aeb",
+      "target": "011a-book-training-session:739ecad1-98c9-418f-ba79-23e7465f16b1",
+      "label": "produces"
+    },
+    {
+      "id": "e-011a-book-training-session:8b7d1763-2341-40e8-946d-d813cd296291-011a-book-training-session:c7ba7faf-c921-4ea9-8e15-b65c5dd52dec",
+      "source": "011a-book-training-session:8b7d1763-2341-40e8-946d-d813cd296291",
+      "target": "011a-book-training-session:c7ba7faf-c921-4ea9-8e15-b65c5dd52dec",
+      "label": "produces"
+    },
+    {
+      "id": "e-011a-book-training-session:67acd423-4669-4a30-adf8-202ecfbdcc1b-011a-book-training-session:37514793-21c5-442c-b7cf-afb8584ad137",
+      "source": "011a-book-training-session:67acd423-4669-4a30-adf8-202ecfbdcc1b",
+      "target": "011a-book-training-session:37514793-21c5-442c-b7cf-afb8584ad137",
+      "label": "produces"
+    },
+    {
+      "id": "e-011b-complete-training-session:586da29b-2cae-42e8-99c3-2bc32747de2b-011b-complete-training-session:ea587364-2198-4b3f-b9e3-45d9b145badf",
+      "source": "011b-complete-training-session:586da29b-2cae-42e8-99c3-2bc32747de2b",
+      "target": "011b-complete-training-session:ea587364-2198-4b3f-b9e3-45d9b145badf",
+      "label": "triggers"
+    },
+    {
+      "id": "e-011b-complete-training-session:ea587364-2198-4b3f-b9e3-45d9b145badf-011b-complete-training-session:8aa7b780-7f15-42c3-865a-cba670a1ee20",
+      "source": "011b-complete-training-session:ea587364-2198-4b3f-b9e3-45d9b145badf",
+      "target": "011b-complete-training-session:8aa7b780-7f15-42c3-865a-cba670a1ee20",
+      "label": "produces"
+    },
+    {
+      "id": "e-011b-complete-training-session:4b508c3d-7c20-4f8a-ab48-90f4a79bb313-011b-complete-training-session:28377c3d-4809-41a0-8e7e-456e9e45892a",
+      "source": "011b-complete-training-session:4b508c3d-7c20-4f8a-ab48-90f4a79bb313",
+      "target": "011b-complete-training-session:28377c3d-4809-41a0-8e7e-456e9e45892a",
+      "label": "produces"
+    },
+    {
+      "id": "e-011b-complete-training-session:7860069c-37b8-4446-afb1-a4725ef0a36b-011b-complete-training-session:bd8b5019-2b33-4a2f-956a-3b884e9c769b",
+      "source": "011b-complete-training-session:7860069c-37b8-4446-afb1-a4725ef0a36b",
+      "target": "011b-complete-training-session:bd8b5019-2b33-4a2f-956a-3b884e9c769b",
+      "label": "produces"
+    },
+    {
+      "id": "e-012-retail-sales:8a967531-07af-4002-9769-4a48390750cc-012-retail-sales:825228b9-d8dc-4f5a-a31c-668edf9dd097",
+      "source": "012-retail-sales:8a967531-07af-4002-9769-4a48390750cc",
+      "target": "012-retail-sales:825228b9-d8dc-4f5a-a31c-668edf9dd097",
+      "label": "triggers"
+    },
+    {
+      "id": "e-012-retail-sales:64a4b0fc-e7b4-4bb4-a94e-ec1d58d411fb-012-retail-sales:4373a225-b535-47e7-9255-2a23c4fb384b",
+      "source": "012-retail-sales:64a4b0fc-e7b4-4bb4-a94e-ec1d58d411fb",
+      "target": "012-retail-sales:4373a225-b535-47e7-9255-2a23c4fb384b",
+      "label": "produces"
+    },
+    {
+      "id": "e-012-retail-sales:825228b9-d8dc-4f5a-a31c-668edf9dd097-012-retail-sales:3e5ca1fe-e431-4c3c-912c-b12c62755bf9",
+      "source": "012-retail-sales:825228b9-d8dc-4f5a-a31c-668edf9dd097",
+      "target": "012-retail-sales:3e5ca1fe-e431-4c3c-912c-b12c62755bf9",
+      "label": "produces"
+    },
+    {
+      "id": "e-012-retail-sales:1484e1f0-5840-4cfd-92e8-f233a5c699c7-012-retail-sales:a5f1c1fd-c255-4df0-9134-7c9d5bc1a035",
+      "source": "012-retail-sales:1484e1f0-5840-4cfd-92e8-f233a5c699c7",
+      "target": "012-retail-sales:a5f1c1fd-c255-4df0-9134-7c9d5bc1a035",
+      "label": "produces"
+    },
+    {
+      "id": "e-012-retail-sales:00d115ff-1b86-4009-b086-4cc3c6f383b5-012-retail-sales:762e0156-bcb1-479a-af7a-3d1d75ba755d",
+      "source": "012-retail-sales:00d115ff-1b86-4009-b086-4cc3c6f383b5",
+      "target": "012-retail-sales:762e0156-bcb1-479a-af7a-3d1d75ba755d",
+      "label": "produces"
+    }
+  ],
+  "seedExampleMaps": {
+    "842a7c33-e04a-448b-b31c-f8d69268084a": {
+      "nodes": [
+        {
+          "id": "seed-rule-842a7c33-e04a-448b-b31c-f8d69268084a-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Register Member, producing the Member Registered domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-842a7c33-e04a-448b-b31c-f8d69268084a-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Receptionist registers a new walk-in member",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Register Member",
+              "then": "Member Registered"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-842a7c33-e04a-448b-b31c-f8d69268084a-FR-1-seed-example-842a7c33-e04a-448b-b31c-f8d69268084a-AC-1.1",
+          "source": "seed-rule-842a7c33-e04a-448b-b31c-f8d69268084a-FR-1",
+          "target": "seed-example-842a7c33-e04a-448b-b31c-f8d69268084a-AC-1.1"
+        }
+      ]
+    },
+    "9280f310-2e62-4ac2-a385-723438013dae": {
+      "nodes": [
+        {
+          "id": "seed-rule-9280f310-2e62-4ac2-a385-723438013dae-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Record Membership Payment, producing the Membership Payment Received domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-9280f310-2e62-4ac2-a385-723438013dae-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Record Membership Payment",
+              "then": "Membership Payment Received"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-9280f310-2e62-4ac2-a385-723438013dae-FR-2-seed-example-9280f310-2e62-4ac2-a385-723438013dae-AC-2.1",
+          "source": "seed-rule-9280f310-2e62-4ac2-a385-723438013dae-FR-2",
+          "target": "seed-example-9280f310-2e62-4ac2-a385-723438013dae-AC-2.1"
+        }
+      ]
+    },
+    "588caceb-73dc-4625-b1a9-5e1068e6ef58": {
+      "nodes": [
+        {
+          "id": "seed-rule-588caceb-73dc-4625-b1a9-5e1068e6ef58-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Membership Activator, producing the Membership Activated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-588caceb-73dc-4625-b1a9-5e1068e6ef58-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Membership Activator",
+              "then": "Membership Activated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-588caceb-73dc-4625-b1a9-5e1068e6ef58-FR-3-seed-example-588caceb-73dc-4625-b1a9-5e1068e6ef58-AC-3.1",
+          "source": "seed-rule-588caceb-73dc-4625-b1a9-5e1068e6ef58-FR-3",
+          "target": "seed-example-588caceb-73dc-4625-b1a9-5e1068e6ef58-AC-3.1"
+        }
+      ]
+    },
+    "6c0a316e-b22f-4c15-b663-4b685666750e": {
+      "nodes": [
+        {
+          "id": "seed-rule-6c0a316e-b22f-4c15-b663-4b685666750e-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Registration Guard, producing the Member Registration Rejected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-6c0a316e-b22f-4c15-b663-4b685666750e-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Registration Guard",
+              "then": "Member Registration Rejected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-6c0a316e-b22f-4c15-b663-4b685666750e-FR-4-seed-example-6c0a316e-b22f-4c15-b663-4b685666750e-AC-4.1",
+          "source": "seed-rule-6c0a316e-b22f-4c15-b663-4b685666750e-FR-4",
+          "target": "seed-example-6c0a316e-b22f-4c15-b663-4b685666750e-AC-4.1"
+        }
+      ]
+    },
+    "7f382e2c-2494-4011-b1d2-c6a9dfffd873": {
+      "nodes": [
+        {
+          "id": "seed-rule-7f382e2c-2494-4011-b1d2-c6a9dfffd873-FR-5",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Activation Guard, producing the Membership Activation Failed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-7f382e2c-2494-4011-b1d2-c6a9dfffd873-AC-5.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-5.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Activation Guard",
+              "then": "Membership Activation Failed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-7f382e2c-2494-4011-b1d2-c6a9dfffd873-FR-5-seed-example-7f382e2c-2494-4011-b1d2-c6a9dfffd873-AC-5.1",
+          "source": "seed-rule-7f382e2c-2494-4011-b1d2-c6a9dfffd873-FR-5",
+          "target": "seed-example-7f382e2c-2494-4011-b1d2-c6a9dfffd873-AC-5.1"
+        }
+      ]
+    },
+    "817945a2-b1e8-4028-abd1-b0f618df1425": {
+      "nodes": [
+        {
+          "id": "seed-rule-817945a2-b1e8-4028-abd1-b0f618df1425-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Process Payment, producing the Renewal Payment Received domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-817945a2-b1e8-4028-abd1-b0f618df1425-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Process Payment",
+              "then": "Renewal Payment Received"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-817945a2-b1e8-4028-abd1-b0f618df1425-FR-1-seed-example-817945a2-b1e8-4028-abd1-b0f618df1425-AC-1.1",
+          "source": "seed-rule-817945a2-b1e8-4028-abd1-b0f618df1425-FR-1",
+          "target": "seed-example-817945a2-b1e8-4028-abd1-b0f618df1425-AC-1.1"
+        }
+      ]
+    },
+    "c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150": {
+      "nodes": [
+        {
+          "id": "seed-rule-c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Membership Renewer, producing the Membership Renewed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Member submits a renewal payment",
+            "scenario": {
+              "given": "Renewal Payment Received",
+              "when": "Renew Membership",
+              "then": "Membership Renewed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150-FR-2-seed-example-c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150-AC-2.1",
+          "source": "seed-rule-c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150-FR-2",
+          "target": "seed-example-c259fc6a-c6ff-4e73-a6ad-f2b90dfdb150-AC-2.1"
+        }
+      ]
+    },
+    "40e7ab28-c515-4cdc-85f5-0f483c24e25e": {
+      "nodes": [
+        {
+          "id": "seed-rule-40e7ab28-c515-4cdc-85f5-0f483c24e25e-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Payment Guard, producing the Payment Declined domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-40e7ab28-c515-4cdc-85f5-0f483c24e25e-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Payment Guard",
+              "then": "Payment Declined"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-40e7ab28-c515-4cdc-85f5-0f483c24e25e-FR-3-seed-example-40e7ab28-c515-4cdc-85f5-0f483c24e25e-AC-3.1",
+          "source": "seed-rule-40e7ab28-c515-4cdc-85f5-0f483c24e25e-FR-3",
+          "target": "seed-example-40e7ab28-c515-4cdc-85f5-0f483c24e25e-AC-3.1"
+        }
+      ]
+    },
+    "bc28d23b-a5bf-451a-b43b-8a2b28f74d09": {
+      "nodes": [
+        {
+          "id": "seed-rule-bc28d23b-a5bf-451a-b43b-8a2b28f74d09-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Cancel Membership, producing the Membership Cancellation Requested domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-bc28d23b-a5bf-451a-b43b-8a2b28f74d09-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Member requests cancellation of an active membership",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Cancel Membership",
+              "then": "Membership Cancellation Requested"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-bc28d23b-a5bf-451a-b43b-8a2b28f74d09-FR-1-seed-example-bc28d23b-a5bf-451a-b43b-8a2b28f74d09-AC-1.1",
+          "source": "seed-rule-bc28d23b-a5bf-451a-b43b-8a2b28f74d09-FR-1",
+          "target": "seed-example-bc28d23b-a5bf-451a-b43b-8a2b28f74d09-AC-1.1"
+        }
+      ]
+    },
+    "6a49769c-249b-41ba-b3d3-8d402d8833da": {
+      "nodes": [
+        {
+          "id": "seed-rule-6a49769c-249b-41ba-b3d3-8d402d8833da-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Cancellation Processor, producing the Membership Cancelled domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-6a49769c-249b-41ba-b3d3-8d402d8833da-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Cancellation Processor",
+              "then": "Membership Cancelled"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-6a49769c-249b-41ba-b3d3-8d402d8833da-FR-2-seed-example-6a49769c-249b-41ba-b3d3-8d402d8833da-AC-2.1",
+          "source": "seed-rule-6a49769c-249b-41ba-b3d3-8d402d8833da-FR-2",
+          "target": "seed-example-6a49769c-249b-41ba-b3d3-8d402d8833da-AC-2.1"
+        }
+      ]
+    },
+    "7679d9ae-70d5-407a-bd98-afadfde78132": {
+      "nodes": [
+        {
+          "id": "seed-rule-7679d9ae-70d5-407a-bd98-afadfde78132-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Cancellation Guard, producing the Membership Cancellation Blocked domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-7679d9ae-70d5-407a-bd98-afadfde78132-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Cancellation Guard",
+              "then": "Membership Cancellation Blocked"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-7679d9ae-70d5-407a-bd98-afadfde78132-FR-3-seed-example-7679d9ae-70d5-407a-bd98-afadfde78132-AC-3.1",
+          "source": "seed-rule-7679d9ae-70d5-407a-bd98-afadfde78132-FR-3",
+          "target": "seed-example-7679d9ae-70d5-407a-bd98-afadfde78132-AC-3.1"
+        }
+      ]
+    },
+    "a687a7b8-d95b-4d5c-a667-6a9e61aecc99": {
+      "nodes": [
+        {
+          "id": "seed-rule-a687a7b8-d95b-4d5c-a667-6a9e61aecc99-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Booking Canceller, producing the Future Bookings Cancelled domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-a687a7b8-d95b-4d5c-a667-6a9e61aecc99-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Booking Canceller",
+              "then": "Future Bookings Cancelled"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-a687a7b8-d95b-4d5c-a667-6a9e61aecc99-FR-4-seed-example-a687a7b8-d95b-4d5c-a667-6a9e61aecc99-AC-4.1",
+          "source": "seed-rule-a687a7b8-d95b-4d5c-a667-6a9e61aecc99-FR-4",
+          "target": "seed-example-a687a7b8-d95b-4d5c-a667-6a9e61aecc99-AC-4.1"
+        }
+      ]
+    },
+    "390802f0-47d0-4362-b870-2345c2124fad": {
+      "nodes": [
+        {
+          "id": "seed-rule-390802f0-47d0-4362-b870-2345c2124fad-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Reserve Class Seat, producing the Class Seat Reserved domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-390802f0-47d0-4362-b870-2345c2124fad-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Member selects a class with an open seat",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Reserve Class Seat",
+              "then": "Class Seat Reserved"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-390802f0-47d0-4362-b870-2345c2124fad-FR-1-seed-example-390802f0-47d0-4362-b870-2345c2124fad-AC-1.1",
+          "source": "seed-rule-390802f0-47d0-4362-b870-2345c2124fad-FR-1",
+          "target": "seed-example-390802f0-47d0-4362-b870-2345c2124fad-AC-1.1"
+        }
+      ]
+    },
+    "06e78563-ea15-4533-9304-5c45158311a1": {
+      "nodes": [
+        {
+          "id": "seed-rule-06e78563-ea15-4533-9304-5c45158311a1-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Booking Processor, producing the Class Booking Created domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-06e78563-ea15-4533-9304-5c45158311a1-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Reserved seat is converted into a confirmed booking",
+            "scenario": {
+              "given": "Class Seat Reserved",
+              "when": "Create Class Booking",
+              "then": "Class Booking Created"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-06e78563-ea15-4533-9304-5c45158311a1-FR-2-seed-example-06e78563-ea15-4533-9304-5c45158311a1-AC-2.1",
+          "source": "seed-rule-06e78563-ea15-4533-9304-5c45158311a1-FR-2",
+          "target": "seed-example-06e78563-ea15-4533-9304-5c45158311a1-AC-2.1"
+        }
+      ]
+    },
+    "accc3a08-31e8-4f66-8485-4d4a0ea36683": {
+      "nodes": [
+        {
+          "id": "seed-rule-accc3a08-31e8-4f66-8485-4d4a0ea36683-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Capacity Tracker, producing the Class Capacity Updated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-accc3a08-31e8-4f66-8485-4d4a0ea36683-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Capacity Tracker",
+              "then": "Class Capacity Updated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-accc3a08-31e8-4f66-8485-4d4a0ea36683-FR-3-seed-example-accc3a08-31e8-4f66-8485-4d4a0ea36683-AC-3.1",
+          "source": "seed-rule-accc3a08-31e8-4f66-8485-4d4a0ea36683-FR-3",
+          "target": "seed-example-accc3a08-31e8-4f66-8485-4d4a0ea36683-AC-3.1"
+        }
+      ]
+    },
+    "cf7807a7-bf77-41c7-a701-6074792cfd98": {
+      "nodes": [
+        {
+          "id": "seed-rule-cf7807a7-bf77-41c7-a701-6074792cfd98-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Capacity Guard, producing the Class Booking Rejected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-cf7807a7-bf77-41c7-a701-6074792cfd98-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Capacity Guard",
+              "then": "Class Booking Rejected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-cf7807a7-bf77-41c7-a701-6074792cfd98-FR-4-seed-example-cf7807a7-bf77-41c7-a701-6074792cfd98-AC-4.1",
+          "source": "seed-rule-cf7807a7-bf77-41c7-a701-6074792cfd98-FR-4",
+          "target": "seed-example-cf7807a7-bf77-41c7-a701-6074792cfd98-AC-4.1"
+        }
+      ]
+    },
+    "1b9211d8-bc61-4725-ae4e-37a92c56cf33": {
+      "nodes": [
+        {
+          "id": "seed-rule-1b9211d8-bc61-4725-ae4e-37a92c56cf33-FR-5",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Membership Guard, producing the Booking Rejected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-1b9211d8-bc61-4725-ae4e-37a92c56cf33-AC-5.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-5.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Membership Guard",
+              "then": "Booking Rejected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-1b9211d8-bc61-4725-ae4e-37a92c56cf33-FR-5-seed-example-1b9211d8-bc61-4725-ae4e-37a92c56cf33-AC-5.1",
+          "source": "seed-rule-1b9211d8-bc61-4725-ae4e-37a92c56cf33-FR-5",
+          "target": "seed-example-1b9211d8-bc61-4725-ae4e-37a92c56cf33-AC-5.1"
+        }
+      ]
+    },
+    "fa6d4510-b98f-4264-ae67-613c67b34584": {
+      "nodes": [
+        {
+          "id": "seed-rule-fa6d4510-b98f-4264-ae67-613c67b34584-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Cancel Class Booking, producing the Class Booking Cancelled domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-fa6d4510-b98f-4264-ae67-613c67b34584-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Cancel Class Booking",
+              "then": "Class Booking Cancelled"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-fa6d4510-b98f-4264-ae67-613c67b34584-FR-1-seed-example-fa6d4510-b98f-4264-ae67-613c67b34584-AC-1.1",
+          "source": "seed-rule-fa6d4510-b98f-4264-ae67-613c67b34584-FR-1",
+          "target": "seed-example-fa6d4510-b98f-4264-ae67-613c67b34584-AC-1.1"
+        }
+      ]
+    },
+    "855e5fdf-9c80-4541-b0bb-c74e4847383e": {
+      "nodes": [
+        {
+          "id": "seed-rule-855e5fdf-9c80-4541-b0bb-c74e4847383e-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Waitlist Manager, producing the Waiting List Promoted domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-855e5fdf-9c80-4541-b0bb-c74e4847383e-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Waitlist Manager",
+              "then": "Waiting List Promoted"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-855e5fdf-9c80-4541-b0bb-c74e4847383e-FR-2-seed-example-855e5fdf-9c80-4541-b0bb-c74e4847383e-AC-2.1",
+          "source": "seed-rule-855e5fdf-9c80-4541-b0bb-c74e4847383e-FR-2",
+          "target": "seed-example-855e5fdf-9c80-4541-b0bb-c74e4847383e-AC-2.1"
+        }
+      ]
+    },
+    "fb194626-5685-488e-82a2-641875d2fe64": {
+      "nodes": [
+        {
+          "id": "seed-rule-fb194626-5685-488e-82a2-641875d2fe64-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Complete Class, producing the Class Completed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-fb194626-5685-488e-82a2-641875d2fe64-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Complete Class",
+              "then": "Class Completed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-fb194626-5685-488e-82a2-641875d2fe64-FR-1-seed-example-fb194626-5685-488e-82a2-641875d2fe64-AC-1.1",
+          "source": "seed-rule-fb194626-5685-488e-82a2-641875d2fe64-FR-1",
+          "target": "seed-example-fb194626-5685-488e-82a2-641875d2fe64-AC-1.1"
+        }
+      ]
+    },
+    "6d17ee80-6237-4c45-9c60-944817761272": {
+      "nodes": [
+        {
+          "id": "seed-rule-6d17ee80-6237-4c45-9c60-944817761272-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Attendance Tracker, producing the Attendance Recorded domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-6d17ee80-6237-4c45-9c60-944817761272-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Attendance Tracker",
+              "then": "Attendance Recorded"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-6d17ee80-6237-4c45-9c60-944817761272-FR-2-seed-example-6d17ee80-6237-4c45-9c60-944817761272-AC-2.1",
+          "source": "seed-rule-6d17ee80-6237-4c45-9c60-944817761272-FR-2",
+          "target": "seed-example-6d17ee80-6237-4c45-9c60-944817761272-AC-2.1"
+        }
+      ]
+    },
+    "2e18547f-90db-49fc-b2a6-a5bea4aa62b3": {
+      "nodes": [
+        {
+          "id": "seed-rule-2e18547f-90db-49fc-b2a6-a5bea4aa62b3-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Record Sale, producing the Product Sold domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-2e18547f-90db-49fc-b2a6-a5bea4aa62b3-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Front desk records a retail sale that consumes stock",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Record Sale",
+              "then": "Product Sold"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-2e18547f-90db-49fc-b2a6-a5bea4aa62b3-FR-1-seed-example-2e18547f-90db-49fc-b2a6-a5bea4aa62b3-AC-1.1",
+          "source": "seed-rule-2e18547f-90db-49fc-b2a6-a5bea4aa62b3-FR-1",
+          "target": "seed-example-2e18547f-90db-49fc-b2a6-a5bea4aa62b3-AC-1.1"
+        }
+      ]
+    },
+    "b2ff42df-3ff7-4652-9ce5-bced0d92475e": {
+      "nodes": [
+        {
+          "id": "seed-rule-b2ff42df-3ff7-4652-9ce5-bced0d92475e-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Inventory Tracker, producing the Inventory Reduced domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-b2ff42df-3ff7-4652-9ce5-bced0d92475e-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Inventory Tracker",
+              "then": "Inventory Reduced"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-b2ff42df-3ff7-4652-9ce5-bced0d92475e-FR-2-seed-example-b2ff42df-3ff7-4652-9ce5-bced0d92475e-AC-2.1",
+          "source": "seed-rule-b2ff42df-3ff7-4652-9ce5-bced0d92475e-FR-2",
+          "target": "seed-example-b2ff42df-3ff7-4652-9ce5-bced0d92475e-AC-2.1"
+        }
+      ]
+    },
+    "5482bf7a-46a8-4454-8c2e-575f56f00269": {
+      "nodes": [
+        {
+          "id": "seed-rule-5482bf7a-46a8-4454-8c2e-575f56f00269-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Stock Monitor, producing the Low Stock Detected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-5482bf7a-46a8-4454-8c2e-575f56f00269-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "A sale reduces stock below the reorder threshold",
+            "scenario": {
+              "given": "Inventory Reduced",
+              "when": "Detect Low Stock",
+              "then": "Low Stock Detected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-5482bf7a-46a8-4454-8c2e-575f56f00269-FR-3-seed-example-5482bf7a-46a8-4454-8c2e-575f56f00269-AC-3.1",
+          "source": "seed-rule-5482bf7a-46a8-4454-8c2e-575f56f00269-FR-3",
+          "target": "seed-example-5482bf7a-46a8-4454-8c2e-575f56f00269-AC-3.1"
+        }
+      ]
+    },
+    "59539bee-993a-4b88-a76f-3ba9576af4d1": {
+      "nodes": [
+        {
+          "id": "seed-rule-59539bee-993a-4b88-a76f-3ba9576af4d1-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Reorder Assistant, producing the Purchase Order Suggested domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-59539bee-993a-4b88-a76f-3ba9576af4d1-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Reorder Assistant",
+              "then": "Purchase Order Suggested"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-59539bee-993a-4b88-a76f-3ba9576af4d1-FR-4-seed-example-59539bee-993a-4b88-a76f-3ba9576af4d1-AC-4.1",
+          "source": "seed-rule-59539bee-993a-4b88-a76f-3ba9576af4d1-FR-4",
+          "target": "seed-example-59539bee-993a-4b88-a76f-3ba9576af4d1-AC-4.1"
+        }
+      ]
+    },
+    "8966a953-01c7-437d-95ca-7c9039136bdf": {
+      "nodes": [
+        {
+          "id": "seed-rule-8966a953-01c7-437d-95ca-7c9039136bdf-FR-5",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Reorder Guard, producing the Reorder Suppressed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-8966a953-01c7-437d-95ca-7c9039136bdf-AC-5.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-5.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Reorder Guard",
+              "then": "Reorder Suppressed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-8966a953-01c7-437d-95ca-7c9039136bdf-FR-5-seed-example-8966a953-01c7-437d-95ca-7c9039136bdf-AC-5.1",
+          "source": "seed-rule-8966a953-01c7-437d-95ca-7c9039136bdf-FR-5",
+          "target": "seed-example-8966a953-01c7-437d-95ca-7c9039136bdf-AC-5.1"
+        }
+      ]
+    },
+    "39875d23-19d2-4e26-ad7b-cdeb22d61cbb": {
+      "nodes": [
+        {
+          "id": "seed-rule-39875d23-19d2-4e26-ad7b-cdeb22d61cbb-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Receive Stock, producing the Stock Received domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-39875d23-19d2-4e26-ad7b-cdeb22d61cbb-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Receive Stock",
+              "then": "Stock Received"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-39875d23-19d2-4e26-ad7b-cdeb22d61cbb-FR-1-seed-example-39875d23-19d2-4e26-ad7b-cdeb22d61cbb-AC-1.1",
+          "source": "seed-rule-39875d23-19d2-4e26-ad7b-cdeb22d61cbb-FR-1",
+          "target": "seed-example-39875d23-19d2-4e26-ad7b-cdeb22d61cbb-AC-1.1"
+        }
+      ]
+    },
+    "cae60f7d-2287-4816-b9ca-f4cbbcafed57": {
+      "nodes": [
+        {
+          "id": "seed-rule-cae60f7d-2287-4816-b9ca-f4cbbcafed57-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Inventory Tracker, producing the Inventory Updated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-cae60f7d-2287-4816-b9ca-f4cbbcafed57-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Inventory Tracker",
+              "then": "Inventory Updated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-cae60f7d-2287-4816-b9ca-f4cbbcafed57-FR-2-seed-example-cae60f7d-2287-4816-b9ca-f4cbbcafed57-AC-2.1",
+          "source": "seed-rule-cae60f7d-2287-4816-b9ca-f4cbbcafed57-FR-2",
+          "target": "seed-example-cae60f7d-2287-4816-b9ca-f4cbbcafed57-AC-2.1"
+        }
+      ]
+    },
+    "c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad": {
+      "nodes": [
+        {
+          "id": "seed-rule-c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Hours Calculator, producing the Worked Hours Calculated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Hours Calculator",
+              "then": "Worked Hours Calculated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad-FR-1-seed-example-c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad-AC-1.1",
+          "source": "seed-rule-c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad-FR-1",
+          "target": "seed-example-c43f07e7-dfd5-4be5-9d02-b4fd5dd8b3ad-AC-1.1"
+        }
+      ]
+    },
+    "39fceb30-2313-451e-82ff-5f3186b1c5b7": {
+      "nodes": [
+        {
+          "id": "seed-rule-39fceb30-2313-451e-82ff-5f3186b1c5b7-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Start Staff Shift, producing the Staff Shift Started domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-39fceb30-2313-451e-82ff-5f3186b1c5b7-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Employee clocks in for a scheduled shift",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Start Staff Shift",
+              "then": "Staff Shift Started"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-39fceb30-2313-451e-82ff-5f3186b1c5b7-FR-2-seed-example-39fceb30-2313-451e-82ff-5f3186b1c5b7-AC-2.1",
+          "source": "seed-rule-39fceb30-2313-451e-82ff-5f3186b1c5b7-FR-2",
+          "target": "seed-example-39fceb30-2313-451e-82ff-5f3186b1c5b7-AC-2.1"
+        }
+      ]
+    },
+    "e4ceb51d-9554-4c9a-ae78-cfcd2594dc81": {
+      "nodes": [
+        {
+          "id": "seed-rule-e4ceb51d-9554-4c9a-ae78-cfcd2594dc81-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support End Shift, producing the Staff Shift Ended domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-e4ceb51d-9554-4c9a-ae78-cfcd2594dc81-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Employee clocks out at the end of a shift",
+            "scenario": {
+              "given": "Staff Shift Started",
+              "when": "End Shift",
+              "then": "Staff Shift Ended"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-e4ceb51d-9554-4c9a-ae78-cfcd2594dc81-FR-3-seed-example-e4ceb51d-9554-4c9a-ae78-cfcd2594dc81-AC-3.1",
+          "source": "seed-rule-e4ceb51d-9554-4c9a-ae78-cfcd2594dc81-FR-3",
+          "target": "seed-example-e4ceb51d-9554-4c9a-ae78-cfcd2594dc81-AC-3.1"
+        }
+      ]
+    },
+    "6fce0bf9-e265-4f36-a323-58440a2f86aa": {
+      "nodes": [
+        {
+          "id": "seed-rule-6fce0bf9-e265-4f36-a323-58440a2f86aa-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Shift Guard, producing the Shift End Rejected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-6fce0bf9-e265-4f36-a323-58440a2f86aa-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Shift Guard",
+              "then": "Shift End Rejected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-6fce0bf9-e265-4f36-a323-58440a2f86aa-FR-4-seed-example-6fce0bf9-e265-4f36-a323-58440a2f86aa-AC-4.1",
+          "source": "seed-rule-6fce0bf9-e265-4f36-a323-58440a2f86aa-FR-4",
+          "target": "seed-example-6fce0bf9-e265-4f36-a323-58440a2f86aa-AC-4.1"
+        }
+      ]
+    },
+    "7d0d6111-a187-4c18-8fa6-3cb89e1f6307": {
+      "nodes": [
+        {
+          "id": "seed-rule-7d0d6111-a187-4c18-8fa6-3cb89e1f6307-FR-5",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Schedule Guard, producing the Shift Start Rejected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-7d0d6111-a187-4c18-8fa6-3cb89e1f6307-AC-5.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-5.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Schedule Guard",
+              "then": "Shift Start Rejected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-7d0d6111-a187-4c18-8fa6-3cb89e1f6307-FR-5-seed-example-7d0d6111-a187-4c18-8fa6-3cb89e1f6307-AC-5.1",
+          "source": "seed-rule-7d0d6111-a187-4c18-8fa6-3cb89e1f6307-FR-5",
+          "target": "seed-example-7d0d6111-a187-4c18-8fa6-3cb89e1f6307-AC-5.1"
+        }
+      ]
+    },
+    "144d46f3-647a-4dca-8e77-3be356039b72": {
+      "nodes": [
+        {
+          "id": "seed-rule-144d46f3-647a-4dca-8e77-3be356039b72-FR-6",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Shift Guard, producing the Duplicate Shift Start Detected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-144d46f3-647a-4dca-8e77-3be356039b72-AC-6.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-6.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Shift Guard",
+              "then": "Duplicate Shift Start Detected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-144d46f3-647a-4dca-8e77-3be356039b72-FR-6-seed-example-144d46f3-647a-4dca-8e77-3be356039b72-AC-6.1",
+          "source": "seed-rule-144d46f3-647a-4dca-8e77-3be356039b72-FR-6",
+          "target": "seed-example-144d46f3-647a-4dca-8e77-3be356039b72-AC-6.1"
+        }
+      ]
+    },
+    "bbbf8d34-9461-4ad5-95e3-50404583b2fe": {
+      "nodes": [
+        {
+          "id": "seed-rule-bbbf8d34-9461-4ad5-95e3-50404583b2fe-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Payslip Generator, producing the Payslip Created domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-bbbf8d34-9461-4ad5-95e3-50404583b2fe-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Payslip Generator",
+              "then": "Payslip Created"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-bbbf8d34-9461-4ad5-95e3-50404583b2fe-FR-1-seed-example-bbbf8d34-9461-4ad5-95e3-50404583b2fe-AC-1.1",
+          "source": "seed-rule-bbbf8d34-9461-4ad5-95e3-50404583b2fe-FR-1",
+          "target": "seed-example-bbbf8d34-9461-4ad5-95e3-50404583b2fe-AC-1.1"
+        }
+      ]
+    },
+    "4c6d4ccc-2740-4481-97a9-4ee6d47d6904": {
+      "nodes": [
+        {
+          "id": "seed-rule-4c6d4ccc-2740-4481-97a9-4ee6d47d6904-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Generate Payroll, producing the Payroll Generated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-4c6d4ccc-2740-4481-97a9-4ee6d47d6904-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Finance initiates payroll after the pay period ends",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Generate Payroll",
+              "then": "Payroll Generated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-4c6d4ccc-2740-4481-97a9-4ee6d47d6904-FR-2-seed-example-4c6d4ccc-2740-4481-97a9-4ee6d47d6904-AC-2.1",
+          "source": "seed-rule-4c6d4ccc-2740-4481-97a9-4ee6d47d6904-FR-2",
+          "target": "seed-example-4c6d4ccc-2740-4481-97a9-4ee6d47d6904-AC-2.1"
+        }
+      ]
+    },
+    "85673a99-2859-4ba2-9298-de5b51507670": {
+      "nodes": [
+        {
+          "id": "seed-rule-85673a99-2859-4ba2-9298-de5b51507670-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Timesheet Guard, producing the Payroll Calculation Failed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-85673a99-2859-4ba2-9298-de5b51507670-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Timesheet Guard",
+              "then": "Payroll Calculation Failed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-85673a99-2859-4ba2-9298-de5b51507670-FR-3-seed-example-85673a99-2859-4ba2-9298-de5b51507670-AC-3.1",
+          "source": "seed-rule-85673a99-2859-4ba2-9298-de5b51507670-FR-3",
+          "target": "seed-example-85673a99-2859-4ba2-9298-de5b51507670-AC-3.1"
+        }
+      ]
+    },
+    "6ed75590-6d1d-42d0-adf5-9272c6dba87e": {
+      "nodes": [
+        {
+          "id": "seed-rule-6ed75590-6d1d-42d0-adf5-9272c6dba87e-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Generate Monthly Report, producing the Monthly Report Generated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-6ed75590-6d1d-42d0-adf5-9272c6dba87e-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Manager requests the monthly business report",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Generate Monthly Report",
+              "then": "Monthly Report Generated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-6ed75590-6d1d-42d0-adf5-9272c6dba87e-FR-1-seed-example-6ed75590-6d1d-42d0-adf5-9272c6dba87e-AC-1.1",
+          "source": "seed-rule-6ed75590-6d1d-42d0-adf5-9272c6dba87e-FR-1",
+          "target": "seed-example-6ed75590-6d1d-42d0-adf5-9272c6dba87e-AC-1.1"
+        }
+      ]
+    },
+    "44806edd-adba-4911-aec4-487d6e28855b": {
+      "nodes": [
+        {
+          "id": "seed-rule-44806edd-adba-4911-aec4-487d6e28855b-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Data Guard, producing the Report Generation Failed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-44806edd-adba-4911-aec4-487d6e28855b-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Data Guard",
+              "then": "Report Generation Failed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-44806edd-adba-4911-aec4-487d6e28855b-FR-2-seed-example-44806edd-adba-4911-aec4-487d6e28855b-AC-2.1",
+          "source": "seed-rule-44806edd-adba-4911-aec4-487d6e28855b-FR-2",
+          "target": "seed-example-44806edd-adba-4911-aec4-487d6e28855b-AC-2.1"
+        }
+      ]
+    },
+    "a3668550-0c8e-41db-8580-e05c11dbad1d": {
+      "nodes": [
+        {
+          "id": "seed-rule-a3668550-0c8e-41db-8580-e05c11dbad1d-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Log Complaint, producing the Complaint Logged domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-a3668550-0c8e-41db-8580-e05c11dbad1d-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Receptionist logs a member's equipment complaint",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Log Complaint",
+              "then": "Complaint Logged"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-a3668550-0c8e-41db-8580-e05c11dbad1d-FR-1-seed-example-a3668550-0c8e-41db-8580-e05c11dbad1d-AC-1.1",
+          "source": "seed-rule-a3668550-0c8e-41db-8580-e05c11dbad1d-FR-1",
+          "target": "seed-example-a3668550-0c8e-41db-8580-e05c11dbad1d-AC-1.1"
+        }
+      ]
+    },
+    "34871f78-6303-4b08-873f-15154e61c005": {
+      "nodes": [
+        {
+          "id": "seed-rule-34871f78-6303-4b08-873f-15154e61c005-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Complaint Router, producing the Complaint Assigned domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-34871f78-6303-4b08-873f-15154e61c005-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Complaint Router",
+              "then": "Complaint Assigned"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-34871f78-6303-4b08-873f-15154e61c005-FR-2-seed-example-34871f78-6303-4b08-873f-15154e61c005-AC-2.1",
+          "source": "seed-rule-34871f78-6303-4b08-873f-15154e61c005-FR-2",
+          "target": "seed-example-34871f78-6303-4b08-873f-15154e61c005-AC-2.1"
+        }
+      ]
+    },
+    "19020553-84a6-48e1-8624-d0b3f5f4dfbd": {
+      "nodes": [
+        {
+          "id": "seed-rule-19020553-84a6-48e1-8624-d0b3f5f4dfbd-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Resolve Complaint, producing the Complaint Resolved domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-19020553-84a6-48e1-8624-d0b3f5f4dfbd-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Resolve Complaint",
+              "then": "Complaint Resolved"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-19020553-84a6-48e1-8624-d0b3f5f4dfbd-FR-3-seed-example-19020553-84a6-48e1-8624-d0b3f5f4dfbd-AC-3.1",
+          "source": "seed-rule-19020553-84a6-48e1-8624-d0b3f5f4dfbd-FR-3",
+          "target": "seed-example-19020553-84a6-48e1-8624-d0b3f5f4dfbd-AC-3.1"
+        }
+      ]
+    },
+    "93146fb3-fceb-45f9-9e81-0214548cfcaa": {
+      "nodes": [
+        {
+          "id": "seed-rule-93146fb3-fceb-45f9-9e81-0214548cfcaa-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Notifier, producing the Member Notified domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-93146fb3-fceb-45f9-9e81-0214548cfcaa-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Notifier",
+              "then": "Member Notified"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-93146fb3-fceb-45f9-9e81-0214548cfcaa-FR-4-seed-example-93146fb3-fceb-45f9-9e81-0214548cfcaa-AC-4.1",
+          "source": "seed-rule-93146fb3-fceb-45f9-9e81-0214548cfcaa-FR-4",
+          "target": "seed-example-93146fb3-fceb-45f9-9e81-0214548cfcaa-AC-4.1"
+        }
+      ]
+    },
+    "4da02196-63f6-4586-926f-2de43a2baf72": {
+      "nodes": [
+        {
+          "id": "seed-rule-4da02196-63f6-4586-926f-2de43a2baf72-FR-5",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Duplicate Guard, producing the Duplicate Complaint Detected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-4da02196-63f6-4586-926f-2de43a2baf72-AC-5.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-5.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Duplicate Guard",
+              "then": "Duplicate Complaint Detected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-4da02196-63f6-4586-926f-2de43a2baf72-FR-5-seed-example-4da02196-63f6-4586-926f-2de43a2baf72-AC-5.1",
+          "source": "seed-rule-4da02196-63f6-4586-926f-2de43a2baf72-FR-5",
+          "target": "seed-example-4da02196-63f6-4586-926f-2de43a2baf72-AC-5.1"
+        }
+      ]
+    },
+    "25459aac-227e-4cf5-a6f4-076aedfe20ad": {
+      "nodes": [
+        {
+          "id": "seed-rule-25459aac-227e-4cf5-a6f4-076aedfe20ad-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Maintenance Requester, producing the Maintenance Request Created domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-25459aac-227e-4cf5-a6f4-076aedfe20ad-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "A logged complaint is escalated into a maintenance request",
+            "scenario": {
+              "given": "Complaint Logged",
+              "when": "Create Maintenance Request",
+              "then": "Maintenance Request Created"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-25459aac-227e-4cf5-a6f4-076aedfe20ad-FR-1-seed-example-25459aac-227e-4cf5-a6f4-076aedfe20ad-AC-1.1",
+          "source": "seed-rule-25459aac-227e-4cf5-a6f4-076aedfe20ad-FR-1",
+          "target": "seed-example-25459aac-227e-4cf5-a6f4-076aedfe20ad-AC-1.1"
+        }
+      ]
+    },
+    "7f1fde35-02d4-488b-8dd5-ba1252d78029": {
+      "nodes": [
+        {
+          "id": "seed-rule-7f1fde35-02d4-488b-8dd5-ba1252d78029-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Maintenance Scheduler, producing the Maintenance Due Detected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-7f1fde35-02d4-488b-8dd5-ba1252d78029-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Daily check finds equipment past its maintenance interval",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Evaluate Maintenance Schedule",
+              "then": "Maintenance Due Detected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-7f1fde35-02d4-488b-8dd5-ba1252d78029-FR-1-seed-example-7f1fde35-02d4-488b-8dd5-ba1252d78029-AC-1.1",
+          "source": "seed-rule-7f1fde35-02d4-488b-8dd5-ba1252d78029-FR-1",
+          "target": "seed-example-7f1fde35-02d4-488b-8dd5-ba1252d78029-AC-1.1"
+        }
+      ]
+    },
+    "37fb5054-1d0d-472c-9da2-944645951e33": {
+      "nodes": [
+        {
+          "id": "seed-rule-37fb5054-1d0d-472c-9da2-944645951e33-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Work Order Creator, producing the Maintenance Work Order Created domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-37fb5054-1d0d-472c-9da2-944645951e33-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "A detected maintenance need becomes a work order",
+            "scenario": {
+              "given": "Maintenance Due Detected",
+              "when": "Create Maintenance Work Order",
+              "then": "Maintenance Work Order Created"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-37fb5054-1d0d-472c-9da2-944645951e33-FR-2-seed-example-37fb5054-1d0d-472c-9da2-944645951e33-AC-2.1",
+          "source": "seed-rule-37fb5054-1d0d-472c-9da2-944645951e33-FR-2",
+          "target": "seed-example-37fb5054-1d0d-472c-9da2-944645951e33-AC-2.1"
+        }
+      ]
+    },
+    "5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4": {
+      "nodes": [
+        {
+          "id": "seed-rule-5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Duplicate Guard, producing the Maintenance Request Ignored domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Duplicate Guard",
+              "then": "Maintenance Request Ignored"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4-FR-3-seed-example-5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4-AC-3.1",
+          "source": "seed-rule-5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4-FR-3",
+          "target": "seed-example-5782e5bb-916b-4f88-bdd5-0cd4e3bac6a4-AC-3.1"
+        }
+      ]
+    },
+    "f608be1f-9567-404c-83fb-666350735265": {
+      "nodes": [
+        {
+          "id": "seed-rule-f608be1f-9567-404c-83fb-666350735265-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Equipment Tracker, producing the Equipment Marked Out Of Service domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-f608be1f-9567-404c-83fb-666350735265-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Equipment Tracker",
+              "then": "Equipment Marked Out Of Service"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-f608be1f-9567-404c-83fb-666350735265-FR-1-seed-example-f608be1f-9567-404c-83fb-666350735265-AC-1.1",
+          "source": "seed-rule-f608be1f-9567-404c-83fb-666350735265-FR-1",
+          "target": "seed-example-f608be1f-9567-404c-83fb-666350735265-AC-1.1"
+        }
+      ]
+    },
+    "70e83c7f-3236-495d-906f-9c497e80186d": {
+      "nodes": [
+        {
+          "id": "seed-rule-70e83c7f-3236-495d-906f-9c497e80186d-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Complete Maintenance, producing the Maintenance Completed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-70e83c7f-3236-495d-906f-9c497e80186d-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Complete Maintenance",
+              "then": "Maintenance Completed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-70e83c7f-3236-495d-906f-9c497e80186d-FR-2-seed-example-70e83c7f-3236-495d-906f-9c497e80186d-AC-2.1",
+          "source": "seed-rule-70e83c7f-3236-495d-906f-9c497e80186d-FR-2",
+          "target": "seed-example-70e83c7f-3236-495d-906f-9c497e80186d-AC-2.1"
+        }
+      ]
+    },
+    "e1ff5457-20ba-4350-94e4-ff0f0e8efdbe": {
+      "nodes": [
+        {
+          "id": "seed-rule-e1ff5457-20ba-4350-94e4-ff0f0e8efdbe-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Service Tracker, producing the Equipment Returned To Service domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-e1ff5457-20ba-4350-94e4-ff0f0e8efdbe-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Technician closes a completed work order",
+            "scenario": {
+              "given": "Maintenance Completed",
+              "when": "Return Equipment To Service",
+              "then": "Equipment Returned To Service"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-e1ff5457-20ba-4350-94e4-ff0f0e8efdbe-FR-3-seed-example-e1ff5457-20ba-4350-94e4-ff0f0e8efdbe-AC-3.1",
+          "source": "seed-rule-e1ff5457-20ba-4350-94e4-ff0f0e8efdbe-FR-3",
+          "target": "seed-example-e1ff5457-20ba-4350-94e4-ff0f0e8efdbe-AC-3.1"
+        }
+      ]
+    },
+    "0efc9948-9982-40f2-90d8-e7b56d377a7d": {
+      "nodes": [
+        {
+          "id": "seed-rule-0efc9948-9982-40f2-90d8-e7b56d377a7d-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Repair Guard, producing the Maintenance Failed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-0efc9948-9982-40f2-90d8-e7b56d377a7d-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Repair Guard",
+              "then": "Maintenance Failed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-0efc9948-9982-40f2-90d8-e7b56d377a7d-FR-4-seed-example-0efc9948-9982-40f2-90d8-e7b56d377a7d-AC-4.1",
+          "source": "seed-rule-0efc9948-9982-40f2-90d8-e7b56d377a7d-FR-4",
+          "target": "seed-example-0efc9948-9982-40f2-90d8-e7b56d377a7d-AC-4.1"
+        }
+      ]
+    },
+    "b01ac7f7-d321-4735-8edc-be45e3c10a19": {
+      "nodes": [
+        {
+          "id": "seed-rule-b01ac7f7-d321-4735-8edc-be45e3c10a19-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Book Personal Training Session, producing the Personal Training Booked domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-b01ac7f7-d321-4735-8edc-be45e3c10a19-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Book Personal Training Session",
+              "then": "Personal Training Booked"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-b01ac7f7-d321-4735-8edc-be45e3c10a19-FR-1-seed-example-b01ac7f7-d321-4735-8edc-be45e3c10a19-AC-1.1",
+          "source": "seed-rule-b01ac7f7-d321-4735-8edc-be45e3c10a19-FR-1",
+          "target": "seed-example-b01ac7f7-d321-4735-8edc-be45e3c10a19-AC-1.1"
+        }
+      ]
+    },
+    "c3cb8fa7-2243-40fd-8318-496823ea29cb": {
+      "nodes": [
+        {
+          "id": "seed-rule-c3cb8fa7-2243-40fd-8318-496823ea29cb-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Availability Manager, producing the Trainer Availability Reserved domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-c3cb8fa7-2243-40fd-8318-496823ea29cb-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Booking confirmation triggers reserve trainer availability",
+            "scenario": {
+              "given": "Personal Training Booked",
+              "when": "Reserve Trainer Availability",
+              "then": "Trainer Availability Reserved"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-c3cb8fa7-2243-40fd-8318-496823ea29cb-FR-2-seed-example-c3cb8fa7-2243-40fd-8318-496823ea29cb-AC-2.1",
+          "source": "seed-rule-c3cb8fa7-2243-40fd-8318-496823ea29cb-FR-2",
+          "target": "seed-example-c3cb8fa7-2243-40fd-8318-496823ea29cb-AC-2.1"
+        }
+      ]
+    },
+    "8818eed0-2788-458e-8000-35a2cc8a3ed3": {
+      "nodes": [
+        {
+          "id": "seed-rule-8818eed0-2788-458e-8000-35a2cc8a3ed3-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Notification Service, producing the Booking Confirmation Sent domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-8818eed0-2788-458e-8000-35a2cc8a3ed3-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Booking confirmation triggers send booking confirmation",
+            "scenario": {
+              "given": "Personal Training Booked",
+              "when": "Send Booking Confirmation",
+              "then": "Booking Confirmation Sent"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-8818eed0-2788-458e-8000-35a2cc8a3ed3-FR-3-seed-example-8818eed0-2788-458e-8000-35a2cc8a3ed3-AC-3.1",
+          "source": "seed-rule-8818eed0-2788-458e-8000-35a2cc8a3ed3-FR-3",
+          "target": "seed-example-8818eed0-2788-458e-8000-35a2cc8a3ed3-AC-3.1"
+        }
+      ]
+    },
+    "25e20ef7-8465-40bc-a0bc-ee618d1a0bd7": {
+      "nodes": [
+        {
+          "id": "seed-rule-25e20ef7-8465-40bc-a0bc-ee618d1a0bd7-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Calendar Service, producing the Calendar Entry Created domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-25e20ef7-8465-40bc-a0bc-ee618d1a0bd7-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Booking confirmation triggers add session to calendar",
+            "scenario": {
+              "given": "Personal Training Booked",
+              "when": "Add Session To Calendar",
+              "then": "Calendar Entry Created"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-25e20ef7-8465-40bc-a0bc-ee618d1a0bd7-FR-4-seed-example-25e20ef7-8465-40bc-a0bc-ee618d1a0bd7-AC-4.1",
+          "source": "seed-rule-25e20ef7-8465-40bc-a0bc-ee618d1a0bd7-FR-4",
+          "target": "seed-example-25e20ef7-8465-40bc-a0bc-ee618d1a0bd7-AC-4.1"
+        }
+      ]
+    },
+    "ec1326c9-a088-4a12-a9d0-9ee92b54fbc7": {
+      "nodes": [
+        {
+          "id": "seed-rule-ec1326c9-a088-4a12-a9d0-9ee92b54fbc7-FR-5",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Utilization Reporter, producing the Trainer Utilization Report Updated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-ec1326c9-a088-4a12-a9d0-9ee92b54fbc7-AC-5.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Booking confirmation triggers update trainer utilization report",
+            "scenario": {
+              "given": "Personal Training Booked",
+              "when": "Update Trainer Utilization Report",
+              "then": "Trainer Utilization Report Updated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-ec1326c9-a088-4a12-a9d0-9ee92b54fbc7-FR-5-seed-example-ec1326c9-a088-4a12-a9d0-9ee92b54fbc7-AC-5.1",
+          "source": "seed-rule-ec1326c9-a088-4a12-a9d0-9ee92b54fbc7-FR-5",
+          "target": "seed-example-ec1326c9-a088-4a12-a9d0-9ee92b54fbc7-AC-5.1"
+        }
+      ]
+    },
+    "7dffeaee-6d2b-445a-a1dc-de2088a7cdbc": {
+      "nodes": [
+        {
+          "id": "seed-rule-7dffeaee-6d2b-445a-a1dc-de2088a7cdbc-FR-6",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Schedule Tracker, producing the Trainer Schedule Updated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-7dffeaee-6d2b-445a-a1dc-de2088a7cdbc-AC-6.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-6.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Schedule Tracker",
+              "then": "Trainer Schedule Updated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-7dffeaee-6d2b-445a-a1dc-de2088a7cdbc-FR-6-seed-example-7dffeaee-6d2b-445a-a1dc-de2088a7cdbc-AC-6.1",
+          "source": "seed-rule-7dffeaee-6d2b-445a-a1dc-de2088a7cdbc-FR-6",
+          "target": "seed-example-7dffeaee-6d2b-445a-a1dc-de2088a7cdbc-AC-6.1"
+        }
+      ]
+    },
+    "1535cc12-fdfe-4ae9-8046-ec2a0791b90a": {
+      "nodes": [
+        {
+          "id": "seed-rule-1535cc12-fdfe-4ae9-8046-ec2a0791b90a-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Complete Training Session, producing the Personal Training Session Completed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-1535cc12-fdfe-4ae9-8046-ec2a0791b90a-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Trainer marks a scheduled session complete",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Complete Training Session",
+              "then": "Personal Training Session Completed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-1535cc12-fdfe-4ae9-8046-ec2a0791b90a-FR-1-seed-example-1535cc12-fdfe-4ae9-8046-ec2a0791b90a-AC-1.1",
+          "source": "seed-rule-1535cc12-fdfe-4ae9-8046-ec2a0791b90a-FR-1",
+          "target": "seed-example-1535cc12-fdfe-4ae9-8046-ec2a0791b90a-AC-1.1"
+        }
+      ]
+    },
+    "c73ccf58-4b39-469c-839d-abfeedbf1ce7": {
+      "nodes": [
+        {
+          "id": "seed-rule-c73ccf58-4b39-469c-839d-abfeedbf1ce7-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Utilization Tracker, producing the Trainer Utilization Updated domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-c73ccf58-4b39-469c-839d-abfeedbf1ce7-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-2.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Utilization Tracker",
+              "then": "Trainer Utilization Updated"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-c73ccf58-4b39-469c-839d-abfeedbf1ce7-FR-2-seed-example-c73ccf58-4b39-469c-839d-abfeedbf1ce7-AC-2.1",
+          "source": "seed-rule-c73ccf58-4b39-469c-839d-abfeedbf1ce7-FR-2",
+          "target": "seed-example-c73ccf58-4b39-469c-839d-abfeedbf1ce7-AC-2.1"
+        }
+      ]
+    },
+    "1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4": {
+      "nodes": [
+        {
+          "id": "seed-rule-1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Attendance Guard, producing the Personal Training No-Show Recorded domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Attendance Guard",
+              "then": "Personal Training No-Show Recorded"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4-FR-3-seed-example-1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4-AC-3.1",
+          "source": "seed-rule-1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4-FR-3",
+          "target": "seed-example-1eedcb9e-3f9d-4fee-905f-d27b6b3abaf4-AC-3.1"
+        }
+      ]
+    },
+    "73acbcc0-fc27-4c84-8a5e-991783daf5c3": {
+      "nodes": [
+        {
+          "id": "seed-rule-73acbcc0-fc27-4c84-8a5e-991783daf5c3-FR-1",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Revenue Tracker, producing the Revenue Recorded domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-73acbcc0-fc27-4c84-8a5e-991783daf5c3-AC-1.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-1.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Revenue Tracker",
+              "then": "Revenue Recorded"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-73acbcc0-fc27-4c84-8a5e-991783daf5c3-FR-1-seed-example-73acbcc0-fc27-4c84-8a5e-991783daf5c3-AC-1.1",
+          "source": "seed-rule-73acbcc0-fc27-4c84-8a5e-991783daf5c3-FR-1",
+          "target": "seed-example-73acbcc0-fc27-4c84-8a5e-991783daf5c3-AC-1.1"
+        }
+      ]
+    },
+    "8580ba30-2d4f-49da-b555-d9acdf68dadc": {
+      "nodes": [
+        {
+          "id": "seed-rule-8580ba30-2d4f-49da-b555-d9acdf68dadc-FR-2",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System MUST support Record Retail Sale, producing the Retail Sale Completed domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-8580ba30-2d4f-49da-b555-d9acdf68dadc-AC-2.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "Receptionist sells an in-stock retail item",
+            "scenario": {
+              "given": "no precondition recorded on the board",
+              "when": "Record Retail Sale",
+              "then": "Retail Sale Completed"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-8580ba30-2d4f-49da-b555-d9acdf68dadc-FR-2-seed-example-8580ba30-2d4f-49da-b555-d9acdf68dadc-AC-2.1",
+          "source": "seed-rule-8580ba30-2d4f-49da-b555-d9acdf68dadc-FR-2",
+          "target": "seed-example-8580ba30-2d4f-49da-b555-d9acdf68dadc-AC-2.1"
+        }
+      ]
+    },
+    "7dea13a1-37f5-44d3-be24-d76ffc5a323b": {
+      "nodes": [
+        {
+          "id": "seed-rule-7dea13a1-37f5-44d3-be24-d76ffc5a323b-FR-3",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Inventory Tracker, producing the Inventory Reduced domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-7dea13a1-37f5-44d3-be24-d76ffc5a323b-AC-3.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-3.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Inventory Tracker",
+              "then": "Inventory Reduced"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-7dea13a1-37f5-44d3-be24-d76ffc5a323b-FR-3-seed-example-7dea13a1-37f5-44d3-be24-d76ffc5a323b-AC-3.1",
+          "source": "seed-rule-7dea13a1-37f5-44d3-be24-d76ffc5a323b-FR-3",
+          "target": "seed-example-7dea13a1-37f5-44d3-be24-d76ffc5a323b-AC-3.1"
+        }
+      ]
+    },
+    "b815fe5e-15ba-482f-9694-38f10e436275": {
+      "nodes": [
+        {
+          "id": "seed-rule-b815fe5e-15ba-482f-9694-38f10e436275-FR-4",
+          "type": "exampleMap",
+          "position": {
+            "x": 40,
+            "y": 40
+          },
+          "data": {
+            "nodeType": "rule",
+            "label": "System SHOULD support Stock Guard, producing the Sale Rejected domain event(s)"
+          }
+        },
+        {
+          "id": "seed-example-b815fe5e-15ba-482f-9694-38f10e436275-AC-4.1",
+          "type": "exampleMap",
+          "position": {
+            "x": 320,
+            "y": 220
+          },
+          "data": {
+            "nodeType": "example",
+            "label": "AC-4.1",
+            "scenario": {
+              "given": "the preconditions for this step are met",
+              "when": "Stock Guard",
+              "then": "Sale Rejected"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "seed-rule-b815fe5e-15ba-482f-9694-38f10e436275-FR-4-seed-example-b815fe5e-15ba-482f-9694-38f10e436275-AC-4.1",
+          "source": "seed-rule-b815fe5e-15ba-482f-9694-38f10e436275-FR-4",
+          "target": "seed-example-b815fe5e-15ba-482f-9694-38f10e436275-AC-4.1"
+        }
+      ]
+    }
+  }
+}

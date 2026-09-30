@@ -1,0 +1,25 @@
+/* Base reset only — the canvas's visual tokens live in src/theme.ts and are
+ * consumed via inline styles by the component primitives. Keep this file
+ * deliberately small; any styling that isn't a global reset belongs in the
+ * theme, not here. */
+
+:root {
+  color-scheme: light dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+}

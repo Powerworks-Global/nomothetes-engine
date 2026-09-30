@@ -1,0 +1,11 @@
+{
+  "boardId": "version1-demo-messy",
+  "sessionId": "board-co-review-pass1",
+  "specId": "board-co-review",
+  "steps": [
+    { "ref": "facilitator", "skill": "place_element", "args": { "specId": "board-co-review", "sliceId": "invite-co-reviewer", "sliceType": "command", "laneId": "actor", "label": "Facilitator" } },
+    { "ref": "coReviewer", "skill": "place_element", "args": { "specId": "board-co-review", "sliceId": "invite-co-reviewer", "sliceType": "command", "laneId": "actor", "label": "Co-Reviewer" } },
+    { "ref": "inviteAction", "skill": "edit_timeline", "args": { "operation": "add", "specId": "board-co-review", "sliceId": "invite-co-reviewer", "sliceType": "command", "laneId": "action", "label": "Invite Co-Reviewer", "afterNodeId": "$facilitator" } },
+    { "ref": "invitedOutcome", "skill": "edit_timeline", "args": { "operation": "add", "specId": "board-co-review", "sliceId": "invite-co-reviewer", "sliceType": "command", "laneId": "outcome", "label": "Co-Reviewer Invited", "afterNodeId": "$inviteAction" } }
+  ]
+}

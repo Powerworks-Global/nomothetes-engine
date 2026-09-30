@@ -1,0 +1,11 @@
+{
+  "boardId": "version1-demo-messy",
+  "sessionId": "board-co-review-pass1",
+  "specId": "board-co-review",
+  "steps": [
+    { "ref": "reviewRule", "skill": "edit_example_map", "args": { "sliceId": "invite-co-reviewer", "operation": "add_rule", "label": "A board may only be frozen after a Co-Reviewer has been invited" } },
+    { "skill": "edit_example_map", "args": { "sliceId": "invite-co-reviewer", "operation": "add_example", "ruleId": "$reviewRule", "label": "Happy path: Facilitator invites a Co-Reviewer, then later freezes the spec", "scenario": { "given": "no Co-Reviewer has been invited yet", "when": "the Facilitator invites one and later freezes the spec", "then": "the freeze succeeds" } } },
+    { "skill": "edit_example_map", "args": { "sliceId": "invite-co-reviewer", "operation": "add_question", "label": "Does freezing require the Co-Reviewer's explicit approval, or just that they were invited? The brief only says 'invite', not 'approve'." } },
+    { "skill": "edit_example_map", "args": { "sliceId": "invite-co-reviewer", "operation": "add_question", "label": "What happens if the Co-Reviewer never responds — can the Facilitator freeze anyway, or does the invite block forever?" } }
+  ]
+}

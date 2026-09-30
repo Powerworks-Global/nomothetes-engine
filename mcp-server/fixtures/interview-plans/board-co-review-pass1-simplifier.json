@@ -1,0 +1,8 @@
+{
+  "boardId": "version1-demo-messy",
+  "sessionId": "board-co-review-pass1",
+  "specId": "board-co-review",
+  "steps": [
+    { "skill": "run_wdyt", "args": { "sliceId": "invite-co-reviewer" } }
+  ]
+}

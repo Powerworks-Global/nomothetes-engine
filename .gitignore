@@ -1,0 +1,30 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.powergym-source/
+
+# Agentic Modeling's task queue state — transient per-task JSON files that
+# move through pending/processing/done/failed; the durable record of what
+# happened is agentic-modeling/progress.txt (tracked), not these.
+agentic-modeling/inbox/

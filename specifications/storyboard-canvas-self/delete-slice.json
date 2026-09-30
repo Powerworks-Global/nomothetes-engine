@@ -1,0 +1,69 @@
+{
+  "sliceId": "storyboard-canvas-self.delete-slice",
+  "specifications": [
+    {
+      "id": "spec-1",
+      "title": "Deleting a slice with only internal edges",
+      "given": "a slice with 2 nodes and 1 edge connecting them, both entirely within that slice",
+      "when": "the user confirms deleting the slice",
+      "then": "both nodes and the edge are removed, and no other slice's nodes or edges anywhere on the board are affected",
+      "sourceExampleId": "example-1",
+      "rule": "Deleting a slice requires confirmation, removes all of that slice's nodes and edges (including edges crossing into other slices), never touches other slices' own nodes/edges, and does not cascade-delete the slice's Layer 2 Example Map data in localStorage"
+    },
+    {
+      "id": "spec-2",
+      "title": "Deleting a slice with a cross-slice edge",
+      "given": "a slice whose Outcome node has an edge to a different slice's Actor node (a cross-slice trigger edge)",
+      "when": "the first slice is deleted",
+      "then": "the cross-slice edge is removed since one of its endpoints no longer exists, but the second slice's own nodes and any edges entirely within it remain untouched",
+      "sourceExampleId": "example-2",
+      "rule": "Deleting a slice requires confirmation, removes all of that slice's nodes and edges (including edges crossing into other slices), never touches other slices' own nodes/edges, and does not cascade-delete the slice's Layer 2 Example Map data in localStorage"
+    },
+    {
+      "id": "spec-3",
+      "title": "Cancelling the confirmation leaves everything untouched",
+      "given": "the user clicks Delete Slice on a slice",
+      "when": "they cancel the confirmation dialog",
+      "then": "no nodes, edges, or other state changes at all",
+      "sourceExampleId": "example-3",
+      "rule": "Deleting a slice requires confirmation, removes all of that slice's nodes and edges (including edges crossing into other slices), never touches other slices' own nodes/edges, and does not cascade-delete the slice's Layer 2 Example Map data in localStorage"
+    },
+    {
+      "id": "spec-4",
+      "title": "Deleting the selected node's slice clears selection",
+      "given": "a node in the slice being deleted is currently selected and shown in the Scenario panel",
+      "when": "the slice is deleted",
+      "then": "the selection is cleared so the panel does not keep showing a now-deleted node's stale data",
+      "sourceExampleId": "example-4",
+      "rule": "Deleting a slice requires confirmation, removes all of that slice's nodes and edges (including edges crossing into other slices), never touches other slices' own nodes/edges, and does not cascade-delete the slice's Layer 2 Example Map data in localStorage"
+    },
+    {
+      "id": "spec-5",
+      "title": "Example Map data is not cascade-deleted",
+      "given": "a slice has existing Rule/Example/Question cards saved in localStorage",
+      "when": "the slice is deleted from the canvas",
+      "then": "the localStorage Example Map data for that slice id is left untouched — orphaned, and recoverable if a slice with the same id is ever recreated",
+      "sourceExampleId": "example-5",
+      "rule": "Deleting a slice requires confirmation, removes all of that slice's nodes and edges (including edges crossing into other slices), never touches other slices' own nodes/edges, and does not cascade-delete the slice's Layer 2 Example Map data in localStorage"
+    },
+    {
+      "id": "spec-6",
+      "title": "Deleting a slice referenced by a Concern shows a warning",
+      "given": "a Cross-Cutting Concern's appliesTo list includes the slice being deleted",
+      "when": "the user clicks Delete Slice",
+      "then": "the confirmation dialog names the referencing concern(s) and still allows the user to proceed or cancel",
+      "sourceExampleId": "example-6",
+      "rule": "If any Cross-Cutting Concern's appliesTo list references the slice being deleted, the user is warned before the deletion proceeds, not blocked"
+    },
+    {
+      "id": "spec-7",
+      "title": "Deleting a slice with no Concern references shows the plain confirmation",
+      "given": "no Cross-Cutting Concern references the slice being deleted",
+      "when": "the user clicks Delete Slice",
+      "then": "the plain confirmation dialog appears with no warning text",
+      "sourceExampleId": "example-7",
+      "rule": "If any Cross-Cutting Concern's appliesTo list references the slice being deleted, the user is warned before the deletion proceeds, not blocked"
+    }
+  ],
+  "warnings": []
+}
