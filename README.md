@@ -61,9 +61,13 @@ Built with Vite + React + TypeScript + `@xyflow/react`. Standard Vite scripts ap
 
 ## Acknowledgments
 
-**Event Modeling** is a methodology created by Adam Dymitruk — see [eventmodeling.org](https://www.eventmodeling.org) for the primary reference. This project implements its own canvas and tooling on top of that methodology; it isn't affiliated with Dymitruk, Adaptech Group, or any commercial Event Modeling product.
+This project wouldn't exist without the people who built the ideas and tooling it stands on.
 
-`scripts/import-eventmodelers.mjs` optionally reads a board exported from [eventmodelers.ai](https://eventmodelers.ai) (a commercial Event Modeling product by Nebulit GmbH), for anyone who already has a board modeled there and wants to bring it in — it's a compatibility option, not a dependency, and the demo board included in this repo doesn't require it.
+**Adam Dymitruk** created **Event Modeling** — the methodology this entire canvas is an implementation of. See [eventmodeling.org](https://www.eventmodeling.org) for the primary reference. Without the method itself — the insight that a timeline of Actor/Screen/Action/Outcome steps surfaces real design gaps before code gets written — there's no board to draw in the first place.
+
+**Martin Dilger** (Nebulit GmbH) built [eventmodelers.ai](https://eventmodelers.ai), a commercial Event Modeling product, and the subsequent tooling around it that this project learned from and is compatible with — `scripts/import-eventmodelers.mjs` optionally reads a board exported from it, for anyone who already has one modeled there. That compatibility option exists because his tooling proved out real export formats and real board patterns worth supporting; the demo board included in this repo doesn't require it, but the path wouldn't be there without his work.
+
+Neither Adam Dymitruk nor Martin Dilger is affiliated with this project — this acknowledgment is a credit, not a claim of endorsement or partnership.
 
 ## Related documentation
 
