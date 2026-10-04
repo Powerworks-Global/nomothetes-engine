@@ -1,6 +1,6 @@
-# EUnomia MCP server
+# Nomothetes MCP server
 
-Exposes EUnomia's board data over the Model Context Protocol, so any MCP-compatible harness (Claude Code, Codex, Gemini CLI, etc.) can query it directly — no per-harness export adapter needed. See the design note at the top of `index.mjs` for why this replaces the originally-planned per-harness Markdown/YAML exporters.
+Exposes Nomothetes's board data over the Model Context Protocol, so any MCP-compatible harness (Claude Code, Codex, Gemini CLI, etc.) can query it directly — no per-harness export adapter needed. See the design note at the top of `index.mjs` for why this replaces the originally-planned per-harness Markdown/YAML exporters.
 
 ## Tools
 
@@ -39,9 +39,9 @@ Add to `.mcp.json` in a project that wants to query this board:
 ```json
 {
   "mcpServers": {
-    "eunomia": {
+    "nomothetes": {
       "command": "node",
-      "args": ["/absolute/path/to/storyboard-canvas-spike/mcp-server/index.mjs"]
+      "args": ["/absolute/path/to/nomothetes-engine/mcp-server/index.mjs"]
     }
   }
 }

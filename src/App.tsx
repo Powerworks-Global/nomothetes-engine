@@ -341,7 +341,7 @@ export default function App() {
           element" feature is structurally wired, not just cosmetic. */}
       <div style={panelStyle}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: theme.space.lg }}>
-          <h3 style={{ margin: 0 }}>EUnomia</h3>
+          <h3 style={{ margin: 0 }}>Nomothetes</h3>
           <Button onClick={() => setShowSettings(true)}>{t("panel.settings")}</Button>
         </div>
         <h3 style={{ marginTop: 0 }}>{t("panel.board")}</h3>

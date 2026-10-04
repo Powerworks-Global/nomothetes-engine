@@ -1,8 +1,10 @@
-# storyboard-canvas-spike
+# Nomothetes Engine
 
-A CRUD-native event-modeling canvas: [React Flow](https://reactflow.dev)-based Actor/Screen/Action/Outcome/Owned-Data swimlanes, with drag-snap-to-lane node placement and inline Given/When/Then Scenario attachment per node. Personal MVP proving out the design described in [the Version1 App Delivery Canvas brief](docs/plan.md#background) before it's pitched internally.
+The open-core engine behind **Nomothetes** (νομοθέτης, "lawgiver") — a CRUD-native event-modeling canvas: [React Flow](https://reactflow.dev)-based Actor/Screen/Action/Outcome/Owned-Data swimlanes, with drag-snap-to-lane node placement and inline Given/When/Then Scenario attachment per node, plus a bring-your-own-harness ("BYOH") Interview protocol for generating a board from a brief.
 
-This is exploratory personal-project tooling, not production code — see [Scope](#scope) below for exactly what's in and out right now.
+Owned by [Powerworks-Global](https://github.com/Powerworks-Global). This repo is the open-core generic engine half — a separate private repo holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here. See [CONTRIBUTING.md](CONTRIBUTING.md) for that split.
+
+This is exploratory, pre-production tooling — see [Scope](#scope) below for exactly what's in and out right now.
 
 ## Quickstart
 

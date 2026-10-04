@@ -1,6 +1,6 @@
 ---
 name: "eventmodeling-interview"
-description: "Turn a project/programme brief into a populated EUnomia Layer 1 board (and seeded Layer 2 Example Maps) through a facilitated, ambiguity-gated interview — the brief-to-board harness. Bring-your-own-harness by design: this skill is the portable protocol, any coding agent that can read this repo and run shell commands can drive it."
+description: "Turn a project/programme brief into a populated Nomothetes Layer 1 board (and seeded Layer 2 Example Maps) through a facilitated, ambiguity-gated interview — the brief-to-board harness. Bring-your-own-harness by design: this skill is the portable protocol, any coding agent that can read this repo and run shell commands can drive it."
 argument-hint: "Path to a brief (text/markdown file), or the brief pasted inline"
 compatibility: "Requires this repo checked out with mcp-server/ present; no MCP connection needed — this skill drives the same functions via the CLI entrypoints."
 metadata:
@@ -14,7 +14,7 @@ disable-model-invocation: false
 
 The missing piece between "here's a brief" and "here's a fully fleshed-out board." Everything downstream of a populated board already exists and is deterministic — `place_element`/`edit_timeline`/`edit_example_map`/`run_wdyt`/`freeze_spec` are safe, sanitized, unit-tested write operations (`mcp-server/board-mutations.mjs`), dispatched by a worker that is explicitly **not an LLM** (`mcp-server/agentic-worker.mjs`'s own header comment). Nothing in this codebase turns a brief into the right sequence of those calls — that's this skill's job.
 
-**Bring-your-own-harness**: this skill is a portable protocol, not a bundled agent. It doesn't call an LLM API itself — it's a set of instructions *for* whatever harness is running it (you, right now, reading this). See `docs/adr/0004-interview-harness.md` for why: EUnomia ships the tool contract and this protocol; the harness driving it is always the operator's own.
+**Bring-your-own-harness**: this skill is a portable protocol, not a bundled agent. It doesn't call an LLM API itself — it's a set of instructions *for* whatever harness is running it (you, right now, reading this). See `docs/adr/0004-interview-harness.md` for why: Nomothetes ships the tool contract and this protocol; the harness driving it is always the operator's own.
 
 ## Before you start
 

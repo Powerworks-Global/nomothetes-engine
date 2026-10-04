@@ -1,8 +1,10 @@
-# Project Plan — Storyboard Canvas
+# Project Plan — Nomothetes Engine
 
 ## Background
 
-This is the personal MVP for the **V1 App Delivery Canvas** — a Version1 internal pitch proposing a unified platform bridging visual requirement gathering and agentic code generation. The brief needs a working demo before it goes in front of leadership; this repo is that demo, built independently first. (The brief itself lives outside this repo, in the author's private notes — not linked here since it's not part of this codebase.)
+**Updated 2026-10-04**: this project started as a personal MVP proving out a platform-pitch concept (bridging visual requirement gathering and agentic code generation) originally scoped as an internal pitch at a prior employer. That internal-pitch path is no longer relevant — the project is now Powerworks-Global's own open-core product, Nomothetes, with its own independent go-to-market. The history below is kept as an accurate record of how the engine was actually built, not rewritten away.
+
+This repo is the open-core engine half of Nomothetes — a CRUD-native event-modeling canvas bridging visual requirement gathering and a bring-your-own-harness agentic generation path. A separate private repo holds the Nomothetes-branded commercial layer on top (billing/digest exporters, compliance tooling).
 
 The core idea: Event Modeling's timeline is what does the real discovery work (exposing ordering gaps, screens reading data nothing produces) — the event-sourcing vocabulary (Event, Command, Aggregate) is a separate, removable problem that creates real translation cost for teams building conventional CRUD applications. This canvas keeps the timeline's discovery power, drops the vocabulary.
 

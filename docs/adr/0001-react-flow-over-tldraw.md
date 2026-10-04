@@ -12,7 +12,7 @@ React Flow.
 
 ## Reasoning
 
-- **Licensing**: tldraw is now under a source-available license requiring a paid commercial license for commercial use. Since the actual end goal is a Version1-internal tool (see [docs/plan.md](../plan.md)), building the personal MVP on tldraw risks a licensing wall right when it would matter most. React Flow's core is MIT-licensed, no commercial-use restriction.
+- **Licensing**: tldraw is now under a source-available license requiring a paid commercial license for commercial use. The end goal at the time this was decided was an internal tool at a prior employer (see [docs/plan.md](../plan.md) — superseded 2026-10-04, project is now Powerworks-Global's own Nomothetes); building the personal MVP on tldraw risked a licensing wall right when it would have mattered most. React Flow's core is MIT-licensed, no commercial-use restriction — the reasoning holds regardless of which commercial context it's evaluated against.
 - **Structural fit**: React Flow's custom node types and custom edges are first-class in the core library, not a paid tier — a strong match for this board's typed-node/typed-edge shape. tldraw's strength (freeform, hand-drawn-style whiteboarding) isn't the shape of what this board actually needs.
 - **Stack fit**: React Flow is React, matching existing frontend fluency, and gives no new framework to learn just for this spike.
 

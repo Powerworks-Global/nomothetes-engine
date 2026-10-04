@@ -19,5 +19,5 @@ MCP is already the protocol most major coding harnesses speak natively. Hand-bui
 ## Consequences
 
 - The canonical data representation (`src/data/powergym-board.json`'s node/edge schema) becomes the thing that matters — the MCP server is a thin protocol wrapper over it, not a second source of truth.
-- A harness without MCP support isn't covered by this approach and would still need a bespoke integration — acceptable for now since the harnesses actually in scope (Claude Code, Version1's planned "First Mate" orchestrator per the brief) are MCP-compatible.
+- A harness without MCP support isn't covered by this approach and would still need a bespoke integration — acceptable for now since the harnesses actually in scope (Claude Code, and at the time this was written, a prior employer's planned "First Mate" orchestrator — context superseded 2026-10-04, project is now Powerworks-Global's own Nomothetes) are MCP-compatible.
 - v1 scope is read-only. Writing back to the board via MCP (the Agentic Modeling capability) is explicitly out of scope for this decision — see [docs/plan.md](../plan.md) Phase 4.

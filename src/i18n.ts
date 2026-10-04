@@ -1,6 +1,6 @@
 import { usePresets } from "./presetContext";
 
-// Minimal i18n for EUnomia's UI chrome. Two languages (English, German),
+// Minimal i18n for Nomothetes's UI chrome. Two languages (English, German),
 // driven by the `language.ui` preset; the Given/When/Then vocabulary is
 // driven separately by `language.content`. `language.code` stays English
 // (locked) — this module only touches human-facing strings, never code,
@@ -37,7 +37,7 @@ const en: StringMap = {
   "em.markAnswered": "Mark Answered",
   "em.exportJson": "Export Board JSON",
 
-  "settings.title": "EUnomia — Settings",
+  "settings.title": "Nomothetes — Settings",
   "settings.close": "Close",
   "settings.subtitle": "Opinionated defaults with overrides. Changes persist to this browser and resolve immediately.",
   "settings.locked": "locked",
@@ -102,7 +102,7 @@ const de: StringMap = {
   "em.markAnswered": "Als beantwortet markieren",
   "em.exportJson": "Board als JSON exportieren",
 
-  "settings.title": "EUnomia — Einstellungen",
+  "settings.title": "Nomothetes — Einstellungen",
   "settings.close": "Schließen",
   "settings.subtitle": "Meinungsstarke Standardwerte mit Überschreibungen. Änderungen werden in diesem Browser gespeichert und sofort aufgelöst.",
   "settings.locked": "gesperrt",

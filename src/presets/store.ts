@@ -5,7 +5,7 @@ import { EMPTY_OVERRIDES } from "./types";
 // the repo. A JSON config file is the eventual real shape once a backend or
 // project checkout exists; this is the throwaway-MVP equivalent.
 
-const STORAGE_KEY = "eunomia:preset-overrides";
+const STORAGE_KEY = "nomothetes:preset-overrides";
 
 export function loadOverrides(): Overrides {
   const raw = localStorage.getItem(STORAGE_KEY);

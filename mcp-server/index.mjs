@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// MCP server exposing EUnomia's board data (currently PowerGym's imported
+// MCP server exposing Nomothetes's board data (currently PowerGym's imported
 // eventmodelers.ai story-arcs) to any MCP-compatible harness.
 //
 // Design note (Ouroboros-inspired reframe, decided 2026-09-02): rather than
@@ -70,7 +70,7 @@ function slices(specId) {
   });
 }
 
-const server = new McpServer({ name: "eunomia", version: "0.2.0" });
+const server = new McpServer({ name: "nomothetes", version: "0.2.0" });
 
 server.tool(
   "list_story_arcs",

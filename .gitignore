@@ -28,3 +28,10 @@ dist-ssr
 # move through pending/processing/done/failed; the durable record of what
 # happened is agentic-modeling/progress.txt (tracked), not these.
 agentic-modeling/inbox/
+
+# Local preset-config override written by scripts/bootstrap.mjs — AGENTS.md
+# already documented this as gitignored, but the entry was never actually
+# added. The tracked template is nomothetes.config.example.json; this exact
+# filename (not a wildcard, so the example file above stays tracked) is the
+# personal override.
+nomothetes.config.json

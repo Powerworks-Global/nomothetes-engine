@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Slipway-inspired one-commit bootstrap for a FRESH project seeded from
-// this repo as a template — NOT meant to run against storyboard-canvas-spike
+// this repo as a template — NOT meant to run against nomothetes-engine
 // itself, which already has real history (see AGENTS.md's own note on this).
-// Asks a handful of foundational questions, writes eunomia.config.json
+// Asks a handful of foundational questions, writes nomothetes.config.json
 // through the existing preset system (src/presets/catalog.ts) rather than
 // inventing a parallel config mechanism, updates package.json's name, and
 // makes exactly one commit.
@@ -111,7 +111,7 @@ if (isMain) {
 
     const { projectName: name, packageName, config } = buildBootstrapPlan({ projectName, vcsProvider, targetStack, autonomyLevel });
 
-    writeFileSync(join(cwd, "eunomia.config.json"), JSON.stringify(config, null, 2) + "\n");
+    writeFileSync(join(cwd, "nomothetes.config.json"), JSON.stringify(config, null, 2) + "\n");
 
     const pkgPath = join(cwd, "package.json");
     if (existsSync(pkgPath)) {

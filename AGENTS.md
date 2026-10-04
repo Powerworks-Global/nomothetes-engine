@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Repository rules for any coding agent (Claude Code, Codex, or otherwise) working in `storyboard-canvas-spike` ("EUnomia"). See [CONTRIBUTING.md](CONTRIBUTING.md) for the fuller convention set this file summarizes.
+Repository rules for any coding agent (Claude Code, Codex, or otherwise) working in `nomothetes-engine` ("Nomothetes", renamed from `storyboard-canvas-spike`/"EUnomia" on 2026-10-04). See [CONTRIBUTING.md](CONTRIBUTING.md) for the fuller convention set this file summarizes.
 
 ## Commands
 
@@ -21,7 +21,7 @@ npm run test      # vitest
 
 ## Config contract
 
-This project's tool/workflow choices resolve through one system: `src/presets/catalog.ts` (the full preset catalog, 13 groups) + `src/presets/resolver.ts` (default → org → project → user resolution), loaded via `scripts/presets.mjs`'s `loadResolvedPresets(configPath)`. `eunomia.config.example.json` shows the shape — copy it to `eunomia.config.json` (gitignored) to override locally. There is no second, parallel config file; new bootstrap-relevant settings extend this catalog rather than inventing another mechanism.
+This project's tool/workflow choices resolve through one system: `src/presets/catalog.ts` (the full preset catalog, 13 groups) + `src/presets/resolver.ts` (default → org → project → user resolution), loaded via `scripts/presets.mjs`'s `loadResolvedPresets(configPath)`. `nomothetes.config.example.json` shows the shape — copy it to `nomothetes.config.json` (gitignored) to override locally. There is no second, parallel config file; new bootstrap-relevant settings extend this catalog rather than inventing another mechanism.
 
 Relevant to agents specifically: `agent.autonomyLevel` (`read-only` | `propose-only` | `write-with-review` | `autonomous`, default `write-with-review`) states what a coding agent is allowed to do unattended in a given project — check it before assuming push/merge authority.
 

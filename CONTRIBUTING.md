@@ -1,6 +1,6 @@
 # Contributing
 
-This is currently a solo personal-project spike, private and not open for outside contributions — this file exists as groundwork for the point where it either gets handed off internally at Version1 or opened up, so the conventions are written down rather than only in one person's head.
+Powerworks-Global owns this project. This repo is the open-core generic engine half of **Nomothetes** — a separate private repo holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here. This file exists so the working conventions are written down rather than only in one person's head, ahead of outside contributions being open.
 
 ## Working conventions
 

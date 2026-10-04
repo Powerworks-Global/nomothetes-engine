@@ -6,7 +6,7 @@ This is for anyone who wants to *use* Agentic Modeling (queue a task, see what i
 
 ## What it actually does
 
-EUnomia's board (the Event Modeling canvas — actors, screens, actions, outcomes, and each slice's Rule/Example/Question cards) normally only changes when a human edits it in the browser, or when the import script re-runs against a fresh PowerGym export. Agentic Modeling adds a second way to change it: you queue a task describing an edit, a worker process picks it up, checks it's safe, makes the change, and writes down what it did. Nothing happens live or automatically — someone (or something scheduled) has to run the worker for a queued task to actually take effect.
+Nomothetes's board (the Event Modeling canvas — actors, screens, actions, outcomes, and each slice's Rule/Example/Question cards) normally only changes when a human edits it in the browser, or when the import script re-runs against a fresh PowerGym export. Agentic Modeling adds a second way to change it: you queue a task describing an edit, a worker process picks it up, checks it's safe, makes the change, and writes down what it did. Nothing happens live or automatically — someone (or something scheduled) has to run the worker for a queued task to actually take effect.
 
 ## Queuing a task
 
@@ -66,7 +66,7 @@ This exists because task prompts can come from anywhere — including, eventuall
 
 ## Autonomy levels
 
-`eunomia.config.json`'s `agent.autonomyLevel` setting (`read-only` / `propose-only` / `write-with-review` / `autonomous`) states what a coding agent working in this repo is allowed to do — it's a statement of policy for whoever's operating the agent, not something Agentic Modeling's own code currently enforces automatically. If you're setting up Agentic Modeling for a team, treat this as the thing to agree on and write down (e.g. "queued tasks get reviewed before the worker runs" vs. "the worker runs on a schedule, unattended") rather than assuming a default.
+`nomothetes.config.json`'s `agent.autonomyLevel` setting (`read-only` / `propose-only` / `write-with-review` / `autonomous`) states what a coding agent working in this repo is allowed to do — it's a statement of policy for whoever's operating the agent, not something Agentic Modeling's own code currently enforces automatically. If you're setting up Agentic Modeling for a team, treat this as the thing to agree on and write down (e.g. "queued tasks get reviewed before the worker runs" vs. "the worker runs on a schedule, unattended") rather than assuming a default.
 
 ## Turning a brief into tasks (Interview harness)
 
