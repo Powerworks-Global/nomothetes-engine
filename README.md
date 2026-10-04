@@ -1,16 +1,18 @@
 # Nomothetes Engine
 
-**Nomothetes** (νομοθέτης, "lawgiver") is a visual canvas for **Event Modeling** — a way of designing a system by mapping out how information changes over time, before (or while) you build it, rather than starting from a data model or a UI mockup.
+**Nomothetes** (νομοθέτης, "lawgiver") is a visual canvas for **scenario-based development / behaviour mapping** — a way of designing a system by mapping out what users do and how the system responds, scenario by scenario, before (or while) you build it, rather than starting from a data model or a UI mockup.
 
 The core idea: draw a timeline of what a user does and what the system does in response, as a sequence of steps across a few fixed lanes —
 
 - **Actor** — who's doing something (a user, a scheduled job, another system)
 - **Screen** — what they're looking at
 - **Action** — the thing they trigger
-- **Outcome** — the event/record that results
+- **Outcome** — the record/result that follows
 - **Owned Data** — what each screen actually needs to show, traced back to the outcome that produced it
 
 Laid out left to right as a timeline, this surfaces real design gaps early — a screen that needs data nothing upstream ever produces, or a step with no clear trigger — before any code gets written. Each step ("slice") can then carry its own **Rule** (a business rule in plain language), **Example** (a concrete Given/When/Then scenario), and **Question** (an open thing that still needs deciding, tracked as open/answered rather than lost in a chat thread) — turning the board from a diagram into something that can drive real test generation and agent-assisted building.
+
+**This is not Event Modeling** — it's inspired by Event Modeling's timeline-based discovery technique, but deliberately drops event-sourcing vocabulary (Event, Command, Aggregate) in favor of plain, CRUD-friendly terms. That's a real design choice, not an oversight: the discovery power of laying out a timeline holds regardless of whether the team underneath is event-sourced, and the vocabulary swap removes a real translation cost for teams building conventional CRUD applications. See [Acknowledgments](#acknowledgments) for where the inspiration comes from.
 
 This repo is the open-core engine: the canvas, the board data model, and a bring-your-own-harness ("BYOH") way to generate or edit a board with a coding agent. Owned by [Powerworks-Global](https://github.com/Powerworks-Global) — a separate private repo holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -63,7 +65,7 @@ Built with Vite + React + TypeScript + `@xyflow/react`. Standard Vite scripts ap
 
 This project wouldn't exist without the people who built the ideas and tooling it stands on.
 
-**Adam Dymitruk** created **Event Modeling** — the methodology this entire canvas is an implementation of. See [eventmodeling.org](https://www.eventmodeling.org) for the primary reference. Without the method itself — the insight that a timeline of Actor/Screen/Action/Outcome steps surfaces real design gaps before code gets written — there's no board to draw in the first place.
+**Adam Dymitruk** created **Event Modeling** — see [eventmodeling.org](https://www.eventmodeling.org) for the primary reference. This canvas is not Event Modeling (it deliberately drops the event-sourcing vocabulary, see above), but it's a direct descendant of its central insight — that laying out a timeline of what happens, step by step, surfaces real design gaps before code gets written. Without that insight, there's no timeline to draw in the first place.
 
 **Martin Dilger** (Nebulit GmbH) built [eventmodelers.ai](https://eventmodelers.ai), a commercial Event Modeling product, and the subsequent tooling around it that this project learned from and is compatible with — `scripts/import-eventmodelers.mjs` optionally reads a board exported from it, for anyone who already has one modeled there. That compatibility option exists because his tooling proved out real export formats and real board patterns worth supporting; the demo board included in this repo doesn't require it, but the path wouldn't be there without his work.
 
