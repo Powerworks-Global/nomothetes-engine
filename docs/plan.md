@@ -4,7 +4,7 @@
 
 **Updated 2026-10-04**: this project started as a personal MVP proving out a platform-pitch concept (bridging visual requirement gathering and agentic code generation) originally scoped as an internal pitch at a prior employer. That internal-pitch path is no longer relevant — the project is now Powerworks-Global's own open-core product, Nomothetes, with its own independent go-to-market. The history below is kept as an accurate record of how the engine was actually built, not rewritten away.
 
-This repo is the open-core engine half of Nomothetes — a CRUD-native event-modeling canvas bridging visual requirement gathering and a bring-your-own-harness agentic generation path. A separate private repo holds the Nomothetes-branded commercial layer on top (billing/digest exporters, compliance tooling).
+This repo is the open-core engine half of Nomothetes — a CRUD-native scenario-based development / behaviour-mapping canvas bridging visual requirement gathering and a bring-your-own-harness agentic generation path. Inspired by Event Modeling's discovery technique, not an implementation of it — see the README's Acknowledgments section. A separate private repo holds the Nomothetes-branded commercial layer on top (billing/digest exporters, compliance tooling).
 
 The core idea: Event Modeling's timeline is what does the real discovery work (exposing ordering gaps, screens reading data nothing produces) — the event-sourcing vocabulary (Event, Command, Aggregate) is a separate, removable problem that creates real translation cost for teams building conventional CRUD applications. This canvas keeps the timeline's discovery power, drops the vocabulary.
 
