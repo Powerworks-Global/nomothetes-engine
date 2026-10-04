@@ -28,3 +28,12 @@ To run the MCP server standalone, see [mcp-server/README.md](mcp-server/README.m
 ## Commit messages
 
 Follow the existing history's style: a short present-tense summary line, body explaining *why* not just *what* when the reasoning isn't obvious from the diff. `no-mistakes`-authored commits are prefixed `no-mistakes(<step>):` — leave that convention alone, it's how gate-applied fixes are distinguished from human-authored ones in history.
+
+## Issues — quick triage
+
+This project just went public and feedback is actively wanted, including rough or incomplete reports — a one-line "this is broken" is more useful reported than not reported. What happens on your end:
+
+- New issues get a first look fast, not left to go stale. If something's a genuine bug against real data (per the "real data over synthetic examples" convention above), it's prioritized over feature requests.
+- If a report is missing something needed to act on it (repro steps, environment), expect a quick follow-up question rather than silence — not a template rejection.
+- Small, well-scoped PRs fixing a reported bug are welcome even before a maintainer response, if you want to go that route — reference the issue number in the PR.
+- No formal SLA yet (this is a brand-new public repo, not a funded support product) — but "quick" is the actual goal, not just a line in this file.
