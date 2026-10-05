@@ -28,6 +28,7 @@
 
 import { readFileSync, existsSync } from "node:fs";
 import { basename, join } from "node:path";
+import { pathToFileURL } from "node:url";
 
 /** @typedef {{ id: string, label: string, laneId: string, sliceId: string, sliceType: string, specId: string }} ImportedNode */
 /** @typedef {{ source: string, target: string, label: string }} ImportedEdge */
@@ -155,7 +156,7 @@ function parseRequirements(text, specId) {
  *  `- AC-N.M: _<title>_ — Given <given>, When <when>, Then <then>` (title
  *  is optional — some ACs omit it and start straight at "Given"). Returns
  *  one entry per AC line, keyed by its id for the FR join below. */
-function parseAcceptanceCriteria(text) {
+export function parseAcceptanceCriteria(text) {
   const byId = new Map();
   for (const line of text.split("\n")) {
     const m = line.match(AC_RE);
@@ -171,7 +172,7 @@ function parseAcceptanceCriteria(text) {
  * board-derived Rule-shaped sentence ("System MUST/SHOULD support X,
  * producing Y") referencing exactly one Acceptance Criterion — confirmed
  * 1:1 across all 18 real PowerGym specs, never a comma-separated list. */
-function parseFunctionalRequirements(text) {
+export function parseFunctionalRequirements(text) {
   const rows = [];
   for (const line of text.split("\n")) {
     const m = line.match(FR_ROW_RE);
@@ -222,7 +223,7 @@ function parseUnresolvedQuestions(text) {
  * per-slice attribution in any real spec (every one is empty anyway — see
  * parseUnresolvedQuestions), so inventing a slice mapping isn't possible
  * without guessing. */
-function buildSeedExampleMaps(elementSliceByLabel, eventSliceByLabel, frRows, acById, specId) {
+export function buildSeedExampleMaps(elementSliceByLabel, eventSliceByLabel, frRows, acById, specId) {
   /** @type {Map<string, { nodes: object[], edges: object[] }>} */
   const bySlice = new Map();
 
@@ -266,6 +267,10 @@ function buildSeedExampleMaps(elementSliceByLabel, eventSliceByLabel, frRows, ac
         nodeType: "example",
         label: ac.title ?? ac.acId,
         scenario: { given: ac.given, when: ac.when, then: ac.then },
+        // Structured requirement traceability (previously only recoverable,
+        // fragilely, by parsing it back out of exampleId's string shape).
+        // Carried through unchanged by export-specifications.mjs.
+        requirementRef: { acId: ac.acId, frId: fr.frId },
       },
     });
     board.edges.push({ id: `${ruleId}-${exampleId}`, source: ruleId, target: exampleId });
@@ -421,37 +426,46 @@ function importSpec(specDir) {
   return { nodes: allNodes, edges: [...explicitEdges, ...producesEdges], seedExampleMaps };
 }
 
-const specDirs = process.argv.slice(2);
-if (specDirs.length === 0) {
-  console.error("Usage: node import-eventmodelers.mjs <specDir> [<specDir> ...]");
-  process.exit(1);
-}
+// --- CLI wrapper -------------------------------------------------------------
+// Guarded (matching export-specifications.mjs / annotate-specifications.mjs)
+// so this module's parse/seed functions can be imported for tests without
+// the CLI block running as a side effect of import alone.
 
-let allNodes = [];
-let allEdges = [];
-let allSeedExampleMaps = {};
-for (const dir of specDirs) {
-  const { nodes, edges, seedExampleMaps } = importSpec(dir);
-  allNodes = allNodes.concat(nodes);
-  allEdges = allEdges.concat(edges);
-  allSeedExampleMaps = { ...allSeedExampleMaps, ...seedExampleMaps };
-  console.error(`[${basename(dir)}] ${nodes.length} nodes, ${edges.length} edges, ${Object.keys(seedExampleMaps).length} slice(s) with a seeded Example Map`);
-}
+const isMain = import.meta.url === pathToFileURL(process.argv[1] ?? "").href;
 
-// Dedupe: requirements.md and research.md each independently encode a
-// Screen<->Action relationship from their own side (requirements.md's
-// command lists "Dependencies: ← <Screen>"; research.md's screen entry
-// lists "Dependencies: → <Command>") — same edge, two source files.
-// Keep the first occurrence per (source,target) pair.
-const seen = new Set();
-const dedupedEdges = allEdges.filter((e) => {
-  const key = `${e.source}->${e.target}`;
-  if (seen.has(key)) return false;
-  seen.add(key);
-  return true;
-});
-if (dedupedEdges.length < allEdges.length) {
-  console.error(`Deduped ${allEdges.length - dedupedEdges.length} duplicate edge(s) (same source/target from both requirements.md and research.md)`);
-}
+if (isMain) {
+  const specDirs = process.argv.slice(2);
+  if (specDirs.length === 0) {
+    console.error("Usage: node import-eventmodelers.mjs <specDir> [<specDir> ...]");
+    process.exit(1);
+  }
 
-console.log(JSON.stringify({ nodes: allNodes, edges: dedupedEdges, seedExampleMaps: allSeedExampleMaps }, null, 2));
+  let allNodes = [];
+  let allEdges = [];
+  let allSeedExampleMaps = {};
+  for (const dir of specDirs) {
+    const { nodes, edges, seedExampleMaps } = importSpec(dir);
+    allNodes = allNodes.concat(nodes);
+    allEdges = allEdges.concat(edges);
+    allSeedExampleMaps = { ...allSeedExampleMaps, ...seedExampleMaps };
+    console.error(`[${basename(dir)}] ${nodes.length} nodes, ${edges.length} edges, ${Object.keys(seedExampleMaps).length} slice(s) with a seeded Example Map`);
+  }
+
+  // Dedupe: requirements.md and research.md each independently encode a
+  // Screen<->Action relationship from their own side (requirements.md's
+  // command lists "Dependencies: ← <Screen>"; research.md's screen entry
+  // lists "Dependencies: → <Command>") — same edge, two source files.
+  // Keep the first occurrence per (source,target) pair.
+  const seen = new Set();
+  const dedupedEdges = allEdges.filter((e) => {
+    const key = `${e.source}->${e.target}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  if (dedupedEdges.length < allEdges.length) {
+    console.error(`Deduped ${allEdges.length - dedupedEdges.length} duplicate edge(s) (same source/target from both requirements.md and research.md)`);
+  }
+
+  console.log(JSON.stringify({ nodes: allNodes, edges: dedupedEdges, seedExampleMaps: allSeedExampleMaps }, null, 2));
+}

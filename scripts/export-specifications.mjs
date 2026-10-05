@@ -31,6 +31,20 @@
 //                scenario?: { given, when, then } }  // "example" only
 //   Edge: { source: <rule node id>, target: <example|question node id> }
 //
+//
+// Traceability contract (Phase 7 follow-up): a specification carries
+// requirementRef through unchanged if its source Example node has one
+// (seeded by import-eventmodelers.mjs's buildSeedExampleMaps from a real
+// FR/AC pair — absent on hand-built boards, since there's no requirement
+// doc to reference). implementationRef and verificationStatus are always
+// present but start null: this script only ever knows about the board,
+// never about code or test runs. They're filled in later, out of band, by
+// scripts/annotate-specifications.mjs against a real test run's output —
+// seeenter that script's header for the annotation file shape. Until
+// annotated, a specifications.json is a design artifact, not yet a
+// verification record; don't read a null verificationStatus as "passed".
+// See that script's header for the annotation file shape.
+//
 // Usage: node scripts/export-specifications.mjs --input <board.json> --slice-id <id> > specifications.json
 
 import { readFileSync } from "node:fs";
@@ -98,6 +112,12 @@ export function exportSpecifications(board, sliceId) {
     };
     const rule = ruleLabelByExampleId.get(node.id);
     if (rule) spec.rule = rule;
+    if (node.data.requirementRef) spec.requirementRef = node.data.requirementRef;
+    // Always present, always null here — see the file header. A hand-built
+    // board (no requirementRef) can still be annotated later; the two
+    // fields are independent of where the spec came from.
+    spec.implementationRef = null;
+    spec.verificationStatus = null;
     specifications.push(spec);
   }
 
