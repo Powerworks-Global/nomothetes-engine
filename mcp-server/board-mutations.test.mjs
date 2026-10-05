@@ -20,11 +20,29 @@ describe("placeElement", () => {
     expect(node.label).toBe("Login Screen");
   });
 
-  it("adds an edge when afterNodeId is given", () => {
+  it("adds a complete edge (id, source, target, label) when afterNodeId is given — not just source/target", () => {
+    // Regression guard: placeElement previously emitted {source, target}
+    // only, which the canvas (src/loadBoard.ts's ImportedEdge) couldn't
+    // render at all — a board generated via this path was silently blank
+    // in the UI. See Spec — Pre-Workshop Board Setup (2026-10-04).
     const board = emptyBoard();
     const first = placeElement(board, { specId: "s", sliceId: "sl", sliceType: "command", laneId: "actor", label: "Member" });
     const second = placeElement(board, { specId: "s", sliceId: "sl", sliceType: "command", laneId: "screen", label: "Form", afterNodeId: first.id });
-    expect(board.edges).toContainEqual({ source: first.id, target: second.id });
+    expect(board.edges).toHaveLength(1);
+    const edge = board.edges[0];
+    expect(typeof edge.id).toBe("string");
+    expect(edge.id.length).toBeGreaterThan(0);
+    expect(edge.source).toBe(first.id);
+    expect(edge.target).toBe(second.id);
+    expect(edge.label).toBe("triggers"); // target lane is "screen"
+  });
+
+  it("labels the edge \"produces\" when the target lane is not screen — matches scripts/import-eventmodelers.mjs's convention", () => {
+    const board = emptyBoard();
+    const first = placeElement(board, { specId: "s", sliceId: "sl", sliceType: "command", laneId: "actor", label: "Member" });
+    const second = placeElement(board, { specId: "s", sliceId: "sl", sliceType: "command", laneId: "outcome", label: "Member Registered", afterNodeId: first.id });
+    expect(board.edges[0].label).toBe("produces");
+    expect(board.edges[0].target).toBe(second.id);
   });
 
   it("rejects an unknown laneId", () => {

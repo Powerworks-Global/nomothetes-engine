@@ -1,0 +1,11 @@
+{
+  "boardId": "verify-edge-fix",
+  "sessionId": "verify-edge-fix-run",
+  "specId": "verify-edge-fix",
+  "steps": [
+    { "ref": "actor", "skill": "place_element", "args": { "specId": "verify-edge-fix", "sliceId": "register", "sliceType": "command", "laneId": "actor", "label": "Member" } },
+    { "ref": "screen", "skill": "place_element", "args": { "specId": "verify-edge-fix", "sliceId": "register", "sliceType": "command", "laneId": "screen", "label": "Registration Form", "afterNodeId": "$actor" } },
+    { "ref": "action", "skill": "edit_timeline", "args": { "operation": "add", "specId": "verify-edge-fix", "sliceId": "register", "sliceType": "command", "laneId": "action", "label": "Register Member", "afterNodeId": "$screen" } },
+    { "ref": "outcome", "skill": "edit_timeline", "args": { "operation": "add", "specId": "verify-edge-fix", "sliceId": "register", "sliceType": "command", "laneId": "outcome", "label": "Member Registered", "afterNodeId": "$action" } }
+  ]
+}

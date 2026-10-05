@@ -40,7 +40,14 @@ export function placeElement(board, { specId, sliceId, sliceType, laneId, label,
   const node = { id: newNodeId(specId), label, laneId, sliceId, sliceType, specId };
   board.nodes.push(node);
   if (afterNodeId) {
-    board.edges.push({ source: afterNodeId, target: node.id });
+    // Matches scripts/import-eventmodelers.mjs's existing convention exactly:
+    // `otherType === "SCREEN" ? "triggers" : "produces"`, applied here to
+    // laneId instead of the import adapter's own `type` field. Edge needs
+    // id+label for the canvas (ImportedEdge in src/loadBoard.ts) to render
+    // it at all — placeElement previously emitted {source, target} only,
+    // which rendered nothing.
+    const label = laneId === "screen" ? "triggers" : "produces";
+    board.edges.push({ id: randomUUID(), source: afterNodeId, target: node.id, label });
   }
   return node;
 }

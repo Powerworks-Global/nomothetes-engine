@@ -60,6 +60,11 @@ export default function App() {
   const [openSliceId, setOpenSliceId] = useState<string | null>(null);
   const [showSettings, setShowSettings] = useState(false);
   const [expandedConcernId, setExpandedConcernId] = useState<string | null>(null);
+  // Load-by-ID input state (for boards written to src/data/<id>-board.json
+  // by external tools like the Interview harness). Kept additive and local.
+  const [loadBoardId, setLoadBoardId] = useState<string>("");
+  const [loadBoardError, setLoadBoardError] = useState<string | null>(null);
+  const [loadingBoard, setLoadingBoard] = useState<boolean>(false);
   // Derived from live `nodes` state, NOT listSlices(selectedSpec) (which
   // reads the static loaded board data). `nodes` is already always exactly
   // "the current spec's nodes" (set by loadSpec/changeSpec/changeBoard),
@@ -127,6 +132,56 @@ export default function App() {
     setOpenSliceId(null);
     setExpandedConcernId(null);
   }, [setOpenSliceId, setExpandedConcernId]);
+
+  // Attempt to load a board JSON directly from src/data/<id>-board.json.
+  // Uses the same post-load steps as changeBoard (setActiveBoard, pick
+  // first spec, loadSpec into nodes/edges) but does a dynamic import so
+  // it can handle boards not declared in BOARD_SOURCES. Errors are shown
+  // inline and do not crash the app.
+  const loadBoardById = useCallback(
+    async (id: string) => {
+      setLoadBoardError(null);
+      if (!id) return;
+      setLoadingBoard(true);
+      try {
+        // Dynamic import resolves to a module with a default export (the
+        // JSON). This mirrors the shape of the statically imported boards.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        const mod: any = await import(/* @vite-ignore */ `./data/${id}-board.json`);
+        const importedBoard = mod?.default ?? mod;
+        // Set active board for loadBoard/listSpecs/loadSpec to see.
+        setActiveBoard(importedBoard);
+        setSelectedBoardId(id);
+
+        const specsForBoard = listSpecs();
+        const nextSpec = specsForBoard[0];
+        if (!nextSpec) {
+          // Board loaded but has no specs — clear canvas.
+          setSelectedSpec("");
+          setNodes([]);
+          setEdges([]);
+          setSelected(null);
+          setOpenSliceId(null);
+          setExpandedConcernId(null);
+          setLoadBoardError(null);
+          return;
+        }
+        setSelectedSpec(nextSpec);
+        const { nodes: n, edges: e } = loadSpec(nextSpec);
+        setNodes(n);
+        setEdges(e);
+        setSelected(null);
+        setOpenSliceId(null);
+        setExpandedConcernId(null);
+      } catch (err) {
+        // Keep message simple and user-facing; do not throw.
+        setLoadBoardError(`Failed to load board "${id}"`);
+      } finally {
+        setLoadingBoard(false);
+      }
+    },
+    [setNodes, setEdges, setSelected, setOpenSliceId, setExpandedConcernId, setSelectedSpec],
+  );
 
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -358,17 +413,50 @@ export default function App() {
         </select>
 
         <h3 style={{ marginTop: 0 }}>{t("panel.storyArc")}</h3>
-        <select
-          value={selectedSpec}
-          onChange={(e) => changeSpec(e.target.value)}
-          style={{ width: "100%", padding: theme.space.sm, marginBottom: theme.space.xl, fontSize: theme.fontSize.md }}
-        >
-          {specs.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
-          ))}
-        </select>
+        <div style={{ display: "flex", gap: theme.space.sm, marginBottom: theme.space.xl, alignItems: "center" }}>
+          <select
+            value={selectedSpec}
+            onChange={(e) => changeSpec(e.target.value)}
+            style={{ flex: 1, padding: theme.space.sm, fontSize: theme.fontSize.md }}
+          >
+            {specs.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+
+          {/* Small, additive "Load board by ID" input for boards in src/data/*. */}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              void loadBoardById(loadBoardId.trim());
+            }}
+            style={{ display: "flex", gap: theme.space.xs, alignItems: "center" }}
+          >
+            <input
+              value={loadBoardId}
+              onChange={(e) => setLoadBoardId(e.target.value)}
+              placeholder="Load board by ID"
+              style={{ padding: theme.space.xs, fontSize: theme.fontSize.sm }}
+              onKeyDown={(e) => {
+                // Allow Enter to submit from the input itself as well.
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  void loadBoardById(loadBoardId.trim());
+                }
+              }}
+            />
+            <Button onClick={() => void loadBoardById(loadBoardId.trim())}>
+              {loadingBoard ? "..." : "Load"}
+            </Button>
+          </form>
+        </div>
+        {loadBoardError && (
+          <div style={{ color: theme.color.badge.danger, marginBottom: theme.space.xl, fontSize: theme.fontSize.sm }}>
+            {loadBoardError}
+          </div>
+        )}
         <div style={{ color: theme.color.text.muted, marginBottom: theme.space.xl, fontSize: theme.fontSize.sm }}>
           {nodes.length} {t("panel.nodes")}, {edges.length} {t("panel.edges")} — {t("panel.importedFrom")}{" "}
           {BOARD_SOURCES.find((b) => b.id === selectedBoardId)?.label ?? selectedBoardId}
