@@ -17,4 +17,17 @@ describe("facilitator-roles", () => {
       }
     }
   });
+
+  it("skeptic runs after ontologist (needs a placed Rule to attach a Question to) and before contrarian", () => {
+    const ontologistIdx = FACILITATOR_SEQUENCE.indexOf("ontologist");
+    const skepticIdx = FACILITATOR_SEQUENCE.indexOf("skeptic");
+    const contrarianIdx = FACILITATOR_SEQUENCE.indexOf("contrarian");
+    expect(skepticIdx).toBeGreaterThan(ontologistIdx);
+    expect(skepticIdx).toBeLessThan(contrarianIdx);
+  });
+
+  it("skeptic never places new elements - it only raises questions, unlike contrarian", () => {
+    expect(FACILITATOR_ROLES.skeptic.primarySkills).not.toContain("place_element");
+    expect(FACILITATOR_ROLES.skeptic.onGap).toBe("add_question");
+  });
 });

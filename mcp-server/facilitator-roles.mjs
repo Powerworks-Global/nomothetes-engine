@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 // Facilitator role definitions for the Interview harness (docs/adr/0004).
-// Ported from Ouroboros' "specialized agent perspectives" (Socratic
-// Interviewer, Ontologist, Contrarian, Simplifier) and from Martin's own
-// PowerGym `agentic-modeling/CLAUDE.md` skill-routing convention this
-// codebase's Agentic Modeling write path already implements.
+// Four roles ported from Ouroboros' "specialized agent perspectives"
+// (Socratic Interviewer, Ontologist, Contrarian, Simplifier) and from
+// Martin's own PowerGym `agentic-modeling/CLAUDE.md` skill-routing
+// convention this codebase's Agentic Modeling write path already
+// implements. A fifth, Skeptic, added 2026-10-06 (see docs/adr/0004's
+// addendum) — not from Ouroboros, a gap found by a real pre-workshop
+// review this harness couldn't yet do itself.
 //
 // Deliberately DATA, not code that runs an agent — same discipline as
 // src/presets/catalog.ts (a declarative array a harness or UI reads, not
@@ -40,6 +43,14 @@ export const FACILITATOR_ROLES = {
     primarySkills: ["place_element", "edit_timeline"],
     onGap: "add_question",
   },
+  skeptic: {
+    id: "skeptic",
+    name: "Skeptic",
+    focus:
+      "Re-reads the raw brief's own language against the structure Ontologist just placed, hunting for a named outcome with no stated mechanism ('cryptographically linked', 'mandatory review gate', 'automated pipeline'), a trust/auth boundary between two systems the brief never addresses, or an async/lifecycle step glossed over as a single step. Distinct from Contrarian below, which stress-tests the placed STRUCTURE for a missing failure outcome — Skeptic stress-tests the brief's own WORDING for a gap the structure can't reveal by itself, because nothing about it looks structurally incomplete. Never silently invents the missing mechanism or assumes a submitting team already thought of it; every finding is a Question attached to the Rule it most directly concerns.",
+    primarySkills: ["edit_example_map"],
+    onGap: "add_question",
+  },
   contrarian: {
     id: "contrarian",
     name: "Contrarian",
@@ -62,4 +73,4 @@ export const FACILITATOR_ROLES = {
  * iteration. Kept as an explicit array (not just Object.keys order) so the
  * sequence is a stated design decision, not an accident of insertion
  * order. */
-export const FACILITATOR_SEQUENCE = ["socraticInterviewer", "ontologist", "contrarian", "simplifier"];
+export const FACILITATOR_SEQUENCE = ["socraticInterviewer", "ontologist", "skeptic", "contrarian", "simplifier"];

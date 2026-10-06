@@ -20,7 +20,7 @@ The missing piece between "here's a brief" and "here's a fully fleshed-out board
 
 1. Confirm you're in this repo (`mcp-server/board-mutations.mjs` should exist).
 2. Pick a `boardId` and `specId` for this brief. **A new brief gets a new boardId** (`src/data/<boardId>-board.json` — don't yet exist on disk, that's fine, `readBoard` returns an empty skeleton) unless the user explicitly says to extend an existing board. Ask if it's ambiguous; don't guess and silently overwrite someone's board.
-3. Read `mcp-server/facilitator-roles.mjs` — the four roles and their sequence are data, read it rather than re-deriving it from this doc, so the two never drift.
+3. Read `mcp-server/facilitator-roles.mjs` — the five roles and their sequence are data, read it rather than re-deriving it from this doc, so the two never drift.
 
 ## The loop
 
@@ -50,15 +50,19 @@ Read the brief. Extract only what it *actually states*: explicit actors, explici
 
 From what pass 1 extracted, write one plan step per Actor/Screen/Action/Outcome element and slice boundary (`place_element` for Actor/Screen, `edit_timeline` with `operation: "add"` for Action/Outcome), chaining `afterNodeId` via `$ref`. Run the plan.
 
-### 3. Contrarian (failure-path pass)
+### 3. Skeptic (pre-workshop skepticism pass)
+
+Re-read the raw brief itself — not the board you just built from it — against what Ontologist placed. Look specifically for: a named outcome with no stated mechanism ("cryptographically linked", "mandatory review gate", "automated pipeline" — phrases that describe a result without saying how); a trust/auth boundary between two systems the brief never addresses (who verifies what, derived from where); an async or multi-step lifecycle flattened into what reads like one step. **Never assume a submitting team already thought of this** — that's exactly the assumption this pass exists to not make. A genuine finding becomes a `edit_example_map` `add_question` step attached to whichever Rule it most concerns; this pass never places new elements, only raises Questions (unlike Contrarian below, which can place a missing failure outcome directly). Run the plan.
+
+### 4. Contrarian (failure-path pass)
 
 For each slice the Ontologist pass placed, ask: what failure Outcome is implied but missing? (The same "every Outcome is a candidate failure mode" rule as [[Board Vocabulary → Operability Mapping]] in the vault, applied during generation.) Add a step for it (`place_element`/`edit_example_map`) only if the brief or an already-placed Rule genuinely implies it — otherwise a step with `edit_example_map`'s `add_question` operation. Run the plan.
 
-### 4. Simplifier (review pass, known gap)
+### 5. Simplifier (review pass, known gap)
 
 A plan step per touched slice, `run_wdyt`. Check the runner's own report (each step's `result.findings`) or `agentic-modeling/progress.txt`. **Stated gap, not solved here**: there is no merge/collapse mutation in `board-mutations.mjs` yet, so if this pass spots genuinely duplicate slices, that's a finding to report to the human, not something this skill can act on directly.
 
-### 5. Score
+### 6. Score
 
 If the plan's top-level `specId` was set, the runner's report already includes `ambiguityScore` — no separate call needed. Otherwise: `node mcp-server/ambiguity-score.mjs <specId> <boardId>`. Read the four dimensions and their `detail` strings — they tell you *what's* still weak, which is what the next pass (if any) should target. If `readyForHandoff` is `true`, stop the loop and go to "Finishing."
 

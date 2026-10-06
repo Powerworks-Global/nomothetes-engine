@@ -44,6 +44,16 @@ A structured review against three external standards (Team Topologies' cognitive
 
 Real finding worth naming plainly: **the concurrency bug would not have been caught by unit tests alone** — `board-mutations.test.mjs`'s in-memory fixtures and `task-queue.test.mjs`'s tmpdir isolation both test correct components in isolation; only running real concurrent OS processes against a real shared file exposed the interaction bug between them. This is the concrete argument for "test in production" as a discipline, not just a slogan borrowed for this addendum.
 
+## Addendum, 2026-10-06: a fifth role, Skeptic — closing a gap the original four don't cover
+
+Running this harness for real against an external brief (a healthcare FHIR integration suite, four sub-apps) surfaced a class of gap none of the four Ouroboros-derived roles catch: a brief phrase that *names* an outcome without stating its mechanism ("cryptographically linked Provenance," "mandatory human review gate," "automated pipeline"), or a trust boundary between two systems the brief simply never mentions. Socratic Interviewer only extracts what's stated; Contrarian stress-tests the *placed structure* for a missing failure outcome, which doesn't surface this class at all — the structure can look completely fine while the brief's own wording is quietly underspecified.
+
+**Decision**: add a fifth role, **Skeptic**, between Ontologist and Contrarian — after structure exists (a Question needs a Rule to attach to, per the existing Example Mapping convention: "Examples and Questions must attach to an already-selected Rule"), before Contrarian's own structural stress-test. `mcp-server/facilitator-roles.mjs`, `FACILITATOR_SEQUENCE`, and the Skill doc are all updated together so they can't drift from each other, same discipline as the original four.
+
+**Why this is a genuine fifth category, not a Contrarian variant**: Contrarian asks "what failure outcome does this already-placed structure imply but omit?" — a structural question. Skeptic asks "what does this brief's own language claim without actually specifying?" — a textual/semantic question, answerable only by re-reading the brief, not by inspecting the board. The same underspecified brief can pass Contrarian cleanly (every slice has a plausible failure outcome) while still hiding a Skeptic-shaped gap (the review gate it names has no stated enforcement point).
+
+**Consequence inherited from the original decision**: same as every other role, Skeptic never silently invents the missing mechanism or fixes the gap itself — every finding is a Question, scored by the existing mechanical `context` dimension in `ambiguity-score.mjs` exactly like any other unresolved Question, no new scoring logic needed.
+
 ## Related
 
 [ADR 0003](0003-agentic-modeling-write-path.md) (the write path this builds on); [ADR 0002](0002-mcp-export-over-per-harness-adapters.md) (the MCP-over-per-harness-adapter precedent BYOH extends to generation).
