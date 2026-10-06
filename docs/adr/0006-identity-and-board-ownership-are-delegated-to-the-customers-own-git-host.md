@@ -10,7 +10,9 @@ The wrong way to answer this is a permissions table Nomothetes builds and mainta
 
 ## Decision
 
-**Identity and board ownership are both delegated to the customer's own git host (GitHub, GitLab, or a self-hosted equivalent) — Nomothetes never becomes a second source of truth for either.**
+**Identity and board ownership are both delegated to the customer's own git host — Nomothetes never becomes a second source of truth for either.**
+
+**Primary target: Forgejo** (the AGPL hard fork of Gitea, self-hostable, no vendor lock-in), not GitHub or GitLab as the default assumption. This matches Nomothetes's own existing EU-sovereign/self-hostable positioning directly — a customer's git host being itself open-source and self-hostable is the consistent version of the same argument this whole ADR already makes about identity and data. GitHub/GitLab remain supported as alternatives for customers who already run on them; Forgejo is the reference target, not an afterthought bolted on alongside a GitHub-first design.
 
 1. **"Logging in" is delegated identity, not a Nomothetes-owned account system.** A facilitator authenticates via their own git host's OAuth. Nomothetes never issues, stores, or resets a primary credential — there is no Nomothetes password to compromise, and no Nomothetes-side account database holding anyone's identity.
 2. **"Adding a board" creates the target repo on the customer's own git host account/org**, using an OAuth token scoped to repo-creation on *their* account — never on a Nomothetes-owned org. From the git host's own perspective, the customer owns the repo, unambiguously, the same as any repo they created by hand.
@@ -27,7 +29,7 @@ Why this binds self-hosted and future-hosted tiers the same way: Open Source/sel
 ## Consequences
 
 - **No Nomothetes-owned user database.** Whatever "sign in" UI exists is an OAuth handshake against the customer's chosen git host, not a credentials form Nomothetes validates itself.
-- **Repo-creation requires a real OAuth scope grant from the customer** (repo-creation permission on their own account/org) — this is new, real integration work (git host API client, OAuth flow, token storage/refresh on whichever side runs the engine) not yet built anywhere in this codebase. Named here as the next real piece, not assumed solved by this ADR.
+- **Repo-creation requires a real OAuth scope grant from the customer** (repo-creation permission on their own account/org) — this is new, real integration work (git host API client, OAuth flow, token storage/refresh on whichever side runs the engine) not yet built anywhere in this codebase. Forgejo inherits Gitea's OAuth2-application and REST API support, so this is a known-feasible integration against the primary target, not an open question — GitHub/GitLab API clients are the same shape of work for the alternative-host case. Named here as the next real piece, not assumed solved by this ADR.
 - **No Nomothetes-side "who can see board X" table, ever** — any future feature that seems to need one (e.g. a facilitator-only dashboard across multiple customer boards) must be re-derived from the git host's own collaborator/org-membership APIs at query time, not cached into a Nomothetes-owned store that could go stale or leak.
 - **A hosted-convenience tier, if ever pursued, has a hard architectural constraint stated in advance**: stateless pass-through only. This forecloses certain product shortcuts (e.g. a central searchable index of every customer's board content) unless they're built as client-side/customer-controlled features instead.
 - **This is a stated commitment, not yet an enforced one.** Nothing in this codebase currently implements OAuth, repo-creation, or any identity flow at all — ADR 0005 already named that gap, and this ADR adds the privacy constraint that whatever fills it must satisfy, rather than retrofitting it after a simpler-but-wrong version ships.
