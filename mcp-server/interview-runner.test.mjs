@@ -10,11 +10,15 @@ let dir;
 
 beforeEach(() => {
   dir = mkdtempSync(join(tmpdir(), "interview-runner-test-"));
+  // boardPathFor requires NOMOTHETES_BOARD_DIR (docs/adr/0005) - this repo
+  // has no default board directory of its own, tests included.
+  process.env.NOMOTHETES_BOARD_DIR = dir;
 });
 
 afterEach(() => {
-  rmSync(dir, { recursive: true, force: true });
   const boardPath = boardPathFor(TEST_BOARD_ID);
+  delete process.env.NOMOTHETES_BOARD_DIR;
+  rmSync(dir, { recursive: true, force: true });
   if (existsSync(boardPath)) rmSync(boardPath, { force: true });
 });
 

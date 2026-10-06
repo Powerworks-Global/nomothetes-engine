@@ -50,6 +50,13 @@ Per the brief's resolved question on bi-directionality: v1 stays uni-directional
 
 Not yet done: wiring into the downstream harness's mechanical build gate, proving a spec change blocks a previously-passing build, and drift detection (this last one folds into Phase 6 above).
 
+### Phase 8 — Skeptic role + board storage correction (2026-10-06)
+
+Both found the same way: running the Interview harness for real against an external brief (a FHIR integration suite, unrelated to this engine) for the first time since PowerGym.
+
+- **Skeptic, a fifth facilitator role** (`mcp-server/facilitator-roles.mjs`, see [ADR 0004](adr/0004-interview-harness.md)'s addendum) — catches a brief phrase that names an outcome with no stated mechanism, or a trust boundary between two systems the brief never addresses. Neither of the original four Ouroboros-derived roles catches this class; Contrarian stress-tests the placed *structure*, this stress-tests the brief's own *wording*.
+- **Board storage correction** (see [ADR 0005](adr/0005-board-storage-lives-outside-this-repo.md)) — real usage immediately exposed that every board, including the one from this run, was landing inside `src/data/` of this engine's own repo. This repo now stores no board data at all: no bundled JSON, no implicit default directory. `boardPathFor()` requires both a real `boardId` and `NOMOTHETES_BOARD_DIR` pointed at wherever the board actually lives (the target project's own repo, per the real workflow: a facilitator logs in, adds a board, and that creates/targets an external git repo — the identity/repo-creation mechanism itself is named as real future work in ADR 0005, not built yet). All four previously-bundled demo boards deleted; the MCP server's read tools gained a required `boardId` they didn't have before (a breaking API change, deliberate).
+
 ## Explicitly out of scope for this repo
 
 - Regulated Industry mode / `compliance.md` enforcement — brief-level concern, not relevant until this becomes a real multi-project tool

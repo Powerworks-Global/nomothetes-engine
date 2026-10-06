@@ -2,7 +2,6 @@ import type { Node, Edge } from "@xyflow/react";
 import { LANES, snapYToLane, type LaneId } from "./lanes";
 import type { StoryboardNodeData } from "./StoryboardNode";
 import type { ExampleMapBoard } from "./exampleMapStore";
-import defaultBoard from "./data/powergym-board.json";
 
 /** Shape produced by scripts/import-eventmodelers.mjs — see that file for
  * the source markdown format this was parsed from. Also the shape any
@@ -68,14 +67,17 @@ export interface ImportedBoard {
   crossCuttingConcerns?: CrossCuttingConcern[];
 }
 
-/** The currently active board — defaults to PowerGym's, matching the
- * app's pre-board-registry behavior. Switched via setActiveBoard, called
- * by App.tsx's board-source picker (src/boards/registry.ts). All the
- * query functions below read this module-level reference rather than
- * taking a board param on every call, so existing call sites elsewhere
- * (e.g. ExampleMapView.tsx's getSeedExampleMap(sliceId)) don't need to
- * change just because a second board now exists. */
-let board = defaultBoard as ImportedBoard;
+/** The currently active board. No bundled default (docs/adr/0005 — this
+ * repo stores no board of its own): starts empty, exactly what the
+ * registry's own "blank" board source already produces, so there's
+ * nothing special-cased about the startup state versus any other board a
+ * facilitator picks. Switched via setActiveBoard, called by App.tsx's
+ * board-source picker (src/boards/registry.ts). All the query functions
+ * below read this module-level reference rather than taking a board
+ * param on every call, so existing call sites elsewhere (e.g.
+ * ExampleMapView.tsx's getSeedExampleMap(sliceId)) don't need to change
+ * just because a second board now exists. */
+let board: ImportedBoard = { nodes: [], edges: [] };
 
 export function setActiveBoard(next: ImportedBoard): void {
   board = next;

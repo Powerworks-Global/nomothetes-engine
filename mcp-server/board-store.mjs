@@ -9,32 +9,44 @@
 // directly to the committed file rather than anywhere else.
 //
 // Generalized 2026-09-30 (docs/adr/0004-interview-harness.md) to resolve a
-// path per `boardId` instead of always targeting PowerGym's board — the
+// path per `boardId` instead of always targeting one bundled board — the
 // Interview harness needs to seed a brand-new board (a boardId nobody has
 // created a file for yet), not just edit an existing one. `task.boardId`
 // on a queued task already existed as a field before this — it was just
 // never threaded through to an actual file path.
+//
+// Narrowed further 2026-10-06 (docs/adr/0005): this repo no longer bundles
+// ANY board data or defaults to a path inside itself. boardPathFor always
+// requires both a real boardId and NOMOTHETES_BOARD_DIR pointing outside
+// this repo, at the target project's own directory.
 
 import { mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
+import { join } from "node:path";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-export const DATA_DIR = join(__dirname, "..", "src", "data");
-
-/** Kept as the default path — every call site written before this
- * generalization (index.mjs's read-only tools, the old single-board
- * agentic-worker invocation) keeps working unchanged. */
-export const BOARD_PATH = join(DATA_DIR, "powergym-board.json");
-
-/** Resolve a boardId to its committed JSON path. `null`/`undefined`/
- * `"powergym"` all resolve to the original default path — not a special
- * case, just what the naming convention (`<boardId>-board.json`) already
- * produces for "powergym", kept explicit for backward compatibility with
- * code written before boardId existed. */
+/** Resolve a boardId to its committed JSON path. This repo holds no board
+ * data of its own and has no default board directory — see
+ * docs/adr/0005-board-storage-lives-outside-this-repo.md. Every board
+ * belongs to the project it models, not to this engine, so the directory
+ * it lives in must always come from the caller: `NOMOTHETES_BOARD_DIR`
+ * (set once per process/session, pointed at the target project's own
+ * repo) is the only source. Throws clearly rather than silently falling
+ * back to somewhere inside this repo, which is exactly the thing ADR
+ * 0005 exists to stop happening by accident. */
 export function boardPathFor(boardId) {
-  if (!boardId || boardId === "powergym") return BOARD_PATH;
-  return join(DATA_DIR, `${boardId}-board.json`);
+  if (!boardId) {
+    throw new Error(
+      "boardPathFor: boardId is required - this engine has no default board (see docs/adr/0005).",
+    );
+  }
+  const dir = process.env.NOMOTHETES_BOARD_DIR;
+  if (!dir) {
+    throw new Error(
+      "boardPathFor: NOMOTHETES_BOARD_DIR is not set. Point it at the target project's own " +
+        "repo/directory before running this server or CLI - this engine does not store boards " +
+        "inside itself (see docs/adr/0005-board-storage-lives-outside-this-repo.md).",
+    );
+  }
+  return join(dir, `${boardId}-board.json`);
 }
 
 /**
@@ -45,14 +57,14 @@ export function boardPathFor(boardId) {
  * to disk until writeBoard is actually called — reading never has a side
  * effect.
  */
-export function readBoard(path = BOARD_PATH) {
+export function readBoard(path) {
   if (!existsSync(path)) {
     return { nodes: [], edges: [], seedExampleMaps: {} };
   }
   return JSON.parse(readFileSync(path, "utf-8"));
 }
 
-export function writeBoard(board, path = BOARD_PATH) {
+export function writeBoard(board, path) {
   writeFileSync(path, JSON.stringify(board, null, 2) + "\n");
 }
 

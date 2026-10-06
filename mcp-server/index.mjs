@@ -1,38 +1,38 @@
 #!/usr/bin/env node
-// MCP server exposing Nomothetes's board data (currently PowerGym's imported
-// eventmodelers.ai story-arcs) to any MCP-compatible harness.
+// MCP server exposing a board's data to any MCP-compatible harness.
 //
 // Design note (Ouroboros-inspired reframe, decided 2026-09-02): rather than
 // hand-building a per-harness export adapter, expose the board through one
 // protocol every major harness already speaks. The canonical data stays the
-// same JSON schema the import adapter and the React app both already use
-// (src/data/powergym-board.json) — this server is a thin protocol wrapper
-// around it, not a second source of truth.
+// same JSON schema the import adapter and the React app both already use —
+// this server is a thin protocol wrapper around it, not a second source of
+// truth.
 //
 // v2 (2026-09-14) adds the verification-spine surface: slice listing,
 // Layer 2 Example Maps, and the specifications[] export (WS3).
 //
 // v3 (2026-09-23) adds Agentic Modeling's write tools (place_element,
-// edit_timeline, edit_example_map, run_wdyt). Unlike every tool above,
-// which reads the module-level `board` const loaded once at startup, the
-// write tools re-read the board file fresh on every call via
-// board-store.mjs — see docs/adr/0003-agentic-modeling-write-path.md for
-// why writes target the committed JSON file directly.
+// edit_timeline, edit_example_map, run_wdyt).
+//
+// v4 (2026-10-06, docs/adr/0005): this repo stores no board of its own.
+// Every tool below now reads fresh per call via board-store.mjs, keyed by
+// a required `boardId` resolved against `NOMOTHETES_BOARD_DIR` (the target
+// project's own directory) — there is no module-level `board` const and no
+// bundled board JSON anywhere in this repo. The "read tools load once at
+// startup, write tools re-read fresh" split from v3 is gone along with it:
+// every tool is now a write tool's shape (fresh read, no mutation for the
+// read-only ones), which also fixes a staleness bug the old split had by
+// construction — a read tool could never see a write another call just
+// made in the same server process.
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
 import { exportSpecifications } from "../scripts/export-specifications.mjs";
 import { readBoard, writeBoard, boardPathFor, withBoardLock } from "./board-store.mjs";
 import { editExampleMap, editTimeline, freezeSpec, placeElement, runWdyt } from "./board-mutations.mjs";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const board = JSON.parse(readFileSync(join(__dirname, "..", "src", "data", "powergym-board.json"), "utf-8"));
-
-function specIds() {
+function specIds(board) {
   const seen = new Set();
   const order = [];
   for (const n of board.nodes) {
@@ -47,7 +47,7 @@ function specIds() {
 /** Slices for one spec (or every spec when specId is omitted), in order of
  * first appearance, labeled by their Screen node when present — the source
  * board carries no separate slice title field (same logic as loadBoard.ts). */
-function slices(specId) {
+function slices(board, specId) {
   const byId = new Map();
   const order = [];
   for (const n of board.nodes) {
@@ -70,14 +70,17 @@ function slices(specId) {
   });
 }
 
+const BOARD_ID_PARAM = { boardId: z.string().describe("Which board to read/write - required, see docs/adr/0005.") };
+
 const server = new McpServer({ name: "nomothetes", version: "0.2.0" });
 
 server.tool(
   "list_story_arcs",
   "List every story-arc (spec) currently on the board, with node/edge counts. Use this before get_story_arc to see what's available.",
-  {},
-  async () => {
-    const arcs = specIds().map((specId) => {
+  { ...BOARD_ID_PARAM },
+  async ({ boardId }) => {
+    const board = readBoard(boardPathFor(boardId));
+    const arcs = specIds(board).map((specId) => {
       const nodes = board.nodes.filter((n) => n.specId === specId);
       const edges = board.edges.filter(
         (e) => nodes.some((n) => n.id === e.source) && nodes.some((n) => n.id === e.target),
@@ -91,8 +94,9 @@ server.tool(
 server.tool(
   "get_story_arc",
   "Get the full nodes and edges for one story-arc, in the canvas's own node/edge schema (id, label, laneId, sliceId, sliceType for nodes; source, target, label for edges). laneId is one of actor/screen/action/outcome/ownedData.",
-  { specId: z.string().describe("A story-arc id from list_story_arcs, e.g. '002a-member-registration'") },
-  async ({ specId }) => {
+  { ...BOARD_ID_PARAM, specId: z.string().describe("A story-arc id from list_story_arcs, e.g. '002a-member-registration'") },
+  async ({ boardId, specId }) => {
+    const board = readBoard(boardPathFor(boardId));
     const nodes = board.nodes.filter((n) => n.specId === specId);
     if (nodes.length === 0) {
       return {
@@ -110,8 +114,9 @@ server.tool(
 server.tool(
   "search_elements",
   "Search across every story-arc for nodes whose label contains the query (case-insensitive substring match). Use this to find which slice/story-arc handles a given concept without knowing the specId up front.",
-  { query: z.string().min(1) },
-  async ({ query }) => {
+  { ...BOARD_ID_PARAM, query: z.string().min(1) },
+  async ({ boardId, query }) => {
+    const board = readBoard(boardPathFor(boardId));
     const q = query.toLowerCase();
     const matches = board.nodes.filter((n) => n.label.toLowerCase().includes(q));
     return { content: [{ type: "text", text: JSON.stringify(matches, null, 2) }] };
@@ -121,17 +126,19 @@ server.tool(
 server.tool(
   "list_slices",
   "List slices (vertical buildable units), optionally filtered to one story-arc. Each entry has sliceId, specId, sliceType, a human label, and hasExampleMap (whether a Layer 2 Example Map was seeded from the source). Use this before get_example_map or export_specifications.",
-  { specId: z.string().optional().describe("Optional story-arc id to filter by; omit to list every slice on the board.") },
-  async ({ specId }) => {
-    return { content: [{ type: "text", text: JSON.stringify(slices(specId), null, 2) }] };
+  { ...BOARD_ID_PARAM, specId: z.string().optional().describe("Optional story-arc id to filter by; omit to list every slice on the board.") },
+  async ({ boardId, specId }) => {
+    const board = readBoard(boardPathFor(boardId));
+    return { content: [{ type: "text", text: JSON.stringify(slices(board, specId), null, 2) }] };
   },
 );
 
 server.tool(
   "get_example_map",
   "Get a slice's Layer 2 Example Map (Rule/Example/Question cards, each Example carrying a Given/When/Then scenario) as nodes/edges. Only slices whose source had Functional Requirements/Acceptance Criteria have a seed map (see hasExampleMap in list_slices).",
-  { sliceId: z.string().describe("A slice id from list_slices, e.g. a uuid.") },
-  async ({ sliceId }) => {
+  { ...BOARD_ID_PARAM, sliceId: z.string().describe("A slice id from list_slices, e.g. a uuid.") },
+  async ({ boardId, sliceId }) => {
+    const board = readBoard(boardPathFor(boardId));
     const seed = board.seedExampleMaps?.[sliceId];
     if (!seed) {
       return {
@@ -146,8 +153,9 @@ server.tool(
 server.tool(
   "export_specifications",
   "Turn a slice's Example Map into a specifications[] array (the shape downstream test-generation consumes: one spec per Example, with the Rule's text carried on each). Refuses if the map has unresolved Question cards — that's the 'slice isn't understood well enough' signal.",
-  { sliceId: z.string().describe("A slice id from list_slices that has hasExampleMap true.") },
-  async ({ sliceId }) => {
+  { ...BOARD_ID_PARAM, sliceId: z.string().describe("A slice id from list_slices that has hasExampleMap true.") },
+  async ({ boardId, sliceId }) => {
+    const board = readBoard(boardPathFor(boardId));
     const seed = board.seedExampleMaps?.[sliceId];
     if (!seed) {
       return {
@@ -167,8 +175,9 @@ server.tool(
 server.tool(
   "get_slice_rules",
   "Get only the Rule cards (Yellow) from a slice's Example Map — the business rules/policies that govern the slice's behavior. Returns an array of { id, label } for each Rule. Use this when you only need the rule statements, not the full Example Map.",
-  { sliceId: z.string().describe("A slice id from list_slices that has hasExampleMap true.") },
-  async ({ sliceId }) => {
+  { ...BOARD_ID_PARAM, sliceId: z.string().describe("A slice id from list_slices that has hasExampleMap true.") },
+  async ({ boardId, sliceId }) => {
+    const board = readBoard(boardPathFor(boardId));
     const seed = board.seedExampleMaps?.[sliceId];
     if (!seed) {
       return {
@@ -186,8 +195,9 @@ server.tool(
 server.tool(
   "get_slice_examples",
   "Get only the Example cards (Green) from a slice's Example Map — each with its Given/When/Then scenario. Returns an array of { id, label, scenario: { given, when, then }, ruleLabel }. Use this when you need the concrete test cases without the Question cards or graph edges.",
-  { sliceId: z.string().describe("A slice id from list_slices that has hasExampleMap true.") },
-  async ({ sliceId }) => {
+  { ...BOARD_ID_PARAM, sliceId: z.string().describe("A slice id from list_slices that has hasExampleMap true.") },
+  async ({ boardId, sliceId }) => {
+    const board = readBoard(boardPathFor(boardId));
     const seed = board.seedExampleMaps?.[sliceId];
     if (!seed) {
       return {
@@ -223,7 +233,7 @@ server.tool(
     laneId: z.enum(["actor", "screen", "action", "outcome", "ownedData"]),
     label: z.string().min(1),
     afterNodeId: z.string().optional().describe("If given, an edge is added from this existing node to the new one."),
-    boardId: z.string().optional().describe("Which board to write to (defaults to PowerGym's board — see docs/adr/0004-interview-harness.md)."),
+    boardId: z.string().describe("Which board to write to - required, see docs/adr/0005."),
   },
   async ({ boardId, ...params }) => {
     try {
@@ -255,7 +265,7 @@ server.tool(
     nodeId: z.string().optional(),
     newLabel: z.string().optional(),
     beforeNodeId: z.string().optional(),
-    boardId: z.string().optional().describe("Which board to write to (defaults to PowerGym's board)."),
+    boardId: z.string().describe("Which board to write to - required, see docs/adr/0005."),
   },
   async ({ boardId, ...params }) => {
     try {
@@ -286,7 +296,7 @@ server.tool(
     cardId: z.string().optional(),
     newLabel: z.string().optional(),
     newScenario: z.object({ given: z.string(), when: z.string(), then: z.string() }).optional(),
-    boardId: z.string().optional().describe("Which board to write to (defaults to PowerGym's board)."),
+    boardId: z.string().describe("Which board to write to - required, see docs/adr/0005."),
   },
   async ({ boardId, ...params }) => {
     try {
@@ -309,7 +319,7 @@ server.tool(
   "Analysis-only data-continuity check for a slice's Example Map: flags Examples with no linked Rule, Examples with an incomplete Given/When/Then scenario, and any unresolved Question cards. Never mutates the board — read-only, matches PowerGym's own /wdyt convention.",
   {
     sliceId: z.string().describe("A slice id from list_slices."),
-    boardId: z.string().optional().describe("Which board to read (defaults to PowerGym's board)."),
+    boardId: z.string().describe("Which board to read - required, see docs/adr/0005."),
   },
   async ({ sliceId, boardId }) => {
     const board = readBoard(boardPathFor(boardId));
@@ -323,7 +333,7 @@ server.tool(
   "Freeze a specId, making it immutable to future place_element calls — Ouroboros' immutable-seed-specs discipline (docs/adr/0004-interview-harness.md). Throws if already frozen. Does not guard edit_timeline/edit_example_map — a stated scope limit, not an oversight.",
   {
     specId: z.string().describe("The story-arc id to freeze."),
-    boardId: z.string().optional().describe("Which board to write to (defaults to PowerGym's board)."),
+    boardId: z.string().describe("Which board to write to - required, see docs/adr/0005."),
   },
   async ({ specId, boardId }) => {
     try {
