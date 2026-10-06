@@ -1,0 +1,42 @@
+# ADR 0007: BYOK — customer-held encryption keys for board data at rest, superseding ADR 0006's framing
+
+**Status:** Accepted, 2026-10-06 — amends [ADR 0006](0006-identity-and-board-ownership-are-delegated-to-the-customers-own-git-host.md)
+
+## Context
+
+ADR 0006 answered "how do we ensure Powerworks's own staff can't see a customer's board" by delegating identity and repo ownership to the customer's own git host. A deliberate research pass before building anything against that decision (five real-world categories compared: delegated git hosting, zero-knowledge/E2EE, confidential computing, BYOK, and the SOC 2/RBAC baseline) found that ADR 0006's answer **overclaims**. Delegating identity gives real, valuable properties — Powerworks never holds a customer's git credentials, and revoking the GitHub App is an instant kill-switch — but it does not technically prevent a Powerworks engineer from reading board content during normal operation. A documented 2024 incident (a Vercel bug granting broader-than-intended repo access) is live proof: "the customer owns the repo" and "Powerworks staff cannot see the content" are different claims, and conflating them is exactly the kind of overclaim this project's own discipline (state the real guarantee, not the aspirational one) exists to catch.
+
+Of the five categories compared, two actually deliver a *technical* (not just policy) guarantee that Powerworks staff can't read the content: zero-knowledge/E2EE, and confidential computing (enclaves). Zero-knowledge is ruled out directly by this product's own requirements — the Skeptic/AI-facilitator role (ADR 0004's addendum) has to read the board's actual content to do its job; a server that never receives plaintext can't run that pass server-side at all. Confidential computing (the Apple Private Cloud Compute pattern) is the only category built for exactly this tension — staff-can't-see *and* AI-can-process — but it's a serious infrastructure investment (enclave-aware redesign, attestation plumbing) disproportionate to this project's current stage.
+
+BYOK is the realistic middle path, and has a real-world split worth being precise about:
+- **Weak variant (Salesforce Shield Platform Encryption)**: the vendor's own master secret is combined with the customer's tenant secret in every key derivation — the vendor is a structurally required participant, not excludable even in principle.
+- **Strong variant (Google Workspace Client-Side Encryption)**: the customer runs their own key-wrapping service (a KACLS); the vendor's server calls out to it to wrap/unwrap a per-document key and never persists the unwrapped key itself. The vendor's application code still handles decrypted content transiently, in memory, whenever it actually needs to operate on it — but holds nothing it can retain, replay, or inspect at rest or in a backup without the customer's live cooperation.
+
+## Decision
+
+**Adopt the strong (Google Workspace CSE-shaped) BYOK variant**: a customer runs or designates their own key-wrapping service; Powerworks generates a per-board Data Encryption Key (DEK), wraps it via a call to the customer's key service, and stores only the wrapped DEK — never the unwrapped key — at rest. ADR 0006's delegated-identity decision is **not reversed**, it's demoted to what it actually is: the credential-custody/revocability layer (still worth keeping — it's cheap and reduces blast radius), sitting underneath this stronger content-confidentiality layer rather than standing in for it.
+
+**The guarantee, stated precisely, not aspirationally:**
+- Board content is encrypted at rest, in backups, and in any data-at-rest replication Powerworks operates. Pulling access to the key service bricks the data instantly and completely — a real, customer-controlled kill-switch stronger than ADR 0006's git-App-revocation alone.
+- Board content is **not** protected from Powerworks's own running server process during active use. Any feature that needs to operate on board content — the Skeptic/Contrarian/etc. facilitator passes, `export_specifications`, any future AI feature — necessarily holds decrypted plaintext in memory for the duration of that operation, the same way Google's own Workspace application code does under CSE. This is a deliberate, named tradeoff, not an oversight: it's the price of keeping the AI-facilitator feature functional server-side, which the zero-knowledge alternative would have killed outright.
+- This is **not** zero-knowledge and must never be marketed or sold as "Powerworks literally cannot see your data under any circumstances." The accurate claim is: "Powerworks cannot access your board at rest, in backups, or once you revoke our access to your key service — and never retains a key that would let it."
+
+## Reasoning
+
+Why not the weak (Salesforce Shield) variant: it structurally keeps the vendor as a required participant in every key derivation — the customer can never fully exclude Powerworks even in principle, which is a materially weaker sell and a worse security story for a GRC-literate customer base, for no real cost saving once a key-wrapping integration is being built anyway.
+
+Why not confidential computing (yet): it's the only category that would also close the "plaintext in memory during AI processing" gap this ADR leaves open — but it requires enclave-aware infrastructure and attestation plumbing that's a disproportionate build for this project's current stage. Naming it here as the known stronger answer, not dismissing it: if a security-conscious Enterprise-tier buyer ever makes "even transient plaintext access is unacceptable" a hard requirement, this is where to look, with Apple's Private Cloud Compute as the direct template.
+
+Why not zero-knowledge: ruled out structurally, not on cost — a server that never receives plaintext cannot run the Skeptic/facilitator AI passes server-side, full stop. The only way to keep true zero-knowledge would be moving all AI processing client-side (today's small-model options aren't a credible substitute for a real facilitator pass) or sending plaintext directly from the client to a third-party LLM API, which just relocates the trust boundary to that LLM provider instead of removing it.
+
+## Consequences
+
+- **New, real integration work, not yet built anywhere in this codebase**: per-board DEK generation, a wrap/unwrap protocol against a customer-designated key service (most realistically: support whatever KACLS-equivalent a customer's own cloud KMS already exposes — AWS KMS, Google Cloud KMS, Azure Key Vault, HashiCorp Vault — rather than inventing a bespoke protocol), and the storage-layer change to persist only wrapped keys.
+- **A real operational "tax," named plainly rather than glossed over** (per the discussion that led here): key rotation and revocation have to be handled deliberately — rotating a customer's key means re-wrapping every existing DEK it protects, and a customer who revokes their key service's access makes their own data permanently inert until they restore it, which is the intended kill-switch but also a real support/ops surface Powerworks has to be ready to explain and handle.
+- **The Skeptic/facilitator AI passes, and any future AI feature, must be audited against this ADR specifically**: each one holding plaintext in memory, however briefly, is the accepted tradeoff — but any one of them *persisting* plaintext anywhere (a cache, a log line, a debug dump) would silently violate this ADR's actual guarantee. Worth a stated engineering checklist item once this is built, not assumed automatically safe just because the ADR exists.
+- **ADR 0006 is not deleted** — delegated git identity remains the credential-custody/revocability layer underneath this one. A customer still authenticates via their own git host, and a board's *repo* is still never Powerworks-owned; this ADR adds the *content confidentiality at rest* guarantee ADR 0006 never actually provided.
+- **This is a stated decision, not yet an implemented one.** No key-wrapping integration, no KMS client, no DEK generation exists anywhere in this codebase as of this ADR.
+
+## Related
+
+[ADR 0006](0006-identity-and-board-ownership-are-delegated-to-the-customers-own-git-host.md) (the credential-custody/revocability layer this sits on top of, not a replacement for); [ADR 0004](0004-interview-harness.md) (the Skeptic/facilitator AI passes whose transient plaintext access is this ADR's named, accepted tradeoff).

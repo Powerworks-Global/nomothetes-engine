@@ -1,6 +1,6 @@
 # ADR 0006: Identity and board ownership are delegated to the customer's own git host — never Nomothetes-owned infrastructure
 
-**Status:** Accepted, 2026-10-06
+**Status:** Accepted, 2026-10-06 — scope narrowed by [ADR 0007](0007-byok-customer-held-keys-for-board-data-at-rest.md), 2026-10-06: this ADR delivers credential custody and revocability, not content confidentiality from Powerworks staff during active use. Read ADR 0007 alongside this one; don't treat this ADR alone as "staff can't see the data."
 
 ## Context
 
