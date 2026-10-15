@@ -150,18 +150,23 @@ docker compose down -v     # board volume deleted too
 
 ### Timings
 
-Measured on the machine this quickstart was verified on (Docker 20.10.24, Compose v5.6.0), cold — no image, no cache, fresh clone:
+Measured in a fresh clone of this branch on the machine the quickstart was verified on (Docker 20.10.24, Compose v5.6.0) — recorded, not estimated:
 
-| Step | Time |
+| Step | Measured |
 |---|---|
-| `git clone` | *TBD-CLONE* |
-| `docker compose up -d --build` (npm ci + Vite build + image build + start) | *TBD-UP* |
-| first successful `initialize` after that | *TBD-INIT* |
-| `docker compose restart` → board served again | *TBD-RESTART* |
-| **clone → working board over HTTP** | *TBD-TOTAL* |
+| `git clone` | 0.6s |
+| `docker compose up -d --build` | 49.8s |
+| the build step alone, re-run with `--no-cache` | 45.2s |
+| `docker compose up -d` → first successful `GET /boards` | 0.22s |
+| `docker compose restart` → board served again | 0.92s |
+| `docker compose down` + `up -d` (volume kept) → board served again | 1.24s |
+| **clone → working board over HTTP** | **~51s** |
 
-If your Docker has to pull `node:22.20.0-alpine3.21` over a slow link, the build step is where the time goes; everything after it is seconds. Note that `npm run build` runs TypeScript compilation, so the build step needs the dev dependencies inside the *build* stage — the runtime stage installs production dependencies only, which is why the canvas is served by `scripts/selfhost-server.mjs` (node builtins) rather than `vite preview`.
+So the fifteen-minute budget is mostly you reading this file: the machine's share is under a minute. Two caveats, stated rather than hidden. The build reused a warm Docker layer cache and `node:22.20.0-alpine3.21` (161 MB) was already in the local image store — on a machine pulling that image for the first time, the pull is the one line that depends on your link, and it was not separately timed here. And every number above is Docker on one specific box.
 
+One more thing this verification did not do: it never opened a browser, because there isn't one on that machine. What "the board shows up in the canvas" was checked to mean is that the built canvas bundle contains the board loader and that the two requests it makes — `GET /boards`, then `GET /boards/<id>-board.json` — return a board the canvas's own validation accepts. The rendered canvas itself is unverified here.
+
+Why the canvas is served by `scripts/selfhost-server.mjs` rather than `vite preview`: `npm run build` needs the dev dependencies (typescript, vite) and so does previewing, but the runtime image installs production dependencies only — a quickstart whose web server is a devDependency is a quickstart that works on a developer's machine and nowhere else.
 
 ## What's in the repo
 
@@ -175,7 +180,7 @@ If your Docker has to pull `node:22.20.0-alpine3.21` over a slow link, the build
 | `scripts/import-eventmodelers.mjs` | Optional import path from a board already modeled in a compatible external tool's export format — see [Acknowledgments](#acknowledgments) below. Not required to use this project |
 | `scripts/selfhost-server.mjs` | The self-host stack's web server: built canvas plus a read-only HTTP view of the board volume |
 | `scripts/seed-demo-board.mjs` | Seeds the quickstart's first-start board by replaying the committed Interview plans through the real queue/worker path |
-| `Dockerfile`, `docker-compose.yml`, `start-services.mjs` | The [self-host quickstart](#self-host-quickstart-docker): one image, canvas + MCP over HTTP + persistent board volume |
+| `Dockerfile`, `docker-compose.yml`, `start-services.mjs` | The [self-host quickstart](#self-host-quickstart-docker): one image, canvas + MCP over HTTP + persistent board volume ([ADR 0012](docs/adr/0012-self-host-quickstart-single-image-and-seeded-demo-board.md)) |
 | `docs/` | Plan, solution architecture, and [ADRs](docs/adr/) for the real decisions made building this |
 
 ## Scope
