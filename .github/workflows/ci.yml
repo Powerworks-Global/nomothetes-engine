@@ -50,8 +50,8 @@ jobs:
         run: |
           mkdir -p reports
           node scripts/export-specifications.mjs \
-            --input scripts/fixtures/fm-gate-demo/gate-bite-example-map.json \
-            --slice-id fm.gate-bite-demo > reports/specifications.json
+            --input scripts/fixtures/storyboard-canvas-self/delete-slice-example-map.json \
+            --slice-id storyboard-canvas-self.delete-slice > reports/specifications.json
 
       - name: Derive annotations from the test run and gate on them
         run: |
