@@ -6,11 +6,11 @@
 //
 // This script knows nothing about boards or code — it only merges a
 // human- or CI-authored annotations file onto a matching spec id. Where
-// that evidence actually comes from (a developer noting which function
-// satisfies a spec, a CI job parsing its own test-runner output) is out
-// of scope here and deliberately not automated yet — see docs/plan.md
-// Phase 7's "wiring into the downstream harness's mechanical build gate"
-// for what full automation of this would require.
+// that evidence actually comes from has been automated since 2026-10-15:
+// scripts/derive-annotations.mjs generates the annotations file from a real
+// vitest JSON report in CI (see .github/workflows/ci.yml's traceability
+// job). What remains beyond that — Phase 7's "wiring into the downstream
+// harness's mechanical build gate" — is still future work.
 //
 // Annotations file shape — a map keyed by the spec's `id`:
 //   {
