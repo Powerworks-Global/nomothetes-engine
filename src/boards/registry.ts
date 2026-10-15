@@ -9,7 +9,12 @@ import type { BoardSource } from "./types";
  * reaches an external repo (per ADR 0005's "create-board creates a new
  * git repo" target shape) is a real `kind` this registry can grow to
  * hold once that exists — "bundled" is deliberately not one of today's
- * kinds any more. */
+ * kinds any more.
+ *
+ * This list is only what is known at BUILD time, which after ADR 0005 is just
+ * "blank": a board on someone's volume can't be enumerated by a bundler. The
+ * run-time half lives in src/boards/http.ts (kind "served"), and App.tsx offers
+ * the two together. */
 export const BOARD_SOURCES: BoardSource[] = [
   {
     id: "blank",

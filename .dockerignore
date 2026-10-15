@@ -1,0 +1,32 @@
+# The build context is copied into the builder stage; none of this belongs
+# there. node_modules is the important one — a host copy carries the host's
+# platform binaries (esbuild/rollup are native), which then fails inside the
+# Linux image in a way that looks like a Dockerfile bug and isn't.
+node_modules
+dist
+dist-ssr
+
+# Git metadata and everything else that is repository history, not build input.
+.git
+.gitignore
+.github
+
+# Transient Agentic Modeling queue state and the local config override
+# (nomothetes.config.example.json is the tracked template and must still be
+# copied — this is only the personal, gitignored override).
+agentic-modeling/inbox/
+nomothetes.config.json
+*.log
+npm-debug.log*
+
+# Local-only board source material (AGENTS.md: boards live outside this repo).
+.powergym-source/
+
+# Editor/OS noise.
+.DS_Store
+.idea
+.vscode
+
+# Docker doesn't need itself.
+Dockerfile
+docker-compose.yml

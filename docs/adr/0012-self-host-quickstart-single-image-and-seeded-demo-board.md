@@ -1,0 +1,46 @@
+# ADR 0012: Self-host quickstart ships one image and seeds its demo board by replaying the Interview plans
+
+**Status:** Accepted, 2026-10-15
+
+## Context
+
+The repo went public with a README quickstart that only covered `npm run dev` — a developer path that needs Node on the host, shows a blank canvas (ADR 0005 removed the bundled boards), and reaches nobody who is evaluating the product rather than developing it. Adoption needs the other shape: clone, one command, board on screen, MCP endpoint a harness can attach to.
+
+Three real decisions hide inside "just dockerize it", each with a second option that was genuinely available:
+
+1. **Topology.** The board canvas and the MCP server have different lifecycles in principle, so the textbook compose file is two services sharing a mounted board volume.
+2. **Transport.** The MCP server has always spoken stdio (`index.mjs`), which is right for a harness that can spawn a local process and useless to someone pointing a client at a container from another machine. The SDK also ships Streamable HTTP.
+3. **The demo board.** A stranger's first start should show a board, and ADR 0005 says this repo contains no board data. Those collide head-on: the obvious quickstart move — commit a `demo-board.json`, copy it into the volume — is precisely the thing ADR 0005 exists to stop happening by accident, and a hand-authored demo board would also be invented content, against the repo's "don't invent what the source doesn't have" rule.
+
+Also in play: `tools.mjs` didn't exist, so standing up a second transport looked like copy-pasting the 13 tool registrations — which is how a write path ends up existing twice with subtly different locking.
+
+## Decision
+
+1. **One image, one compose service, both listeners inside it.** `start-services.mjs` is the container's workload: seed, then run the canvas/board server and the MCP HTTP server as children, and exit if either dies. Splitting the stack into two services is a refactor of that file, not of the application — no application code is shaped around the single-container choice.
+2. **Streamable HTTP is a second transport over one registration, not a second server.** The 13 tools moved from `index.mjs` into `tools.mjs`; `index.mjs` (stdio) and `http-server.mjs` (HTTP) each build an `McpServer` from it. `http-server.test.mjs` asserts the HTTP surface's tool names equal the expected set, so a transport cannot quietly ship a smaller or renamed surface.
+3. **The demo board is produced, not shipped.** `scripts/seed-demo-board.mjs` runs the committed pass-1 Interview plans (`mcp-server/fixtures/interview-plans/`) through the real queue → worker → `board-mutations.mjs` path on first start, into `NOMOTHETES_BOARD_DIR`, and skips entirely if a board file is already there. The board the quickstart shows is the harness's own output — same product path a real session takes, and it stops being a demo the moment anyone writes to it.
+4. **The canvas reads its board over HTTP from the same volume the MCP server writes.** New `src/boards/http.ts` + a `"served"` `BoardSource` kind: `GET /boards` (what exists) and `GET /boards/<id>-board.json` (fresh read per request), served by `scripts/selfhost-server.mjs` (node builtins only, no new dependency). First paint shows the single served board, or the one `?board=<id>` names; with several boards and no parameter, the picker stays on "blank" rather than guessing.
+5. **Both ports publish on `127.0.0.1`, plain HTTP.** No authentication exists in this product (ADR 0006's identity layer is unbuilt), so a write-capable endpoint must not reach the LAN by default; and ADR 0010's TLS 1.3 requirement is satisfied at the deployment layer (ADR 0011's UAT/Prod topology puts a reverse proxy there), which is explicitly out of this quickstart's scope. Host-header allowlisting stays on, via `MCP_ALLOWED_HOSTS`, because the container binds `0.0.0.0` internally and would otherwise have no DNS-rebinding protection at all.
+
+## Reasoning
+
+**Why one container rather than two.** The quickstart's audience is someone deciding whether this is worth an afternoon; a shared-volume contract between two containers is architecture they have to hold before they've seen a board. The two-service version isn't wrong — it's the shape a real deployment wants — and it costs one compose service plus a process supervisor that stops supervising the other half. Deleteability (CONTRIBUTING's strongest design goal) is preserved precisely because nothing below `start-services.mjs` knows it exists: both servers already take host/port/board-dir from the environment, which is the only reason the split is cheap later.
+
+**Why not a bundled demo board.** A demo fixture would violate ADR 0005 in the letter (board data in the engine's repo) and, worse, in the spirit: hand-written labels presenting a "rich example board" would be invented content standing in for a model nobody made, which is the failure mode this repo's conventions are most explicit about. Replaying the committed plans produces a *small* board (one slice, four nodes, one Example Map with two unresolved Questions) — honest about its size, and its open questions are the harness's real output rather than a flaw to hide. The cost is real too: the first-start experience is now coupled to the fixture plans, so changing those changes what a stranger sees first.
+
+**Why a read endpoint for the canvas rather than bundling the seeded file at build time.** A build-time copy freezes the board the canvas shows; the first MCP write would land on the volume while the browser kept displaying the stale baked copy. `selfhost-server.mjs` re-reads per request, which makes both the write's visibility and the volume's survival across a restart observable over HTTP instead of asserted. It stays read-only so the quickstart does not ship a second, unauthenticated write path next to the MCP server's one write path (ADR 0003).
+
+**Why plain HTTP on loopback rather than self-signed TLS in the stack.** Generating certificates is a decision with its own operational tail (trust, rotation, expiry failures at 3am), and ADR 0010's pinning/TLS requirements are written against the key-service and telemetry paths, not against a localhost demo. Shipping a half-trusted cert in a quickstart teaches the wrong lesson; binding to loopback keeps the unauthenticated window from leaving the machine while the real answer (proxy + ADR 0011's topology) stays where it belongs.
+
+## Consequences
+
+- `docker compose up -d --build` is now a supported path, and the README's claim about it is a transcription of commands that were run against a clean clone — including the MCP handshake's `notifications/initialized` step and the `Accept: application/json, text/event-stream` header, both of which a hand-written curl quickstart typically omits and which then look like a broken server.
+- The canvas has a second board-source kind, `"served"`, whose `load()` is async. `changeBoard` awaited that consequence: it is now async, and the picker composes build-time sources with run-time discovered ones.
+- **A board file on the volume is authoritative over seeding.** Restarting never resets a board; only removing the volume (`docker compose down -v`) re-seeds. That's the intended self-hosting behaviour, and it means "delete the volume" is the documented reset rather than a flag to invent.
+- The runtime image carries `src/presets/*.ts` because `scripts/presets.mjs` — the config contract — imports the catalog and resolver directly, and node ≥22.18 strips types on import. The base image is pinned to `node:22.20.0-alpine3.21`; re-pinning below 22.18 breaks the container at startup rather than at build time.
+- No authentication, no TLS, no `NOMOTHETES_BOARD_DIR` outside the volume: this stack is a single-user local evaluation, not a multi-tenant deployment, and README says so in those terms.
+- **Ripping it back out** (CONTRIBUTING's deleteability test): delete `Dockerfile`, `docker-compose.yml`, `start-services.mjs`, `.dockerignore`, `scripts/selfhost-server.mjs`, `scripts/seed-demo-board.mjs` and their tests, plus the self-host section of README. `tools.mjs` stays — it's the shared registration the stdio server now depends on, and reverting it would mean re-duplicating the tool surface. The canvas change is one new file (`src/boards/http.ts`) plus the `"served"` kind; deleting those leaves `"blank"` exactly as before. Nothing in `board-store.mjs`, `board-mutations.mjs`, or the canvas's render path was edited to make any of this work.
+
+## Related
+
+[ADR 0003](0003-agentic-modeling-write-path.md) (the one write path this refrains from duplicating); [ADR 0004](0004-interview-harness.md) (the plans whose replay is the demo board, and the ambiguity score it reports); [ADR 0005](0005-board-storage-lives-outside-this-repo.md) (the reason there is no bundled board to copy, and the `NOMOTHETES_BOARD_DIR` contract the volume mounts satisfy); [ADR 0006](0006-identity-and-board-ownership-are-delegated-to-the-customers-own-git-host.md) (identity/auth still unbuilt — why the ports stay on loopback); [ADR 0010](0010-transit-security-tls13-and-cert-pinning.md) / [ADR 0011](0011-environment-topology-dev-on-forgejo-uat-prod-on-cloud.md) (TLS 1.3 and the reverse-proxy topology this quickstart deliberately stops short of).

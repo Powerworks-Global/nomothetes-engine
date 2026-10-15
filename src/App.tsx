@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ReactFlow,
   Controls,
@@ -18,6 +18,8 @@ import { LANES, snapYToLane, TOTAL_HEIGHT, type LaneId } from "./lanes";
 import { StoryboardNode, type StoryboardNodeData } from "./StoryboardNode";
 import { listSpecs, loadSpec, listCrossCuttingConcerns, setActiveBoard, COLUMN_WIDTH, type CrossCuttingConcern, type SliceSummary } from "./loadBoard";
 import { BOARD_SOURCES, DEFAULT_BOARD_ID } from "./boards/registry";
+import { fetchServedBoard, initialServedBoardId, listServedBoards, servedBoardSource } from "./boards/http";
+import type { BoardSource } from "./boards/types";
 import { ExampleMapView } from "./ExampleMapView";
 import { getExampleMapSummary } from "./exampleMapStore";
 import { Badge } from "./components/Badge";
@@ -37,9 +39,10 @@ function newStoryboardNodeId() {
   return `storyboard-${Date.now()}-${nextStoryboardNodeId++}`;
 }
 
-// No bundled board (docs/adr/0005) — starts blank; a facilitator builds
-// the real content up live, or a future board source reaches an
-// external project's own repo (see src/boards/registry.ts).
+// No bundled board (docs/adr/0005) — the picker starts at "blank" and gains
+// whatever the serving server is holding on its board volume (see
+// src/boards/http.ts); a facilitator builds a blank one up live, or loads a
+// board the board server exposes.
 export default function App() {
   const [selectedBoardId, setSelectedBoardId] = useState<string>(DEFAULT_BOARD_ID);
   // Recomputed on every render, same as `slices`/`concerns` below — cheap,
@@ -52,6 +55,14 @@ export default function App() {
   const initial = loadSpec(selectedSpec);
   const [nodes, setNodes] = useState<Node[]>(initial.nodes);
   const [edges, setEdges] = useState<Edge[]>(initial.edges);
+  // Boards this page's server is holding on disk (src/boards/http.ts), empty
+  // until discovered on mount and empty forever under plain `npm run dev`,
+  // where no board server is behind Vite. The picker offers the static
+  // registry sources plus whatever the server turns out to have.
+  const [servedBoards, setServedBoards] = useState<BoardSource[]>([]);
+  // useMemo, not a fresh array each render: changeBoard below depends on it,
+  // and an unstable identity would re-run the mount effect on every render.
+  const boardSources = useMemo(() => [...BOARD_SOURCES, ...servedBoards], [servedBoards]);
   const [selected, setSelected] = useState<Node | null>(null);
   const [openSliceId, setOpenSliceId] = useState<string | null>(null);
   const [showSettings, setShowSettings] = useState(false);
@@ -109,74 +120,95 @@ export default function App() {
     setSelected(null);
   }, []);
 
-  // Switching boards is synchronous today (every BoardSource.load() in
-  // the registry returns an ImportedBoard directly, not a Promise) — no
-  // loading state needed. A future async source (upload/MCP) would need
-  // this to handle a Promise too; not built now, see src/boards/types.ts.
-  const changeBoard = useCallback((boardId: string) => {
-    const source = BOARD_SOURCES.find((b) => b.id === boardId);
-    if (!source) return;
-    setActiveBoard(source.load());
-    setSelectedBoardId(boardId);
-    const specsForBoard = listSpecs();
-    const nextSpec = specsForBoard[0];
-    setSelectedSpec(nextSpec);
-    const { nodes: n, edges: e } = loadSpec(nextSpec);
-    setNodes(n);
-    setEdges(e);
-    setSelected(null);
-    setOpenSliceId(null);
-    setExpandedConcernId(null);
-  }, [setOpenSliceId, setExpandedConcernId]);
+  // Shared tail of every board switch: make `board` the active board, jump to
+  // its first story-arc, and paint it. Used by the picker (changeBoard), by the
+  // load-by-ID input, and by the mount-time auto-load of a served board, so
+  // those three can't drift into showing different things for the same board.
+  const applyBoard = useCallback(
+    (boardId: string, nextSpec: string) => {
+      setSelectedBoardId(boardId);
+      setSelectedSpec(nextSpec);
+      const { nodes: n, edges: e } = loadSpec(nextSpec);
+      setNodes(n);
+      setEdges(e);
+      setSelected(null);
+      setOpenSliceId(null);
+      setExpandedConcernId(null);
+    },
+    [setNodes, setEdges, setSelected, setOpenSliceId, setExpandedConcernId],
+  );
 
-  // Attempt to load a board JSON directly from src/data/<id>-board.json.
-  // Uses the same post-load steps as changeBoard (setActiveBoard, pick
-  // first spec, loadSpec into nodes/edges) but does a dynamic import so
-  // it can handle boards not declared in BOARD_SOURCES. Errors are shown
-  // inline and do not crash the app.
+  // Board sources with an async load() (kind "served") need awaiting; "blank"
+  // resolves immediately, same call site either way.
+  const changeBoard = useCallback(
+    async (boardId: string) => {
+      const source = boardSources.find((b) => b.id === boardId);
+      if (!source) return;
+      try {
+        setActiveBoard(await source.load());
+      } catch {
+        setLoadBoardError(`Failed to load board "${boardId}"`);
+        return;
+      }
+      applyBoard(boardId, listSpecs()[0] ?? "");
+    },
+    [boardSources, applyBoard],
+  );
+
+  // On first paint, ask the server what boards it has and show one. This is
+  // what makes "the demo board appears on first start" true for the self-host
+  // quickstart instead of a claim about a container nobody opened: the board is
+  // read off the volume over HTTP (see src/boards/http.ts), so the canvas and
+  // the MCP server are looking at the same file. With no board server behind
+  // the page (plain `npm run dev`) this resolves to [] and changes nothing.
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      const summaries = await listServedBoards();
+      if (cancelled || summaries.length === 0) return;
+      setServedBoards(summaries.map(servedBoardSource));
+      const wanted = initialServedBoardId(summaries, new URLSearchParams(window.location.search).get("board"));
+      if (!wanted) return;
+      try {
+        setActiveBoard(await fetchServedBoard(wanted));
+      } catch {
+        return; // a board that vanished between listing and loading is the same "no served board" case as dev mode
+      }
+      if (!cancelled) applyBoard(wanted, listSpecs()[0] ?? "");
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [applyBoard]);
+
+  // Load a board by id from the server holding this page's board volume
+  // (scripts/selfhost-server.mjs). Same post-load steps as changeBoard;
+  // errors are shown inline and do not crash the app. Replaces the pre-ADR-0005
+  // version of this, which dynamic-imported `./data/<id>-board.json` out of
+  // this repo's own src/data/ — a directory that no longer exists, so every
+  // lookup through this input failed with "Failed to load board" no matter what
+  // was typed. The board is now where ADR 0005 says it lives: outside the repo,
+  // on the volume, reached over HTTP.
   const loadBoardById = useCallback(
     async (id: string) => {
       setLoadBoardError(null);
       if (!id) return;
       setLoadingBoard(true);
       try {
-        // Dynamic import resolves to a module with a default export (the
-        // JSON). This mirrors the shape of the statically imported boards.
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-        const mod: any = await import(/* @vite-ignore */ `./data/${id}-board.json`);
-        const importedBoard = mod?.default ?? mod;
-        // Set active board for loadBoard/listSpecs/loadSpec to see.
+        const importedBoard = await fetchServedBoard(id);
         setActiveBoard(importedBoard);
-        setSelectedBoardId(id);
-
-        const specsForBoard = listSpecs();
-        const nextSpec = specsForBoard[0];
-        if (!nextSpec) {
-          // Board loaded but has no specs — clear canvas.
-          setSelectedSpec("");
-          setNodes([]);
-          setEdges([]);
-          setSelected(null);
-          setOpenSliceId(null);
-          setExpandedConcernId(null);
-          setLoadBoardError(null);
-          return;
-        }
-        setSelectedSpec(nextSpec);
-        const { nodes: n, edges: e } = loadSpec(nextSpec);
-        setNodes(n);
-        setEdges(e);
-        setSelected(null);
-        setOpenSliceId(null);
-        setExpandedConcernId(null);
-      } catch (err) {
+        setServedBoards((prev) => (prev.some((b) => b.id === id) ? prev : [...prev, servedBoardSource({ id })]));
+        // No specs on the board is not an error: loadSpec("") falls through to
+        // an empty canvas, same as any other board with nothing on it.
+        applyBoard(id, listSpecs()[0] ?? "");
+      } catch {
         // Keep message simple and user-facing; do not throw.
         setLoadBoardError(`Failed to load board "${id}"`);
       } finally {
         setLoadingBoard(false);
       }
     },
-    [setNodes, setEdges, setSelected, setOpenSliceId, setExpandedConcernId, setSelectedSpec],
+    [applyBoard],
   );
 
   const onNodesChange = useCallback(
@@ -398,10 +430,10 @@ export default function App() {
         <h3 style={{ marginTop: 0 }}>{t("panel.board")}</h3>
         <select
           value={selectedBoardId}
-          onChange={(e) => changeBoard(e.target.value)}
+          onChange={(e) => void changeBoard(e.target.value)}
           style={{ width: "100%", padding: theme.space.sm, marginBottom: theme.space.lg, fontSize: theme.fontSize.md }}
         >
-          {BOARD_SOURCES.map((b) => (
+          {boardSources.map((b) => (
             <option key={b.id} value={b.id}>
               {b.label}
             </option>
@@ -422,7 +454,8 @@ export default function App() {
             ))}
           </select>
 
-          {/* Small, additive "Load board by ID" input for boards in src/data/*. */}
+          {/* Small, additive "Load board by ID" input for boards the serving
+              server holds on its board volume (scripts/selfhost-server.mjs). */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -455,7 +488,7 @@ export default function App() {
         )}
         <div style={{ color: theme.color.text.muted, marginBottom: theme.space.xl, fontSize: theme.fontSize.sm }}>
           {nodes.length} {t("panel.nodes")}, {edges.length} {t("panel.edges")} — {t("panel.importedFrom")}{" "}
-          {BOARD_SOURCES.find((b) => b.id === selectedBoardId)?.label ?? selectedBoardId}
+          {boardSources.find((b) => b.id === selectedBoardId)?.label ?? selectedBoardId}
         </div>
 
         <h3 style={{ marginTop: 0 }}>{t("panel.slices")}</h3>
