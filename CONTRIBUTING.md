@@ -1,6 +1,6 @@
 # Contributing
 
-Powerworks-Global owns this project. This repo is the open-core generic engine half of **Nomothetes** — a separate private repo holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here. This file exists so the working conventions are written down rather than only in one person's head, ahead of outside contributions being open.
+Powerworks-Global owns this project. This repo is the open-core generic engine half of **Nomothetes** — a separate private repo ([`nomothetes`](https://github.com/Powerworks-Global/nomothetes), access via Powerworks-Global) holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here. This file exists so the working conventions are written down rather than only in one person's head, ahead of outside contributions being open.
 
 ## Working conventions
 
