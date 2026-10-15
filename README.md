@@ -154,13 +154,14 @@ Measured in a fresh clone of this branch on the machine the quickstart was verif
 
 | Step | Measured |
 |---|---|
-| `git clone` | 0.6s |
-| `docker compose up -d --build` | 49.8s |
-| the build step alone, re-run with `--no-cache` | 45.2s |
+| `git clone` | 0.55–0.6s |
+| `docker compose up -d --build`, image had to be built | 49.8s |
+| same build with `--no-cache` | 45.2s |
+| same command with every layer already cached | 12.0s |
 | `docker compose up -d` → first successful `GET /boards` | 0.22s |
-| `docker compose restart` → board served again | 0.92s |
+| `docker compose restart` → board served again | 0.70–0.92s |
 | `docker compose down` + `up -d` (volume kept) → board served again | 1.24s |
-| **clone → working board over HTTP** | **~51s** |
+| **clone → working board over HTTP** | **~51s** worst case here |
 
 So the fifteen-minute budget is mostly you reading this file: the machine's share is under a minute. Two caveats, stated rather than hidden. The build reused a warm Docker layer cache and `node:22.20.0-alpine3.21` (161 MB) was already in the local image store — on a machine pulling that image for the first time, the pull is the one line that depends on your link, and it was not separately timed here. And every number above is Docker on one specific box.
 
