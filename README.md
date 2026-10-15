@@ -14,7 +14,7 @@ Laid out left to right as a timeline, this surfaces real design gaps early — a
 
 **This is not Event Modeling** — it's inspired by Event Modeling's timeline-based discovery technique, but deliberately drops event-sourcing vocabulary (Event, Command, Aggregate) in favor of plain, CRUD-friendly terms. That's a real design choice, not an oversight: the discovery power of laying out a timeline holds regardless of whether the team underneath is event-sourced, and the vocabulary swap removes a real translation cost for teams building conventional CRUD applications. See [Acknowledgments](#acknowledgments) for where the inspiration comes from.
 
-This repo is the open-core engine: the canvas, the board data model, and a bring-your-own-harness ("BYOH") way to generate or edit a board with a coding agent. Owned by [Powerworks-Global](https://github.com/Powerworks-Global) — a separate private repo holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here; see [CONTRIBUTING.md](CONTRIBUTING.md).
+This repo is the open-core engine: the canvas, the board data model, and a bring-your-own-harness ("BYOH") way to generate or edit a board with a coding agent. Owned by [Powerworks-Global](https://github.com/Powerworks-Global) — a separate private repo ([`nomothetes`](https://github.com/Powerworks-Global/nomothetes), access via Powerworks-Global) holds the Nomothetes-branded commercial layer (billing/stakeholder-digest exporters, compliance tooling) on top of what's here; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 This is exploratory, pre-production tooling — see [Scope](#scope) below for exactly what's in and out right now.
 
