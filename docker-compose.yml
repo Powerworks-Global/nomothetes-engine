@@ -1,0 +1,46 @@
+# Nomothetes Engine — self-host quickstart
+#
+# One command (`docker compose up -d --build`) gives you:
+#   http://localhost:5173          the board canvas
+#   http://localhost:5173/boards   which boards this volume holds
+#   http://localhost:3001/mcp      the MCP server, Streamable HTTP
+#
+# Both published ports are bound to 127.0.0.1 on purpose. The MCP endpoint can
+# write to the board and, per ADR 0006, there is no authentication in this
+# product yet — publishing it on 0.0.0.0 would put an unauthenticated write
+# surface on your LAN. It is also plain HTTP, which ADR 0010 (TLS 1.3) does not
+# allow for a real deployment; terminating TLS is a reverse-proxy job and out of
+# this quickstart's scope, so the loopback binding is what keeps that scope
+# limit honest rather than a note to be careful.
+
+services:
+  nomothetes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nomothetes-engine:quickstart
+    container_name: nomothetes-quickstart
+    ports:
+      - "127.0.0.1:5173:5173" # canvas + /boards (read-only view of the volume)
+      - "127.0.0.1:3001:3001" # MCP, Streamable HTTP
+    volumes:
+      # The board volume. This is the only state in the stack: `docker compose
+      # down` keeps it, `docker compose down -v` deletes your boards.
+      - nomothetes-boards:/app/boards
+    environment:
+      # Required, and required to be OUTSIDE the app tree: ADR 0005
+      # (docs/adr/0005-board-storage-lives-outside-this-repo.md) — this engine
+      # stores no boards inside itself, so the MCP tools refuse to run without
+      # this pointing at a board directory.
+      NOMOTHETES_BOARD_DIR: /app/boards
+      UI_PORT: "5173"
+      MCP_PORT: "3001"
+      # Container-internal binding must be 0.0.0.0 for the published port to
+      # reach it; the 127.0.0.1 host binding above is what keeps it local.
+      # Reach this service by container name from another container by adding
+      # that name here (Host-header validation, see mcp-server/http-server.mjs).
+      MCP_ALLOWED_HOSTS: localhost,127.0.0.1
+    restart: unless-stopped
+
+volumes:
+  nomothetes-boards:
