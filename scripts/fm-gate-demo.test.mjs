@@ -30,7 +30,7 @@ describe("fm.gate-bite-demo", () => {
     { meta: { spec: "fm.gate-bite-demo#spec-2", implementation: "scripts/annotate-specifications.mjs#annotateSpecifications" } },
     () => {
       const { warnings } = annotateSpecifications(exported(), { "spec-1": { implementationRef: "src/App.tsx#x" } });
-      expect(warnings).toEqual([]); // DELIBERATELY BROKEN — must never be merged; demo of the gate biting
+      expect(warnings.some((w) => /spec-2.*no implementationRef or verificationStatus/.test(w))).toBe(true);
     },
   );
 });
