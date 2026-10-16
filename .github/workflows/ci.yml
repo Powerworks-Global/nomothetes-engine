@@ -21,3 +21,60 @@ jobs:
       - run: npm run build
       - run: npm run lint
       - run: npm run test
+
+  # Generates the spec annotations file from this run's own test output —
+  # which module satisfies a specification and whether its test passed —
+  # instead of a human authoring it. See scripts/derive-annotations.mjs's
+  # header. The gate failing here names the unverified specifications; that
+  # failure is the finding, not a bug in this job.
+  traceability:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Test run, keeping its machine-readable JSON report
+        # The real test suite, honestly reported. Failures here are recorded
+        # in the report and surface as failed annotations below; the
+        # build-lint-test job still fails loudly on the same test run.
+        continue-on-error: true
+        run: npx vitest run --reporter=default --reporter=json --outputFile.json=reports/vitest.json
+
+      - name: Export this repository's own specifications from its Example Map fixture
+        run: |
+          mkdir -p reports
+          node scripts/export-specifications.mjs \
+            --input scripts/fixtures/storyboard-canvas-self/delete-slice-example-map.json \
+            --slice-id storyboard-canvas-self.delete-slice > reports/specifications.json
+
+      - name: Derive annotations from the test run and gate on them
+        run: |
+          node scripts/derive-annotations.mjs \
+            --report reports/vitest.json \
+            --specifications reports/specifications.json \
+            --annotations-out reports/annotations.json \
+            --document-out reports/specifications.derived.json \
+            --commit "$GITHUB_SHA" \
+            --run-id "$GITHUB_RUN_ID/$GITHUB_RUN_ATTEMPT" \
+            --gate
+
+      - name: Merge the derived annotations with the existing merge script
+        if: always()
+        run: |
+          if [ -f reports/annotations.json ]; then
+            node scripts/annotate-specifications.mjs \
+              --input reports/specifications.derived.json \
+              --annotations reports/annotations.json > reports/specifications.annotated.json
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: traceability-report
+          path: reports/
